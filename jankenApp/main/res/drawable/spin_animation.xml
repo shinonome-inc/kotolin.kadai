@@ -1,0 +1,11 @@
+<animation-list android:id="@+id/imageView2"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    android:variablePadding="true"
+    android:layout_height="100dp" android:layout_width="100dp"
+    >
+
+    <item android:drawable="@drawable/rock" android:duration="300"/>
+    <item android:drawable="@drawable/scissers" android:duration="300"/>
+    <item android:drawable="@drawable/paper" android:duration="300"/>
+</animation-list>
