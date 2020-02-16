@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">jankenApp</string>
+    <string name="resultdate">result</string>
+</resources>
