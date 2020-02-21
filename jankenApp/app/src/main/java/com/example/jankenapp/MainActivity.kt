@@ -15,56 +15,58 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-        enum class HandType(val id: Int) {
-            rock(0), scisser(1), paper(2),
-        }
+    fun rockButton(view: View) {
+        main(HandType.rock)
+    }
 
-        fun rockButton(view: View) {
-            main(HandType.rock)
-        }
+    fun paperButton(view: View) {
+        main(HandType.paper)
+    }
 
-        fun paperButton(view: View) {
-            main(HandType.paper)
-        }
+    fun scisserButton(view: View) {
+        main(HandType.scisser)
+    }
 
-        fun scisserButton(view: View) {
-            main(HandType.scisser)
+    fun randomAnimation(quit: Boolean) {
+        imageView2.setImageResource(R.drawable.spin_animation)
+        val frameAnimation = imageView2.drawable as AnimationDrawable
+        frameAnimation.start()
+        if (quit) {
+            frameAnimation.stop()
         }
+    }
 
-        fun randomAnimation(quit: Boolean) {
-            imageView2.setImageResource(R.drawable.spin_animation)
-            val frameAnimation = imageView2.drawable as AnimationDrawable
-            frameAnimation.start()
-            if (quit) {
-                frameAnimation.stop()
+    enum class HandType(val id: Int) {
+        rock(0), scisser(1), paper(2);
+
+        companion object {
+            fun fromInt(value: Int) = HandType.values().first { it.ordinal == value }
+        }
+    }
+
+    fun main(hand: HandType){
+        var cp = HandType.fromInt((0..2).shuffled().first())
+        randomAnimation(quit = false)
+        resulttext.text = "result"
+
+        Handler().postDelayed(Runnable {
+            randomAnimation(quit = true)
+
+            when(cp){
+                rock -> imageView2.setImageResource(R.drawable.rock)
+                scisser -> imageView2.setImageResource(R.drawable.scissers)
+                paper -> imageView2.setImageResource(R.drawable.paper)
             }
-        }
 
+            when {
+                hand.id == cp.id ->
+                    resulttext.text = "draw"
 
+                (hand.id + 1) % 3 == cp.id ->
+                    resulttext.text = "win!"
 
-        fun main(hand: HandType) {
-            var cp = (0..2).shuffled().first()
-            randomAnimation(quit = false)
-            resulttext.text = "result"
-
-            Handler().postDelayed(Runnable {
-                randomAnimation(quit = true)
-
-                when(cp){
-                    0 -> imageView2.setImageResource(R.drawable.rock)
-                    1 -> imageView2.setImageResource(R.drawable.scissers)
-                    2 -> imageView2.setImageResource(R.drawable.paper)
-                }
-
-                when {
-                    hand.id == cp ->
-                        resulttext.text = "draw"
-
-                    (hand.id + 1) % 3 == cp ->
-                        resulttext.text = "win!"
-
-                    else ->
-                        resulttext.text = "lose..."
+                else ->
+                    resulttext.text = "lose..."
                 }
             }, 2000)
         }
