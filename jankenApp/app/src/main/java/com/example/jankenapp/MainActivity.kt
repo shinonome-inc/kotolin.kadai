@@ -53,9 +53,9 @@ class MainActivity : AppCompatActivity() {
             randomAnimation(quit = true)
 
             when(cp){
-                rock -> imageView2.setImageResource(R.drawable.rock)
-                scisser -> imageView2.setImageResource(R.drawable.scissers)
-                paper -> imageView2.setImageResource(R.drawable.paper)
+                HandType.rock -> imageView2.setImageResource(R.drawable.rock)
+                HandType.scisser -> imageView2.setImageResource(R.drawable.scissers)
+                HandType.paper -> imageView2.setImageResource(R.drawable.paper)
             }
 
             when {
