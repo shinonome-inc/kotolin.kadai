@@ -16,20 +16,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun rockButton(view: View) {
-        main(HandType.rock)
+        jankenSystem(HandType.rock)
     }
 
     fun paperButton(view: View) {
-        main(HandType.paper)
+        jankenSystem(HandType.paper)
     }
 
     fun scisserButton(view: View) {
-        main(HandType.scisser)
+        jankenSystem(HandType.Scissor)
     }
 
     fun randomAnimation(quit: Boolean) {
-        imageView2.setImageResource(R.drawable.spin_animation)
-        val frameAnimation = imageView2.drawable as AnimationDrawable
+        cpHandIV.setImageResource(R.drawable.spin_animation)
+        val frameAnimation = cpHandIV.drawable as AnimationDrawable
         frameAnimation.start()
         if (quit) {
             frameAnimation.stop()
@@ -37,15 +37,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     enum class HandType(val id: Int) {
-        rock(0), scisser(1), paper(2);
+        rock(0), Scissor(1), paper(2);
 
         companion object {
             fun fromInt(value: Int) = HandType.values().first { it.ordinal == value }
         }
     }
 
-    fun main(hand: HandType){
-        var cp = HandType.fromInt((0..2).shuffled().first())
+    fun jankenSystem(hand: HandType){
+        val cp = HandType.fromInt((0..2).shuffled().first())
         randomAnimation(quit = false)
         resulttext.text = "result"
 
@@ -53,9 +53,9 @@ class MainActivity : AppCompatActivity() {
             randomAnimation(quit = true)
 
             when(cp){
-                HandType.rock -> imageView2.setImageResource(R.drawable.rock)
-                HandType.scisser -> imageView2.setImageResource(R.drawable.scissers)
-                HandType.paper -> imageView2.setImageResource(R.drawable.paper)
+                HandType.rock -> cpHandIV.setImageResource(R.drawable.rock)
+                HandType.Scissor -> cpHandIV.setImageResource(R.drawable.scissers)
+                HandType.paper -> cpHandIV.setImageResource(R.drawable.paper)
             }
 
             when {

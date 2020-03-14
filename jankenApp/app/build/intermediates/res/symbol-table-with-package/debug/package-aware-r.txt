@@ -694,6 +694,7 @@ id clip_vertical
 id collapseActionView
 id content
 id contentPanel
+id cpHandIV
 id custom
 id customPanel
 id decor_content_parent
@@ -719,7 +720,6 @@ id icon_group
 id ifRoom
 id image
 id imageView1
-id imageView2
 id info
 id invisible
 id italic

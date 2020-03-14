@@ -1,4 +1,4 @@
-<animation-list android:id="@+id/imageView2"
+<animation-list android:id="@+id/cpHandIV"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false"
     android:variablePadding="true"
