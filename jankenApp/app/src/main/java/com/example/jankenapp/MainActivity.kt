@@ -16,11 +16,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun rockButton(view: View) {
-        jankenSystem(HandType.rock)
+        jankenSystem(HandType.Rock)
     }
 
     fun paperButton(view: View) {
-        jankenSystem(HandType.paper)
+        jankenSystem(HandType.Paper)
     }
 
     fun scisserButton(view: View) {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     enum class HandType(val id: Int) {
-        rock(0), Scissor(1), paper(2);
+        Rock(0), Scissor(1), Paper(2);
 
         companion object {
             fun fromInt(value: Int) = HandType.values().first { it.ordinal == value }
@@ -53,9 +53,9 @@ class MainActivity : AppCompatActivity() {
             randomAnimation(quit = true)
 
             when(cp){
-                HandType.rock -> cpHandIV.setImageResource(R.drawable.rock)
+                HandType.Rock -> cpHandIV.setImageResource(R.drawable.rock)
                 HandType.Scissor -> cpHandIV.setImageResource(R.drawable.scissers)
-                HandType.paper -> cpHandIV.setImageResource(R.drawable.paper)
+                HandType.Paper -> cpHandIV.setImageResource(R.drawable.paper)
             }
 
             when {
