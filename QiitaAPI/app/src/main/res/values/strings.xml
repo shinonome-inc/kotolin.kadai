@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Qiita API</string>
+    <string name="newsbutton">記事を表示する</string>
+</resources>
