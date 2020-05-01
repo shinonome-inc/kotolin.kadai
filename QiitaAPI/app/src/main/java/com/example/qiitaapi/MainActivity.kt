@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import data
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     interface ItemInterface {
         @GET("v2/items?page=1&per_page=10")
-        fun items(): retrofit2.Call<data>
+        fun items(): retrofit2.Call<dataItem>
     }
 
     fun createService(): ItemInterface {
@@ -43,16 +42,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun gettext(v: View){
-        itemInterface.items().enqueue(object : retrofit2.Callback<data> {
-            override fun onFailure(call: retrofit2.Call<data>?, t: Throwable?) {
+        itemInterface.items().enqueue(object : retrofit2.Callback<dataItem> {
+            override fun onFailure(call: retrofit2.Call<dataItem>?, t: Throwable?) {
             }
 
-            override fun onResponse(call: retrofit2.Call<data>?, response: retrofit2.Response<data>) {
+            override fun onResponse(call: retrofit2.Call<dataItem>?, response: retrofit2.Response<dataItem>) {
                 if (response.isSuccessful) {
                     response.body()?.let {
 
                         var items = mutableListOf<String>()
-                        var res = response.body()?.Items?.iterator()
+                        var res = response.body()?.tags?.iterator()
                         var title = response.body()!!.title
                         newstitle.text = "$title"
 
