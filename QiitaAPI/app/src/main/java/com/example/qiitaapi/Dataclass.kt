@@ -1,10 +1,10 @@
 package com.example.qiitaapi
 
-data class dataItem(
+data class DataItem(
     val body: String,
-    val id: Int,
+    val id: String,
     val rendered_body: String,
-    val tags: List<Tag>,
+    val tags: Array<Tag>,
     val title: String,
     val url: String,
     val user: User
