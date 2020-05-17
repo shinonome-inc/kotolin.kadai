@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,6 +16,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val listButton: ListView = findViewById(R.id.newslist)
+        listButton.setOnItemClickListener {parent, view, position, id ->
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.addToBackStack(null)
+
+            fragmentTransaction.add(
+                R.id.web,
+                WebFragment.newInstance()
+            )
+
+            fragmentTransaction.commit()
+        }
     }
 
     private val itemInterface by lazy { createService() }
@@ -69,4 +83,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
 }
