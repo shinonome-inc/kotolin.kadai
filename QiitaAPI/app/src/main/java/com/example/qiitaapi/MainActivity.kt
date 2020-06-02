@@ -1,10 +1,10 @@
 package com.example.qiitaapi
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,6 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 class MainActivity : AppCompatActivity() {
+
+    private var URLs = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,15 +23,28 @@ class MainActivity : AppCompatActivity() {
         listButton.setOnItemClickListener {parent, view, position, id ->
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            val url = URLs[position]
 
             fragmentTransaction.addToBackStack(null)
 
             fragmentTransaction.add(
                 R.id.web,
-                WebFragment.newInstance()
+                WebFragment()
             )
 
             fragmentTransaction.commit()
+
+            val bundle = Bundle()
+
+            bundle.putString("URL", url)
+
+            val fragment = WebFragment()
+            fragment.arguments = bundle
+
+            fragmentManager.beginTransaction()
+                .add(R.id.Web, fragment)
+                .commit()
+
         }
     }
 
@@ -65,15 +80,17 @@ class MainActivity : AppCompatActivity() {
                     response.body()?.let {
 
                         var items = mutableListOf<String>()
-                        var res = response.body()?.iterator()
+                        var urls = mutableListOf<String>()
+                        val res = response.body()?.iterator()
 
                         if (res != null) {
                             for (item in res) {
                                 items.add(item.title)
+                                urls.add(item.url)
                             }
                         }
 
-                        //items = mutableListOf("a","b","c")
+                        URLs = urls
 
                         val list: ListView = findViewById(R.id.newslist)
                         val adapter = ArrayAdapter(this@MainActivity, android.R.layout.simple_list_item_1, items)
@@ -83,5 +100,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 }
