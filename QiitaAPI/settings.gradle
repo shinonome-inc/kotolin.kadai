@@ -1,0 +1,2 @@
+rootProject.name='Qiita API'
+include ':app'
