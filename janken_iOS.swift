@@ -1,13 +1,13 @@
 enum HandType: Int {
     case rock = 0
-    case scisser = 1
+    case scissors = 1
     case paper = 2
 }
 
 func janken(you: HandType) {
     let cp = Int.random(in: 0..<3)
     
-    let result = (HandType.rock.rawValue, cp)
+    let result = (you.rawValue, cp)
     var ans:Result
     
     enum Result {
@@ -23,12 +23,21 @@ func janken(you: HandType) {
         default:ans = Result.lose
     }
     
+    switch cp {
+        case 0: print("cp:rock.")
+        case 1: print("cp:scissors.")
+        case 2: print("cp:paper.")
+        default: print("error")
+    }
+    
     switch ans {
-        case .draw: print("draw")
-        case .win: print("win!")
-        case .lose: print("lose...")
+        case .draw: print("you draw")
+        case .win: print("you win!")
+        case .lose: print("you lose...")
     }
     
 }
 
 janken(you: .rock)
+janken(you: .scissors)
+janken(you: .paper)
