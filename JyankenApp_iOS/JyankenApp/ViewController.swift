@@ -4,15 +4,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var enemy: UIImageView!
-    
-    let rock = UIImage(named:"rock")!
-    let scissors = UIImage(named:"scissors")!
-    let paper = UIImage(named:"paper")!
+
     var youhand: Hand!
     var timer: Timer!
     var dispImageNo = 0
     var count = 0
     var type = 0
+    var flag = 0
     
     let enemyHand = [
     "rock",
@@ -26,10 +24,10 @@ class ViewController: UIViewController {
         case paper = 2
     }
     
-    enum Result {
-        case draw
-        case win
-        case lose
+    enum Result: String {
+        case draw = "draw"
+        case win = "win!"
+        case lose = "lose..."
     }
     
     override func viewDidLoad(){
@@ -38,21 +36,29 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rockButton(_ sender: Any) {
-        timerStart()
-        type = 0
+        if(flag == 0){
+            timerStart()
+            type = Hand.rock.rawValue
+        }
     }
     
     @IBAction func scissorsButton(_ sender: Any) {
-        timerStart()
-        type = 1
+        if(flag == 0){
+            timerStart()
+            type = Hand.scissors.rawValue
+        }
     }
     
     @IBAction func paperButton(_ sender: Any) {
-        timerStart()
-        type = 2
+        if(flag == 0){
+            timerStart()
+            type = Hand.paper.rawValue
+        }
     }
     
     func timerStart(){
+        flag = 1
+        
         timer = Timer.scheduledTimer(
         timeInterval: 0.3,
         target: self,
@@ -64,55 +70,46 @@ class ViewController: UIViewController {
     func displayImage() {
         
         if timer != nil && count == 4 {
-            count = 0
             timer.invalidate()
+            flag = 0
+            count = 0
             
-            if(type == 0){
+            if(type == Hand.rock.rawValue){
                 jankenPlay(you: .rock)
             
-            }else if(type == 1){
+            }else if(type == Hand.scissors.rawValue){
                 jankenPlay(you: .scissors)
             
-            }else if(type == 2){
+            }else if(type == Hand.paper.rawValue){
                 jankenPlay(you: .paper)
             }
             
         }else{
         
-            if dispImageNo < 0 {
-                dispImageNo = 2
+            if dispImageNo < Hand.rock.rawValue {
+                dispImageNo = Hand.paper.rawValue
             }
         
-            if dispImageNo > 2 {
-                dispImageNo = 0
+            if dispImageNo > Hand.paper.rawValue {
+                dispImageNo = Hand.rock.rawValue
             }
-        
-            let image = UIImage(named: enemyHand[dispImageNo])
-
-            enemy.image = image
+            
+            enemy.image = UIImage(named: enemyHand[dispImageNo])
         }
     }
     
     func jankenPlay(you: Hand){
         
-        let cp = Int.random(in: 0..<3)
-        let ehand = UIImage(named: enemyHand[cp])
+        let cp = Int.random(in: Hand.rock.rawValue..<3)
         let game = (you.rawValue, cp)
-        var ans: Result
         
         print(cp)
-        enemy.image = ehand
+        enemy.image = UIImage(named: enemyHand[cp])
         
         switch game {
-            case (let handId, let cpHand) where handId == cpHand: ans = Result.draw
-            case (let handId, let cpHand) where (handId+1) % 3 == cpHand: ans = Result.win
-            default:ans = Result.lose
-        }
-        
-        switch ans {
-            case .draw: result.text = "draw"
-            case .win: result.text = "win!"
-            case .lose: result.text = "lose..."
+        case (let handId, let cpHand) where handId == cpHand: result.text = Result.draw.rawValue
+        case (let handId, let cpHand) where (handId+1) % 3 == cpHand: result.text = Result.win.rawValue
+        default:result.text = Result.lose.rawValue
         }
     }
     
@@ -123,4 +120,3 @@ class ViewController: UIViewController {
         displayImage()
     }
 }
-
