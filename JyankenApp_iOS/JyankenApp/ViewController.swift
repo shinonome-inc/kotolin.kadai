@@ -9,8 +9,8 @@ class ViewController: UIViewController {
     var timer: Timer!
     var dispImageNo = 0
     var count = 0
-    var type = 0
-    var flag = 0
+    var youHand = 0
+    var flag = false
     
     let enemyHand = [
     "rock",
@@ -36,28 +36,28 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rockButton(_ sender: Any) {
-        if(flag == 0){
+        if(flag == false){
             timerStart()
-            type = Hand.rock.rawValue
+            youHand = Hand.rock.rawValue
         }
     }
     
     @IBAction func scissorsButton(_ sender: Any) {
-        if(flag == 0){
+        if(flag == false){
             timerStart()
-            type = Hand.scissors.rawValue
+            youHand = Hand.scissors.rawValue
         }
     }
     
     @IBAction func paperButton(_ sender: Any) {
-        if(flag == 0){
+        if(flag == false){
             timerStart()
-            type = Hand.paper.rawValue
+            youHand = Hand.paper.rawValue
         }
     }
     
     func timerStart(){
-        flag = 1
+        flag = true
         
         timer = Timer.scheduledTimer(
         timeInterval: 0.3,
@@ -71,17 +71,23 @@ class ViewController: UIViewController {
         
         if timer != nil && count == 4 {
             timer.invalidate()
-            flag = 0
+            flag = false  
             count = 0
             
-            if(type == Hand.rock.rawValue){
+            /*if(youHand == Hand.rock.rawValue){
                 jankenPlay(you: .rock)
             
-            }else if(type == Hand.scissors.rawValue){
+            }else if(youHand == Hand.scissors.rawValue){
                 jankenPlay(you: .scissors)
             
-            }else if(type == Hand.paper.rawValue){
+            }else if(youHand == Hand.paper.rawValue){
                 jankenPlay(you: .paper)
+            }*/
+            
+            switch youHand {
+            case Hand.rock.rawValue: jankenPlay(you: .rock)
+            case Hand.scissors.rawValue: jankenPlay(you: .scissors)
+            default: jankenPlay(you: .paper)
             }
             
         }else{
@@ -100,7 +106,7 @@ class ViewController: UIViewController {
     
     func jankenPlay(you: Hand){
         
-        let cp = Int.random(in: Hand.rock.rawValue..<3)
+        let cp = Int.random(in: Hand.rock.rawValue...Hand.paper.rawValue)
         let game = (you.rawValue, cp)
         
         print(cp)
