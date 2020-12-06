@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  JyankenApp
-//
-//  Created by Sakai Syunya on 2020/10/13.
-//  Copyright © 2020 Sakai Syunya. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
