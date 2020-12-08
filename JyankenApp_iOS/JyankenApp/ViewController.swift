@@ -74,16 +74,6 @@ class ViewController: UIViewController {
             flag = false  
             count = 0
             
-            /*if(youHand == Hand.rock.rawValue){
-                jankenPlay(you: .rock)
-            
-            }else if(youHand == Hand.scissors.rawValue){
-                jankenPlay(you: .scissors)
-            
-            }else if(youHand == Hand.paper.rawValue){
-                jankenPlay(you: .paper)
-            }*/
-            
             switch youHand {
             case Hand.rock.rawValue: jankenPlay(you: .rock)
             case Hand.scissors.rawValue: jankenPlay(you: .scissors)
