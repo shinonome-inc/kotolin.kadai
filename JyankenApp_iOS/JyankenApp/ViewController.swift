@@ -5,23 +5,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var enemy: UIImageView!
 
-    var youhand: Hand!
+    var youHandType: Hand!
     var timer: Timer!
     var dispImageNo = 0
     var count = 0
-    var youHand = 0
-    var flag = false
+    var jankenPlayCheck = false
     
     let enemyHand = [
-    "rock",
-    "scissors",
-    "paper",
+        "rock",
+        "scissors",
+        "paper",
     ]
     
     enum Hand: Int{
         case rock = 0
         case scissors = 1
         case paper = 2
+        
+        func getImage() -> UIImage {
+            switch self {
+            case .rock: return #imageLiteral(resourceName: "rock")
+            case .scissors: return #imageLiteral(resourceName: "scissors")
+            case .paper: return #imageLiteral(resourceName: "paper")
+            }
+        }
     }
     
     enum Result: String {
@@ -30,67 +37,64 @@ class ViewController: UIViewController {
         case lose = "lose..."
     }
     
-    override func viewDidLoad(){
-        
-        super.viewDidLoad()
-    }
-    
     @IBAction func rockButton(_ sender: Any) {
-        if(flag == false){
+        if( jankenPlayCheck == false ){
             timerStart()
-            youHand = Hand.rock.rawValue
+            youHandType = Hand.rock
         }
     }
     
     @IBAction func scissorsButton(_ sender: Any) {
-        if(flag == false){
+        if( jankenPlayCheck == false ){
             timerStart()
-            youHand = Hand.scissors.rawValue
+            youHandType = Hand.scissors
         }
     }
     
     @IBAction func paperButton(_ sender: Any) {
-        if(flag == false){
+        if( jankenPlayCheck == false ){
             timerStart()
-            youHand = Hand.paper.rawValue
+            youHandType = Hand.paper
         }
     }
     
     func timerStart(){
-        flag = true
+        jankenPlayCheck = true
         
         timer = Timer.scheduledTimer(
-        timeInterval: 0.3,
-        target: self,
-        selector:#selector(onTimer),
-        userInfo: nil,
-        repeats: true)
+            timeInterval: 0.1,
+            target: self,
+            selector:#selector(onTimer),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     func displayImage() {
         
-        if timer != nil && count == 4 {
+        if ( timer != nil && count == 30 ) {
             timer.invalidate()
-            flag = false  
+            jankenPlayCheck = false  
             count = 0
+            dispImageNo = 0
             
-            switch youHand {
-            case Hand.rock.rawValue: jankenPlay(you: .rock)
-            case Hand.scissors.rawValue: jankenPlay(you: .scissors)
-            default: jankenPlay(you: .paper)
-            }
+            jankenPlay(you: youHandType)
             
         }else{
-        
-            if dispImageNo < Hand.rock.rawValue {
-                dispImageNo = Hand.paper.rawValue
-            }
-        
-            if dispImageNo > Hand.paper.rawValue {
-                dispImageNo = Hand.rock.rawValue
-            }
             
-            enemy.image = UIImage(named: enemyHand[dispImageNo])
+            switch dispImageNo {
+            case 0:
+                enemy.image = Hand.rock.getImage()
+                dispImageNo += 1
+            case 1:
+                enemy.image = Hand.scissors.getImage()
+                dispImageNo += 1
+            case 2:
+                enemy.image = Hand.paper.getImage()
+                dispImageNo += 1
+            default:
+                dispImageNo = 0
+            }
         }
     }
     
@@ -111,7 +115,6 @@ class ViewController: UIViewController {
     
     @objc func onTimer() {
         
-        dispImageNo += 1
         count += 1
         displayImage()
     }
