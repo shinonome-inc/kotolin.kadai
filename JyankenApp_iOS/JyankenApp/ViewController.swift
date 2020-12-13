@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         "paper",
     ]
     
-    enum Hand: Int{
+    enum Hand: Int {
         case rock = 0
         case scissors = 1
         case paper = 2
@@ -38,27 +38,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rockButton(_ sender: Any) {
-        if( jankenPlayCheck == false ){
+        if(jankenPlayCheck == false){
             timerStart()
             youHandType = Hand.rock
         }
     }
     
     @IBAction func scissorsButton(_ sender: Any) {
-        if( jankenPlayCheck == false ){
+        if(jankenPlayCheck == false){
             timerStart()
             youHandType = Hand.scissors
         }
     }
     
     @IBAction func paperButton(_ sender: Any) {
-        if( jankenPlayCheck == false ){
+        if(jankenPlayCheck == false){
             timerStart()
             youHandType = Hand.paper
         }
     }
     
-    func timerStart(){
+    func timerStart() {
         jankenPlayCheck = true
         
         timer = Timer.scheduledTimer(
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     
     func displayImage() {
         
-        if ( timer != nil && count == 30 ) {
+        if (timer != nil && count == 30) {
             timer.invalidate()
             jankenPlayCheck = false  
             count = 0
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func jankenPlay(you: Hand){
+    func jankenPlay(you: Hand) {
         
         let cp = Int.random(in: Hand.rock.rawValue...Hand.paper.rawValue)
         let game = (you.rawValue, cp)
