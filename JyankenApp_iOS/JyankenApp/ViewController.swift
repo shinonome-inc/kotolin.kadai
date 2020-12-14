@@ -39,21 +39,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rockButton(_ sender: Any) {
-        if(jankenPlayCheck == false){
+        if(jankenPlayCheck == false) {
             timerStart()
             youHandType = Hand.rock
         }
     }
     
     @IBAction func scissorsButton(_ sender: Any) {
-        if(jankenPlayCheck == false){
+        if(jankenPlayCheck == false) {
             timerStart()
             youHandType = Hand.scissors
         }
     }
     
     @IBAction func paperButton(_ sender: Any) {
-        if(jankenPlayCheck == false){
+        if(jankenPlayCheck == false) {
             timerStart()
             youHandType = Hand.paper
         }
