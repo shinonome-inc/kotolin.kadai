@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         case paper = 2
         
         func getImage() -> UIImage {
+            
             switch self {
             case .rock: return #imageLiteral(resourceName: "rock")
             case .scissors: return #imageLiteral(resourceName: "scissors")
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
     }
     
     func timerStart() {
+        
         jankenPlayCheck = true
         
         timer = Timer.scheduledTimer(
