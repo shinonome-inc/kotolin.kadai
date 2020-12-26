@@ -1,0 +1,6 @@
+framework module Pods_QiitaLog_AppTests {
+  umbrella header "Pods-QiitaLog_AppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
