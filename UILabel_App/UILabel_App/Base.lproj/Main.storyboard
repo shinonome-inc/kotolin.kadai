@@ -16,30 +16,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eby-1b-gOQ">
-                                <rect key="frame" x="145" y="180" width="130" height="40"/>
+                                <rect key="frame" x="60" y="182" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4gS-6v-uBn"/>
-                                    <constraint firstAttribute="width" constant="130" id="vFC-oQ-fMC"/>
+                                    <constraint firstAttribute="width" constant="300" id="vFC-oQ-fMC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZP-5r-kBn">
-                                <rect key="frame" x="145" y="230" width="130" height="40"/>
+                                <rect key="frame" x="60" y="230" width="300" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="ZCF-Lr-eXp"/>
+                                    <constraint firstAttribute="width" constant="300" id="ZCF-Lr-eXp"/>
                                     <constraint firstAttribute="height" constant="40" id="eJ9-HI-XYI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8H-Zg-BhZ">
-                                <rect key="frame" x="145" y="280" width="130" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="57Q-sn-aH7"/>
-                                    <constraint firstAttribute="width" constant="130" id="CcA-oe-5Qe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -98,12 +88,22 @@ Announced in 2014, the Swift programming language has quickly become one of the 
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8H-Zg-BhZ">
+                                <rect key="frame" x="60" y="282" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="57Q-sn-aH7"/>
+                                    <constraint firstAttribute="width" constant="300" id="CcA-oe-5Qe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Fml-cG-8Cv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="6wM-BP-NJa"/>
                             <constraint firstItem="xn2-Xa-ZeE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="95Z-dH-LE7"/>
-                            <constraint firstItem="l8H-Zg-BhZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-148" id="9ew-0e-zi2"/>
+                            <constraint firstItem="l8H-Zg-BhZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-146" id="9ew-0e-zi2"/>
                             <constraint firstItem="zSA-yc-1gA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="135" id="Gtj-cE-sCn"/>
                             <constraint firstItem="ya4-1P-Xu7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="63" id="HXx-rH-3ue"/>
                             <constraint firstItem="l8H-Zg-BhZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="J19-y7-V0N"/>
@@ -112,7 +112,7 @@ Announced in 2014, the Swift programming language has quickly become one of the 
                             <constraint firstItem="ya4-1P-Xu7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="52" id="WCD-c8-xfg"/>
                             <constraint firstItem="YZP-5r-kBn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-198" id="bw6-qd-cbX"/>
                             <constraint firstItem="Eby-1b-gOQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="dfY-wS-Ei0"/>
-                            <constraint firstItem="Eby-1b-gOQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-248" id="oYN-Dz-7uk"/>
+                            <constraint firstItem="Eby-1b-gOQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-246" id="oYN-Dz-7uk"/>
                             <constraint firstItem="ayN-gv-93L" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-3" id="pb0-H2-efB"/>
                             <constraint firstItem="Fml-cG-8Cv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-103" id="rAZ-TC-k05"/>
                             <constraint firstItem="zSA-yc-1gA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-2" id="xan-yA-6Vf"/>
