@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07BA5B2C25CA51F800FFCBE8 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA5B2B25CA51F800FFCBE8 /* UIView+Border.swift */; };
+		07BA5B2E25CA530500FFCBE8 /* Border+BackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BA5B2D25CA530500FFCBE8 /* Border+BackgroundColor.swift */; };
 		07C758FD254EB61F00FFD863 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C758FC254EB61F00FFD863 /* AppDelegate.swift */; };
 		07C758FF254EB61F00FFD863 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C758FE254EB61F00FFD863 /* SceneDelegate.swift */; };
 		07C75901254EB61F00FFD863 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C75900254EB61F00FFD863 /* ViewController.swift */; };
@@ -15,7 +17,6 @@
 		07C75909254EB62000FFD863 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C75907254EB62000FFD863 /* LaunchScreen.storyboard */; };
 		07C75914254EB62000FFD863 /* UILabel_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C75913254EB62000FFD863 /* UILabel_AppTests.swift */; };
 		07C7591F254EB62000FFD863 /* UILabel_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C7591E254EB62000FFD863 /* UILabel_AppUITests.swift */; };
-		07C7592F254EC8C100FFD863 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C7592E254EC8C100FFD863 /* UIColorHex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07BA5B2B25CA51F800FFCBE8 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
+		07BA5B2D25CA530500FFCBE8 /* Border+BackgroundColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Border+BackgroundColor.swift"; sourceTree = "<group>"; };
 		07C758F9254EB61F00FFD863 /* UILabel_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UILabel_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C758FC254EB61F00FFD863 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07C758FE254EB61F00FFD863 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +53,6 @@
 		07C7591A254EB62000FFD863 /* UILabel_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UILabel_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C7591E254EB62000FFD863 /* UILabel_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel_AppUITests.swift; sourceTree = "<group>"; };
 		07C75920254EB62000FFD863 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		07C7592E254EC8C100FFD863 /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,8 @@
 				07C75905254EB62000FFD863 /* Assets.xcassets */,
 				07C75907254EB62000FFD863 /* LaunchScreen.storyboard */,
 				07C7590A254EB62000FFD863 /* Info.plist */,
-				07C7592E254EC8C100FFD863 /* UIColorHex.swift */,
+				07BA5B2B25CA51F800FFCBE8 /* UIView+Border.swift */,
+				07BA5B2D25CA530500FFCBE8 /* Border+BackgroundColor.swift */,
 			);
 			path = UILabel_App;
 			sourceTree = "<group>";
@@ -263,8 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C75901254EB61F00FFD863 /* ViewController.swift in Sources */,
-				07C7592F254EC8C100FFD863 /* UIColorHex.swift in Sources */,
+				07BA5B2E25CA530500FFCBE8 /* Border+BackgroundColor.swift in Sources */,
 				07C758FD254EB61F00FFD863 /* AppDelegate.swift in Sources */,
+				07BA5B2C25CA51F800FFCBE8 /* UIView+Border.swift in Sources */,
 				07C758FF254EB61F00FFD863 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
