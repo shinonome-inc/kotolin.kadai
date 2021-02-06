@@ -11,7 +11,7 @@ import Alamofire
 
 class ViewController: UIViewController {
 
-    func request(){
+    func request() {
         AF.request(
             "https://qiita.com/api/v2/items",
             method: .get,
@@ -21,10 +21,11 @@ class ViewController: UIViewController {
         )
         .response { response in
             guard let data = response.data else { return }
-            do {let dataItem: [DataItem] = try JSONDecoder().decode([DataItem].self, from: data)
+            do {
+                let dataItem: [DataItem] =
+                try JSONDecoder().decode([DataItem].self,from:data)
                 print(dataItem)
-            }
-            catch let error {
+            } catch let error {
                 print("Error: \(error)")
             }
         }
@@ -34,7 +35,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         request()
-        
     }
 
 
