@@ -10,6 +10,12 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        request()
+    }
 
     func request() {
         AF.request(
@@ -23,20 +29,13 @@ class ViewController: UIViewController {
             guard let data = response.data else { return }
             do {
                 let dataItem: [DataItem] =
-                try JSONDecoder().decode([DataItem].self,from:data)
+                    try JSONDecoder().decode([DataItem].self,from:data)
                 print(dataItem)
             } catch let error {
                 print("Error: \(error)")
             }
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        request()
-    }
-
 
 }
 
