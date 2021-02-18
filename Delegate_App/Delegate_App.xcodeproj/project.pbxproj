@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0723429C25D654D800BAD77A /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0723429B25D654D800BAD77A /* UIView.swift */; };
+		0723429E25D65A3800BAD77A /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0723429D25D65A3800BAD77A /* Delegate.swift */; };
 		07DA8B9A25D128C000069AC3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA8B9925D128C000069AC3 /* AppDelegate.swift */; };
 		07DA8B9C25D128C000069AC3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA8B9B25D128C000069AC3 /* SceneDelegate.swift */; };
 		07DA8B9E25D128C000069AC3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA8B9D25D128C000069AC3 /* ViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0723429B25D654D800BAD77A /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		0723429D25D65A3800BAD77A /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
 		07DA8B9625D128C000069AC3 /* Delegate_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delegate_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DA8B9925D128C000069AC3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07DA8B9B25D128C000069AC3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,8 +87,6 @@
 		07DA8B8D25D128C000069AC3 = {
 			isa = PBXGroup;
 			children = (
-				07DA8BC925D128DD00069AC3 /* CustomView.swift */,
-				07DA8BCB25D129C300069AC3 /* CustomView.xib */,
 				07DA8B9825D128C000069AC3 /* Delegate_App */,
 				07DA8BAF25D128C100069AC3 /* Delegate_AppTests */,
 				07DA8BBA25D128C100069AC3 /* Delegate_AppUITests */,
@@ -105,6 +107,9 @@
 		07DA8B9825D128C000069AC3 /* Delegate_App */ = {
 			isa = PBXGroup;
 			children = (
+				0723429B25D654D800BAD77A /* UIView.swift */,
+				07DA8BCB25D129C300069AC3 /* CustomView.xib */,
+				07DA8BC925D128DD00069AC3 /* CustomView.swift */,
 				07DA8B9925D128C000069AC3 /* AppDelegate.swift */,
 				07DA8B9B25D128C000069AC3 /* SceneDelegate.swift */,
 				07DA8B9D25D128C000069AC3 /* ViewController.swift */,
@@ -112,6 +117,7 @@
 				07DA8BA225D128C100069AC3 /* Assets.xcassets */,
 				07DA8BA425D128C100069AC3 /* LaunchScreen.storyboard */,
 				07DA8BA725D128C100069AC3 /* Info.plist */,
+				0723429D25D65A3800BAD77A /* Delegate.swift */,
 			);
 			path = Delegate_App;
 			sourceTree = "<group>";
@@ -266,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0723429E25D65A3800BAD77A /* Delegate.swift in Sources */,
+				0723429C25D654D800BAD77A /* UIView.swift in Sources */,
 				07DA8B9E25D128C000069AC3 /* ViewController.swift in Sources */,
 				07DA8BCA25D128DD00069AC3 /* CustomView.swift in Sources */,
 				07DA8B9A25D128C000069AC3 /* AppDelegate.swift in Sources */,

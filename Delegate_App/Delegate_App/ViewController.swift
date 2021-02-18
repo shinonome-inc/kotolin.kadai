@@ -8,13 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
+class ViewController: UIViewController, CustomDelegate {
+    
+    @IBOutlet var customView: CustomView!
+    @IBOutlet weak var width: NSLayoutConstraint!
+    @IBOutlet weak var height: NSLayoutConstraint!
+    
+    /*override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+    }*/
+    
+    func custom() {
+        width.constant = 0
+        height.constant = 0
+        customView.isHidden = true
     }
-
-
 }
-
