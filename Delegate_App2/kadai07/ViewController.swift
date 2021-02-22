@@ -1,16 +1,12 @@
 import UIKit
 
-class ViewController: UIViewController, CustomDelegate{
+class ViewController: UIViewController{
     
     var customView: CustomView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-
-    func closeCustomView(){
-        customView.removeFromSuperview()
     }
     
     @IBAction func showCustomViewButtonTapped(_ sender: Any) {
@@ -22,6 +18,13 @@ class ViewController: UIViewController, CustomDelegate{
         customView.delegate = self
         
         view.addSubview(customView)
+    }
+    
+}
+
+extension ViewController: CustomDelegate {
+    func closeCustomView() {
+        customView.removeFromSuperview()
     }
     
 }
