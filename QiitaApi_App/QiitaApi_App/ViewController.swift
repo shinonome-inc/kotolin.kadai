@@ -8,13 +8,11 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class ViewController: UIViewController {
     
     @IBOutlet var qiitaArticleTavleView: UITableView!
     
-    let decoder: JSONDecoder = JSONDecoder()
     let table = UITableView()
     var articles: [DataItem] = []
     
@@ -41,7 +39,7 @@ class ViewController: UIViewController {
         .response { response in
             guard let data = response.data else { return }
             do {
-                let dataItem: [DataItem] =
+                let dataItem =
                     try JSONDecoder().decode([DataItem].self,from:data)
                 
                 

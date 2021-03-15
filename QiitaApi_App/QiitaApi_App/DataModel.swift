@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DataItem: Codable{
+struct DataItem: Codable {
     let body: String
     let id: String
     let rendered_body: String

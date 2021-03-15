@@ -9,8 +9,6 @@ target 'QiitaApi_App' do
 
   pod "Alamofire"
 
-  pod "SwiftyJSON"
-
   target 'QiitaApi_AppTests' do
     inherit! :search_paths
     # Pods for testing
