@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     let decoder: JSONDecoder = JSONDecoder()
     let table = UITableView()
-    var articles: [[String: String]] = []
+    var articles: [DataItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +44,9 @@ class ViewController: UIViewController {
                 let dataItem: [DataItem] =
                     try JSONDecoder().decode([DataItem].self,from:data)
                 
-                var count = 0
                 
-                while count < dataItem.count {
-                    let article: [String: String] =  ["title": dataItem[count].title,  "userName": dataItem[count].user.name, "url": dataItem[count].url]
-                    
-                    self.articles.append(article)
-                    
-                    count += 1
+                dataItem.forEach {
+                    self.articles.append($0)
                 }
                 
                 self.table.reloadData()
@@ -72,10 +67,10 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        let article = articles[indexPath.row]
-               
-        cell.textLabel?.text = article["title"]!
-        cell.detailTextLabel?.text = article["userName"]!
+        
+        cell.textLabel?.text = articles[indexPath.row].title
+        
+        cell.detailTextLabel?.text = articles[indexPath.row].user.name
 
         return cell
     }
@@ -85,11 +80,10 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondView") as! SecondViewController
-        let article = articles[indexPath.row]
+        guard let nextVC: SecondViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondView") as? SecondViewController else { return }
         
-        nextVC.articleUrl = article["url"]!
+        nextVC.articleUrl = articles[indexPath.row].url
         
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        guard (self.navigationController?.pushViewController(nextVC, animated: true)) != nil else { return }
     }
 }
