@@ -82,6 +82,6 @@ extension ViewController: UITableViewDelegate {
         
         nextVC.articleUrl = articles[indexPath.row].url
         
-        guard (self.navigationController?.pushViewController(nextVC, animated: true)) != nil else { return }
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
