@@ -78,10 +78,15 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let nextVC: SecondViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondView") as? SecondViewController else { return }
+        guard let nextVC: SecondViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondView") as?
+            
+            SecondViewController else { return }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         nextVC.articleUrl = articles[indexPath.row].url
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
 }
