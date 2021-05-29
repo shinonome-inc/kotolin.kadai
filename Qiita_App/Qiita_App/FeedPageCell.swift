@@ -24,9 +24,7 @@ class FeedPageCellViewController: UITableViewCell {
         let imageUrl = URL(string: data.user.profile_image_url as String)
         do{
             let imageData = try Data(contentsOf: imageUrl!)
-            var image = UIImage(data: imageData)
-            
-            image = image?.scaleImage(scaleSize: 0.1)
+            guard let image = UIImage(data: imageData)?.scaleImage(scaleSize: 0.1) else { return }
             
             //print(data.title as String)
             //print(image!.size)

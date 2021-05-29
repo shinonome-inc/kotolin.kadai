@@ -13,6 +13,7 @@ import Alamofire
 class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet var QiitaOAuthPage: WKWebView!
+    let secretKeys = SecretKey()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +21,7 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
         QiitaOAuthPage.uiDelegate = self
         QiitaOAuthPage.navigationDelegate = self
         
-        let oauthURL = URL(string:"https://qiita.com/api/v2/oauth/authorize?client_id=5703a0e3ecb356ae07cc2fec78aa8fe3262f28d9&scope=readqiita&state=da41606a962f9e8b6b554359c3a9801c9cd0dd7c")!
-
+        let oauthURL = secretKeys.oauth
         let request = URLRequest(url: oauthURL)
 
         QiitaOAuthPage.load(request)
@@ -38,18 +38,15 @@ extension QiitaOAuthPageViewController: WKUIDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             
         if navigationAction.request.url?.scheme == "syunya-app", navigationAction.request.url?.host == "qiitasearch.com" {
-
-            // 認証コード取得
-            //let feedPage = storyboard?.instantiateViewController(withIdentifier: "FeedPage") as? FeedPageViewController
             
-            let code = QiitaOAuthPageViewController.getQueryStringParameter(url: (navigationAction.request.url?.absoluteString)!, param: "code")
+            guard let code = QiitaOAuthPageViewController.getQueryStringParameter(url: (navigationAction.request.url?.absoluteString)!, param: "code") else { return }
 
             let accessTokenUrl = "https://qiita.com/api/v2/access_tokens"
             
             let params: Parameters = [
-                "client_id": "5703a0e3ecb356ae07cc2fec78aa8fe3262f28d9",
-                "client_secret": "da41606a962f9e8b6b554359c3a9801c9cd0dd7c",
-                "code": code!,
+                "client_id": secretKeys.clientId,
+                "client_secret": secretKeys.clientSecret,
+                "code": code,
             ]
 
             AF.request(
@@ -63,7 +60,8 @@ extension QiitaOAuthPageViewController: WKUIDelegate {
                 
                 switch response.result {
                 case .success:
-                    let result = String(data: response.value!!, encoding: .utf8)
+                    guard let unwrappedResponse = response.value as? Data else { return }
+                    let result = String(data: unwrappedResponse, encoding: .utf8)
                     //var token = ""
                     //token = Dictionary(response.value!!)
                     //feedPage?.accessToken = result!
