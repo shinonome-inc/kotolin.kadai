@@ -11,11 +11,6 @@ import WebKit
 import Alamofire
 
 class TopPageViewController: UIViewController, WKNavigationDelegate {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     
     @IBAction func loginButton(_ sender: Any) {
         
@@ -23,7 +18,6 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
         let OAuthPage = storyboard.instantiateViewController(withIdentifier: "OAuthPage")
 
         self.present(OAuthPage, animated: true, completion: nil)
-        
     }
     
     @IBAction func notLoguinButton(_ sender: Any) {

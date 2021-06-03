@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="OAuthPage" id="0k2-3h-wFr" customClass="QiitaOAuthPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQC-Br-Sz5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLQ-JH-qgs">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="634"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -35,7 +34,7 @@
                         <viewLayoutGuide key="safeArea" id="g9D-Ac-dKt"/>
                     </view>
                     <connections>
-                        <outlet property="QiitaOAuthPage" destination="cLQ-JH-qgs" id="FvS-Cw-fZT"/>
+                        <outlet property="qiitaOAuthPage" destination="cLQ-JH-qgs" id="FvS-Cw-fZT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHi-BI-AeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -47,24 +46,24 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="TopPage_ViewController" customClass="TopPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qiita App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bs-XA-NBy">
-                                <rect key="frame" x="138.5" y="289.5" width="137" height="37"/>
+                                <rect key="frame" x="231.5" y="24" width="137" height="37"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-NI-fZl">
-                                <rect key="frame" x="154.5" y="174.5" width="105" height="105"/>
+                                <rect key="frame" x="247.5" y="-91" width="105" height="105"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="105" id="IFK-Rq-vWk"/>
                                     <constraint firstAttribute="width" constant="105" id="vLl-Yf-T6s"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sog-wq-yBp">
-                                <rect key="frame" x="31" y="726.5" width="354" height="52"/>
+                                <rect key="frame" x="31" y="461" width="540" height="52"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="ログインする">
@@ -80,7 +79,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIH-vh-OrX">
-                                <rect key="frame" x="120" y="795.5" width="177" height="24.5"/>
+                                <rect key="frame" x="120" y="530" width="363" height="28"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="ログインせずに利用する">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -118,35 +117,35 @@
             <objects>
                 <viewController storyboardIdentifier="FeedPage" id="yDy-cJ-tQU" userLabel="FeedPage_ViewController" customClass="FeedPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEP-yN-DPG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="GNd-oe-QjG">
-                                <rect key="frame" x="20" y="144" width="374" height="44"/>
+                                <rect key="frame" x="20" y="100" width="560" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="1WX-EP-GWb"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuV-Cs-ww6">
-                                <rect key="frame" x="20" y="97" width="73" height="37"/>
+                                <rect key="frame" x="20" y="53" width="73" height="37"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="29J-JQ-wLf">
-                                <rect key="frame" x="20" y="209" width="374" height="604"/>
+                                <rect key="frame" x="20" y="165" width="560" height="386"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="78" id="L0b-bs-znE" customClass="FeedPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="78"/>
+                                        <rect key="frame" x="0.0" y="28" width="560" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L0b-bs-znE" id="eoN-vJ-beu">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-K8-mz3">
-                                                    <rect key="frame" x="20" y="11" width="50" height="50"/>
+                                                    <rect key="frame" x="15" y="11" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="v8d-rj-VAo"/>
                                                     </constraints>
@@ -155,7 +154,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV9-Kp-yjs">
-                                                    <rect key="frame" x="90" y="53" width="96" height="17"/>
+                                                    <rect key="frame" x="85" y="53" width="96" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="96" id="rKJ-Nq-sBb"/>
                                                     </constraints>
@@ -164,7 +163,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-Va-pzX">
-                                                    <rect key="frame" x="194" y="55" width="180" height="15"/>
+                                                    <rect key="frame" x="189" y="55" width="180" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Eex-yE-3cg"/>
                                                         <constraint firstAttribute="width" constant="180" id="FJf-vi-5ko"/>
@@ -174,7 +173,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事タイトル" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d19-sr-u9u">
-                                                    <rect key="frame" x="90" y="11" width="284" height="40"/>
+                                                    <rect key="frame" x="85" y="11" width="284" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -235,11 +234,11 @@
             <objects>
                 <viewController storyboardIdentifier="ArticlePage" id="h7B-dp-kTi" customClass="QiitaArticlePageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pya-tU-jRu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2m-ib-O9f">
-                                <rect key="frame" x="0.0" y="276" width="414" height="620"/>
+                                <rect key="frame" x="0.0" y="232" width="600" height="402"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -269,11 +268,11 @@
             <objects>
                 <viewController id="rfk-ID-adA" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Px5-Cz-J4A">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yz-lu-be4">
-                                <rect key="frame" x="20" y="44" width="120" height="48"/>
+                                <rect key="frame" x="20" y="0.0" width="120" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Myr-g3-mI7"/>
                                 </constraints>
@@ -282,11 +281,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cbD-uA-Vgv">
-                                <rect key="frame" x="20" y="292" width="374" height="521"/>
+                                <rect key="frame" x="20" y="248" width="560" height="303"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-W6-r2Y">
-                                <rect key="frame" x="20" y="100" width="110" height="110"/>
+                                <rect key="frame" x="20" y="56" width="296" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="gqI-YX-gF9"/>
                                 </constraints>
@@ -317,11 +316,11 @@
             <objects>
                 <viewController id="XRa-gj-b4g" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="32T-cf-P2N">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7J-kM-f5Z">
-                                <rect key="frame" x="38" y="115" width="233" height="37"/>
+                                <rect key="frame" x="38" y="60" width="419" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="cmA-5w-T99"/>
                                 </constraints>
@@ -337,13 +336,13 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxX-z1-zDa">
-                                <rect key="frame" x="19" y="44" width="122" height="48"/>
+                                <rect key="frame" x="19" y="0.0" width="122" height="37"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lxz-5F-sUs">
-                                <rect key="frame" x="38" y="160" width="233" height="37"/>
+                                <rect key="frame" x="38" y="98" width="419" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="tJs-zp-KD4"/>
                                 </constraints>
@@ -359,7 +358,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ja-gs-BU4">
-                                <rect key="frame" x="38" y="205" width="233" height="37"/>
+                                <rect key="frame" x="38" y="136" width="419" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="psn-Nj-I46"/>
                                 </constraints>
@@ -375,7 +374,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NU4-7q-tZ6">
-                                <rect key="frame" x="38" y="250" width="233" height="37"/>
+                                <rect key="frame" x="38" y="174" width="419" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="t9J-0B-iyE"/>
                                 </constraints>
@@ -422,11 +421,11 @@
             <objects>
                 <viewController id="pVU-wN-cfL" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N23-fd-hrN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d4-Ys-ftK">
-                                <rect key="frame" x="20" y="44" width="73" height="48"/>
+                                <rect key="frame" x="20" y="0.0" width="259" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hHw-hs-EHV"/>
                                 </constraints>
@@ -435,7 +434,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VAe-uM-fag">
-                                <rect key="frame" x="20" y="100" width="374" height="713"/>
+                                <rect key="frame" x="20" y="56" width="560" height="495"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gta-RF-ImY">
                                     <size key="itemSize" width="212" height="549"/>
@@ -445,7 +444,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tPF-nj-eOg">
-                                        <rect key="frame" x="81" y="0.0" width="212" height="549"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="212" height="549"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bUt-2a-ecq">
                                             <rect key="frame" x="0.0" y="0.0" width="212" height="549"/>

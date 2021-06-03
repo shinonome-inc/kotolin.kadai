@@ -37,7 +37,6 @@ class FeedPageViewController: UIViewController {
     }
     
     func request() {
-    
         page += 1
         
         AF.request(
@@ -48,10 +47,14 @@ class FeedPageViewController: UIViewController {
             headers: nil
         )
         .response { response in
+            
             guard let data = response.data else { return }
             do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                
                 let dataItem =
-                    try JSONDecoder().decode([DataItem].self,from:data)
+                    try jsonDecoder.decode([DataItem].self,from:data)
                 
                 dataItem.forEach {
                     self.articles.append($0)
@@ -59,6 +62,7 @@ class FeedPageViewController: UIViewController {
                 
                 self.qiitaArticle.reloadData()
                 
+            //TODO:エラー用の画面を実装する
             } catch let error {
                 print("Error: \(error)")
             }
@@ -122,12 +126,9 @@ extension FeedPageViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
 }
 
+//TODO：ワードで検索できるAPIに変更
 extension FeedPageViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

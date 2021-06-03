@@ -15,34 +15,26 @@ class FeedPageCellViewController: UITableViewCell {
     @IBOutlet var userId: UILabel!
     @IBOutlet var postData: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
+    //TODO:UserIconの画像のサイズはこれから要調整
     func setCell(data: DataItem) {
-        let imageUrl = URL(string: data.user.profile_image_url as String)
+        let imageUrl = URL(string: data.user.profileImageUrl as String)
         do{
             let imageData = try Data(contentsOf: imageUrl!)
             guard let image = UIImage(data: imageData)?.scaleImage(scaleSize: 0.1) else { return }
             
             //print(data.title as String)
             //print(image!.size)
-            self.userIcon.image = image
+            userIcon.image = image
             userIcon.circle()
         } catch {
             print("error: Can't get image")
         }
+        
         self.articleTitle.text = data.title as String
         self.userId.text = "@" + data.user.id as String
-        self.postData.text = "投稿日：" + data.created_at as String
+        self.postData.text = "投稿日：" + data.createdAt as String
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 }
 
 func trimmingImage(_ image: UIImage, trimmingArea: CGRect) -> UIImage {
@@ -54,7 +46,6 @@ func trimmingImage(_ image: UIImage, trimmingArea: CGRect) -> UIImage {
 extension UIImage {
     
     func reSizeImage(reSize:CGSize)->UIImage {
-        //UIGraphicsBeginImageContext(reSize);
         UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
         self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
         let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();

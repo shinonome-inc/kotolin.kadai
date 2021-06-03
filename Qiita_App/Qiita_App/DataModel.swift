@@ -6,18 +6,19 @@
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 struct DataItem: Codable {
     let body: String
     let id: String
-    let rendered_body: String
+    let renderedBody: String
     let title: String
     let url: String
-    var created_at: String
+    var createdAt: String
     var user: User
     struct User: Codable {
         var id: String
-        var profile_image_url: String
+        var profileImageUrl: String
     }
 }

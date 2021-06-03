@@ -12,34 +12,33 @@ import Alamofire
 
 class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
     
-    @IBOutlet var QiitaOAuthPage: WKWebView!
+    @IBOutlet var qiitaOAuthPage: WKWebView!
     let secretKeys = SecretKey()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        QiitaOAuthPage.uiDelegate = self
-        QiitaOAuthPage.navigationDelegate = self
+        qiitaOAuthPage.navigationDelegate = self
         
         let oauthURL = secretKeys.oauth
         let request = URLRequest(url: oauthURL)
 
-        QiitaOAuthPage.load(request)
+        qiitaOAuthPage.load(request)
     }
     
     static func getQueryStringParameter(url: String, param: String) -> String? {
         guard let url = URLComponents(string: url) else { return nil }
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
-}
-
-extension QiitaOAuthPageViewController: WKUIDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-            
         if navigationAction.request.url?.scheme == "syunya-app", navigationAction.request.url?.host == "qiitasearch.com" {
             
-            guard let code = QiitaOAuthPageViewController.getQueryStringParameter(url: (navigationAction.request.url?.absoluteString)!, param: "code") else { return }
+            guard
+                let url = navigationAction.request.url?.absoluteString,
+                let code = QiitaOAuthPageViewController.getQueryStringParameter(url: url, param: "code") else {
+                    return
+            }
 
             let accessTokenUrl = "https://qiita.com/api/v2/access_tokens"
             
@@ -67,6 +66,7 @@ extension QiitaOAuthPageViewController: WKUIDelegate {
                     //feedPage?.accessToken = result!
                     print(result!)
                     
+                //TODO:エラー用画面作成
                 case .failure(let error):
                     print(error)
                 }

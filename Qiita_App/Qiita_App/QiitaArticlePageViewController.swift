@@ -18,10 +18,8 @@ class QiitaArticlePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let unwrappedUrl = NSURL(string: articleUrl) else { return }
-        
-        let request = NSURLRequest(url: unwrappedUrl as URL)
-        
-        self.qiitaArticle.load(request as URLRequest)
+        guard let unwrappedUrl = URL(string: articleUrl) else { return }
+        let request = URLRequest(url: unwrappedUrl)
+        self.qiitaArticle.load(request)
     }
 }
