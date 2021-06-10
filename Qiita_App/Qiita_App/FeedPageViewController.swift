@@ -84,6 +84,7 @@ extension FeedPageViewController: UITableViewDataSource {
         
         articleTitles.append(articles[indexPath.row].title)
         
+        //TODO:ロジックの中身要修正(修正前に現在のロジックをissueへ記載)
         articleTitles.forEach() { title1 in
             var overlapping = 0
             articleTitles.forEach() { title2 in
@@ -100,7 +101,7 @@ extension FeedPageViewController: UITableViewDataSource {
         }
         
         titleNum = 0
-        cell.setCell(data: articles[indexPath.row])
+        cell.setArticleCell(data: articles[indexPath.row])
 
         return cell
     }
@@ -115,9 +116,7 @@ extension FeedPageViewController: UITableViewDataSource {
 extension FeedPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as?
-            
-            QiitaArticlePageViewController  else { return }
+        guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
         
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -128,7 +127,7 @@ extension FeedPageViewController: UITableViewDelegate {
     
 }
 
-//TODO：ワードで検索できるAPIに変更
+//TODO:ワードで検索できるAPIに変更
 extension FeedPageViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

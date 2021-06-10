@@ -6,7 +6,6 @@
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
-import UIKit
 import Foundation
 
 struct DataItem: Codable {
