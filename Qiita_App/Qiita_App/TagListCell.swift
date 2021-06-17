@@ -29,8 +29,8 @@ class TagListCellViewController: UICollectionViewCell {
             print("error: Can't get Tagimage")
         }
         
-        self.tagName.text = data.id
-        self.tagCount.text = "記事件数：" + String(data.items_count)
-        self.tagfollowers.text = "フォロワー数：" + String(data.followers_count)
+        tagName.text = data.id
+        tagCount.text = "記事件数：" + String(data.items_count)
+        tagfollowers.text = "フォロワー数：" + String(data.followers_count)
     }
 }

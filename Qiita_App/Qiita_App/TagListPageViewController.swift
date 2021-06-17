@@ -22,7 +22,7 @@ class TagListPageViewController: UIViewController {
         qiitaTag.dataSource = self
         qiitaTag.delegate = self
         
-        self.request()
+        request()
     }
     
     
