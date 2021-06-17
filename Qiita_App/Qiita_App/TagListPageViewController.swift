@@ -13,7 +13,7 @@ class TagListPageViewController: UIViewController {
     
     @IBOutlet var qiitaTag: UICollectionView!
     var tagInfo: [TagItem] = []
-    var url = "https://qiita.com/api/v2/tags?sort=count"
+    var url = "https://qiita.com/api/v2/tags?sort=count&page="
     var page = 0
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class TagListPageViewController: UIViewController {
         page += 1
         
         AF.request(
-            url,
+            url + String(page),
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
@@ -64,6 +64,12 @@ extension TagListPageViewController: UICollectionViewDelegate {
     /*private func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
     }*/
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
+            self.request()
+        }
+    }
 }
 
 extension TagListPageViewController: UICollectionViewDataSource {
