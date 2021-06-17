@@ -77,6 +77,9 @@ extension TagListPageViewController: UICollectionViewDataSource {
         }
         
         cell.setTagCell(data: tagInfo[indexPath.row])
+        cell.contentView.layer.borderColor = UIColor.gray.cgColor
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.cornerRadius = 10
         
         return cell
     }
