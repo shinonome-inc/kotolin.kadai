@@ -26,7 +26,7 @@ class FeedPageCellViewController: UITableViewCell {
             var remakeImage = image
             
             if image.size.height > 300 && image.size.width > 300 {
-                while(remakeImage.size.height > 50 && remakeImage.size.width > 50){
+                while(remakeImage.size.height > 50 && remakeImage.size.width > 50) {
                     
                     //ここもう少しいい書き方があるはず
                     guard let resizeImage = remakeImage.resized(withPercentage: 0.9) else { return }
