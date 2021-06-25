@@ -1,8 +1,8 @@
 //
-//  TagModel.swift
+//  ArticleModel.swift
 //  Qiita_App
 //
-//  Created by Sakai Syunya on 2021/06/25.
+//  Created by Sakai Syunya on 2021/06/24.
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 

@@ -19,7 +19,6 @@ class FeedPageViewController: UIViewController {
     var url = "https://qiita.com/api/v2/items?count=20&page="
     var articles: [DataItem] = []
     var searchResult: [DataItem] = []
-    var articleTitles: [String] = []
     
     
     override func viewDidLoad() {
@@ -60,6 +59,21 @@ class FeedPageViewController: UIViewController {
                     self.articles.append($0)
                 }
                 
+                self.articles.forEach() { nowArticle in
+                    var overlapping = 0
+                    
+                    for (index, article) in self.articles.enumerated() {
+                        
+                        if nowArticle.title == article.title {
+                            overlapping += 1
+                            
+                            if overlapping >= 2 {
+                                self.articles.remove(at: index)
+                            }
+                        }
+                    }
+                }
+                
                 self.qiitaArticle.reloadData()
                 
             //TODO:エラー用の画面を実装する
@@ -82,26 +96,7 @@ extension FeedPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        articleTitles.append(articles[indexPath.row].title)
-        
-        //TODO:ロジックの中身要修正(修正前に現在のロジックをissueへ記載)
-        articleTitles.forEach() { title1 in
-            var overlapping = 0
-            articleTitles.forEach() { title2 in
-                
-                if(title1 == title2) {
-                    overlapping += 1
-                }
-                
-                if(overlapping > 1) {
-                    articleTitles.remove(at: titleNum)
-                }
-            }
-            titleNum += 1
-        }
-        
-        titleNum = 0
-        cell.setArticleCell(data: articles[indexPath.row])
+        cell.setArticleCell(date: articles[indexPath.row])
 
         return cell
     }
@@ -127,7 +122,7 @@ extension FeedPageViewController: UITableViewDelegate {
     
 }
 
-//TODO:ワードで検索できるAPIに変更
+//ワードで検索できるAPIに変更しました
 extension FeedPageViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -135,25 +130,19 @@ extension FeedPageViewController: UISearchBarDelegate {
         searchResult.removeAll()
         page = 0
         
-        if let text = searchBar.text {
-            if text == "" {
-                request()
-            } else {
-                for data in articleTitles {
-                    if data.contains(searchBar.text!) {
-                        articles.forEach(){nowArticle in
-                            if(data == nowArticle.title) {
-                                searchResult.append(nowArticle)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            articles.removeAll()
-            articleTitles.removeAll()
-            articles = searchResult
-            qiitaArticle.reloadData()
+        guard let text = searchBar.text else { return }
+        
+        if text == "" {
+            request()
+        } else {
+            searchResult = articles.filter({ article -> Bool in
+                article.title.lowercased().contains(text.lowercased())
+            })
         }
+        
+        articles.removeAll()
+        articles = searchResult
+        qiitaArticle.reloadData()
     }
+    
 }
