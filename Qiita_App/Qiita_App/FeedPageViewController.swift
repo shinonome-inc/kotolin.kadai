@@ -59,6 +59,7 @@ class FeedPageViewController: UIViewController {
                     self.articles.append($0)
                 }
                 
+                // 記事(articles)のリファクタ　※issueにロジック記載
                 self.articles.forEach() { nowArticle in
                     var overlapping = 0
                     
@@ -96,7 +97,7 @@ extension FeedPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setArticleCell(date: articles[indexPath.row])
+        cell.setArticleCell(data: articles[indexPath.row])
 
         return cell
     }

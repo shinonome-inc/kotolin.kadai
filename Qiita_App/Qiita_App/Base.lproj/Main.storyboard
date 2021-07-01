@@ -145,9 +145,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-K8-mz3">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-K8-mz3" customClass="EnhancedCircleImageView" customModule="Qiita_App" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="50" height="50"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="3CR-bu-52n"/>
                                                         <constraint firstAttribute="width" constant="50" id="813-dI-4CR"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -172,11 +173,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="d19-sr-u9u" secondAttribute="trailing" constant="-16" id="0Qy-wD-VaW"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="GV9-Kp-yjs" secondAttribute="bottom" constant="-1" id="G8z-gT-1DV"/>
                                                 <constraint firstItem="M8S-K8-mz3" firstAttribute="leading" secondItem="eoN-vJ-beu" secondAttribute="leadingMargin" id="HdB-dg-hAJ"/>
                                                 <constraint firstItem="GV9-Kp-yjs" firstAttribute="top" secondItem="d19-sr-u9u" secondAttribute="bottom" constant="2" id="IGN-lv-Gdp"/>
                                                 <constraint firstItem="d19-sr-u9u" firstAttribute="leading" secondItem="M8S-K8-mz3" secondAttribute="trailing" constant="20" id="NKC-Lr-ScV"/>
+                                                <constraint firstItem="d19-sr-u9u" firstAttribute="top" secondItem="eoN-vJ-beu" secondAttribute="top" constant="11" id="YPP-Ys-W9F"/>
                                                 <constraint firstItem="d19-sr-u9u" firstAttribute="leading" secondItem="GV9-Kp-yjs" secondAttribute="leading" id="b7l-GU-8YD"/>
+                                                <constraint firstAttribute="bottom" secondItem="GV9-Kp-yjs" secondAttribute="bottom" constant="10" id="cIH-uI-80H"/>
+                                                <constraint firstAttribute="bottom" secondItem="d19-sr-u9u" secondAttribute="bottom" constant="27" id="gk5-B7-vab"/>
                                                 <constraint firstItem="M8S-K8-mz3" firstAttribute="top" secondItem="d19-sr-u9u" secondAttribute="top" id="ltz-E7-ump"/>
                                                 <constraint firstItem="d19-sr-u9u" firstAttribute="trailing" secondItem="GV9-Kp-yjs" secondAttribute="trailing" id="mdY-VS-Qki"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="M8S-K8-mz3" secondAttribute="bottom" constant="6" id="v9U-4y-9LH"/>
