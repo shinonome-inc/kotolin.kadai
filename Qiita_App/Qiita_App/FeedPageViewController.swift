@@ -16,9 +16,9 @@ class FeedPageViewController: UIViewController {
     var accessToken = ""
     var page = 0
     var titleNum = 0
-    var url = "https://qiita.com/api/v2/items?count=20&page="
+    var searchText = ""
+    var url = "https://qiita.com/api/v2/items?count=20"
     var articles: [DataItem] = []
-    var searchResult: [DataItem] = []
     
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class FeedPageViewController: UIViewController {
         page += 1
         
         AF.request(
-            url + String(page),
+            url + "&page=\(page)&query=title%3A\(searchText)",
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
@@ -57,22 +57,6 @@ class FeedPageViewController: UIViewController {
                 
                 dataItem.forEach {
                     self.articles.append($0)
-                }
-                
-                // 記事(articles)のリファクタ　※issueにロジック記載
-                self.articles.forEach() { nowArticle in
-                    var overlapping = 0
-                    
-                    for (index, article) in self.articles.enumerated() {
-                        
-                        if nowArticle.title == article.title {
-                            overlapping += 1
-                            
-                            if overlapping >= 2 {
-                                self.articles.remove(at: index)
-                            }
-                        }
-                    }
                 }
                 
                 self.qiitaArticle.reloadData()
@@ -103,6 +87,7 @@ extension FeedPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
             self.request()
         }
@@ -128,22 +113,13 @@ extension FeedPageViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        searchResult.removeAll()
-        page = 0
         
         guard let text = searchBar.text else { return }
         
-        if text == "" {
-            request()
-        } else {
-            searchResult = articles.filter({ article -> Bool in
-                article.title.lowercased().contains(text.lowercased())
-            })
-        }
-        
+        searchText = text
+        page = 0
         articles.removeAll()
-        articles = searchResult
-        qiitaArticle.reloadData()
+        self.request()
     }
     
 }

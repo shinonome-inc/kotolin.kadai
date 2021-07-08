@@ -28,16 +28,10 @@ class FeedPageCellViewController: UITableViewCell {
         
         //Dateのフォーマット変更
         let format = DateFormatter()
-        let articleDate = dateFormat(format: format, defaultFormat: "yyyy-MM-dd'T'HH:mm'+'HH:mm", formatTarget: data.createdAt)
+        let articleDate = SetDataFormat().dateFormat(format: format, defaultFormat: "yyyy-MM-dd'T'HH:mm'+'HH:mm", formatTarget: data.createdAt)
         
         articleTitle.text = data.title
         articleInfo.text = "@\(data.user.id) 投稿日：\(format.string(from: articleDate)) LGTM：\(data.likesCount)"
     }
     
-}
-
-func trimmingImage(_ image: UIImage, trimmingArea: CGRect) -> UIImage {
-    guard let imgRef = image.cgImage?.cropping(to: trimmingArea) else { return UIImage() }
-    let trimImage = UIImage(cgImage: imgRef, scale: image.scale, orientation: image.imageOrientation)
-    return trimImage
 }

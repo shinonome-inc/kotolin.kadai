@@ -135,7 +135,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="29J-JQ-wLf">
-                                <rect key="frame" x="20" y="209" width="374" height="604"/>
+                                <rect key="frame" x="20" y="188" width="374" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="78" id="L0b-bs-znE" customClass="FeedPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
@@ -198,9 +198,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="KuV-Cs-ww6" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" constant="9" id="BJg-GV-Kll"/>
-                            <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" constant="21" id="Du9-Al-Kae"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="Iln-Tp-qHD"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="zEP-yN-DPG" secondAttribute="trailingMargin" id="Q1c-bj-hnH"/>
+                            <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" id="SYi-Ez-XAq"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="top" secondItem="KuV-Cs-ww6" secondAttribute="bottom" constant="10" id="eJS-UM-i6t"/>
                             <constraint firstItem="29J-JQ-wLf" firstAttribute="bottom" secondItem="n3s-hk-Xk3" secondAttribute="bottom" id="h2N-rL-4Ex"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="sYc-Zx-lqg"/>
