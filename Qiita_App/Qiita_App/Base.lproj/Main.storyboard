@@ -121,21 +121,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="" placeholder="Search bar" translatesAutoresizingMaskIntoConstraints="NO" id="GNd-oe-QjG">
+                            <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="GNd-oe-QjG">
                                 <rect key="frame" x="20" y="144" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="1WX-EP-GWb"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuV-Cs-ww6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuV-Cs-ww6">
                                 <rect key="frame" x="20" y="97" width="73" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
                                 <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="29J-JQ-wLf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="29J-JQ-wLf">
                                 <rect key="frame" x="20" y="188" width="374" height="625"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="78" id="L0b-bs-znE" customClass="FeedPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
@@ -148,17 +148,17 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M8S-K8-mz3" customClass="EnhancedCircleImageView" customModule="Qiita_App" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="5XM-Y8-QhY"/>
-                                                        <constraint firstAttribute="height" constant="50" id="xbm-5A-sQ5"/>
+                                                        <constraint firstAttribute="width" constant="50" id="sXI-ut-xZj"/>
+                                                        <constraint firstAttribute="height" constant="50" id="xNe-UL-AGb"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GV9-Kp-yjs">
-                                                    <rect key="frame" x="90" y="57" width="280" height="11"/>
+                                                    <rect key="frame" x="90" y="52" width="280" height="11"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="280" id="D2D-9I-BSn"/>
+                                                        <constraint firstAttribute="width" constant="280" id="Il1-AK-mhK"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                     <nil key="textColor"/>
@@ -167,8 +167,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事タイトル" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d19-sr-u9u">
                                                     <rect key="frame" x="90" y="11" width="280" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="280" id="MWd-mB-8eh"/>
-                                                        <constraint firstAttribute="height" constant="40" id="o1u-uT-eOX"/>
+                                                        <constraint firstAttribute="width" constant="280" id="EOR-ZM-aVH"/>
+                                                        <constraint firstAttribute="height" constant="40" id="o9D-SN-9H8"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -176,15 +176,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GV9-Kp-yjs" firstAttribute="top" secondItem="d19-sr-u9u" secondAttribute="bottom" constant="6" id="6Hu-5v-NcF"/>
-                                                <constraint firstAttribute="trailing" secondItem="GV9-Kp-yjs" secondAttribute="trailing" constant="4" id="DXL-P8-UC4"/>
-                                                <constraint firstItem="M8S-K8-mz3" firstAttribute="leading" secondItem="eoN-vJ-beu" secondAttribute="leadingMargin" id="G98-uM-iRq"/>
-                                                <constraint firstItem="d19-sr-u9u" firstAttribute="top" secondItem="eoN-vJ-beu" secondAttribute="top" constant="11" id="NcU-7c-zhW"/>
-                                                <constraint firstItem="d19-sr-u9u" firstAttribute="leading" secondItem="M8S-K8-mz3" secondAttribute="trailing" constant="20" id="UJG-MK-okd"/>
-                                                <constraint firstItem="M8S-K8-mz3" firstAttribute="top" secondItem="eoN-vJ-beu" secondAttribute="topMargin" id="Vkm-5b-DTe"/>
-                                                <constraint firstAttribute="bottom" secondItem="GV9-Kp-yjs" secondAttribute="bottom" constant="10" id="XCp-nP-bjE"/>
-                                                <constraint firstAttribute="trailing" secondItem="d19-sr-u9u" secondAttribute="trailing" constant="4" id="vTn-IG-gLs"/>
-                                                <constraint firstItem="GV9-Kp-yjs" firstAttribute="leading" secondItem="M8S-K8-mz3" secondAttribute="trailing" constant="20" id="yzM-hY-IUb"/>
+                                                <constraint firstAttribute="bottom" secondItem="GV9-Kp-yjs" secondAttribute="bottom" constant="15" id="2JH-HN-mS1"/>
+                                                <constraint firstAttribute="trailing" secondItem="GV9-Kp-yjs" secondAttribute="trailing" constant="4" id="Fkx-C6-6ww"/>
+                                                <constraint firstItem="M8S-K8-mz3" firstAttribute="leading" secondItem="eoN-vJ-beu" secondAttribute="leadingMargin" id="R72-Cf-8g1"/>
+                                                <constraint firstAttribute="trailing" secondItem="d19-sr-u9u" secondAttribute="trailing" constant="4" id="bwd-HB-KUp"/>
+                                                <constraint firstItem="M8S-K8-mz3" firstAttribute="top" secondItem="eoN-vJ-beu" secondAttribute="topMargin" id="ePs-q0-tg2"/>
+                                                <constraint firstItem="GV9-Kp-yjs" firstAttribute="top" secondItem="d19-sr-u9u" secondAttribute="bottom" constant="1" id="gYM-cd-L0T"/>
+                                                <constraint firstItem="d19-sr-u9u" firstAttribute="top" secondItem="eoN-vJ-beu" secondAttribute="top" constant="11" id="xZE-nr-B2k"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -197,17 +195,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" constant="9" id="BJg-GV-Kll"/>
-                            <constraint firstItem="GNd-oe-QjG" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="Iln-Tp-qHD"/>
-                            <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="zEP-yN-DPG" secondAttribute="trailingMargin" id="Q1c-bj-hnH"/>
-                            <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" id="SYi-Ez-XAq"/>
-                            <constraint firstItem="GNd-oe-QjG" firstAttribute="top" secondItem="KuV-Cs-ww6" secondAttribute="bottom" constant="10" id="eJS-UM-i6t"/>
-                            <constraint firstItem="29J-JQ-wLf" firstAttribute="bottom" secondItem="n3s-hk-Xk3" secondAttribute="bottom" id="h2N-rL-4Ex"/>
-                            <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="sYc-Zx-lqg"/>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="GNd-oe-QjG" secondAttribute="leading" id="tqH-Ef-hBd"/>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="zEP-yN-DPG" secondAttribute="leadingMargin" id="wTP-OH-Tao"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="n3s-hk-Xk3"/>
                     </view>
                     <navigationItem key="navigationItem" id="mZ3-Pr-XbG"/>

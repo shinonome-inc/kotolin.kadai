@@ -95,7 +95,6 @@ extension FeedPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
-            removeFlag = false
             self.request()
         }
     }
@@ -110,7 +109,7 @@ extension FeedPageViewController: UITableViewDelegate {
         
         nextVC.articleUrl = articles[indexPath.row].url
         
-        self.present(nextVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }
