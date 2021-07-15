@@ -18,13 +18,21 @@ class FeedPageCellViewController: UITableViewCell {
     func setArticleCell(data: DataItem) {
         guard let imageUrl = URL(string: data.user.profileImageUrl) else { return }
         
-        do{
-            let imageData = try Data(contentsOf: imageUrl)
-            guard let image = UIImage(data: imageData) else { return }
-            userIcon.image = image
-        } catch {
-            print("error: Can't get image")
-        }
+        URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
+            
+                if error == nil, case .some(let result) = data, let image = UIImage(data: result) {
+                    
+                    guard let unwrappedSelf = self else { return }
+                    
+                    DispatchQueue.main.sync {
+                        unwrappedSelf.userIcon.image = image
+                    }
+
+                } else {
+                    print("error")
+
+                }
+        }.resume()
         
         //Dateのフォーマット変更
         let format = DateFormatter()
