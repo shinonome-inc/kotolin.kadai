@@ -17,6 +17,7 @@ class FeedPageCellViewController: UITableViewCell {
     
     func setArticleCell(data: DataItem) {
         guard let imageUrl = URL(string: data.user.profileImageUrl) else { return }
+        let nowArticleTitle = data.title
         
         URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
             
@@ -29,8 +30,9 @@ class FeedPageCellViewController: UITableViewCell {
                     }
 
                 } else {
-                    print("error")
-
+                    DispatchQueue.main.sync {
+                        self?.userIcon.image = UIImage(named: "errorUserIcon")
+                    }
                 }
         }.resume()
         
@@ -38,7 +40,7 @@ class FeedPageCellViewController: UITableViewCell {
         let format = DateFormatter()
         let articleDate = SetDataFormat().dateFormat(format: format, defaultFormat: "yyyy-MM-dd'T'HH:mm'+'HH:mm", formatTarget: data.createdAt)
         
-        articleTitle.text = data.title
+        articleTitle.text = nowArticleTitle
         articleInfo.text = "@\(data.user.id) 投稿日：\(format.string(from: articleDate)) LGTM：\(data.likesCount)"
     }
     

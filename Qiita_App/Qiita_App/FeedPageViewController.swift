@@ -54,7 +54,7 @@ class FeedPageViewController: UIViewController {
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 // ページネーションの際は記事の中身を削除しないようにするため
-                if self.removeFlag == true {
+                if self.removeFlag {
                     self.articles.removeAll()
                 }
                 
@@ -125,12 +125,7 @@ extension FeedPageViewController: UISearchBarDelegate {
         searchText = text
         page = 0
         
-        if text == "" {
-            removeFlag = false
-        
-        } else {
-            removeFlag = true
-        }
+        removeFlag = text == ""
         
         self.request()
     }
