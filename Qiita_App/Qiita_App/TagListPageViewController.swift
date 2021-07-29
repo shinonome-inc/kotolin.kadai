@@ -41,10 +41,10 @@ class TagListPageViewController: UIViewController {
             
             guard let data = response.data else { return }
             do {
-                //let jsonDecoder = JSONDecoder()
-                //jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 let tagItem =
-                    try JSONDecoder().decode([TagItem].self,from:data)
+                    try jsonDecoder.decode([TagItem].self,from:data)
                 
                 tagItem.forEach {
                     self.tagInfo.append($0)
@@ -61,9 +61,15 @@ class TagListPageViewController: UIViewController {
 }
 
 extension TagListPageViewController: UICollectionViewDelegate {
-    /*private func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let nextVC: TagDetailPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagDetailPage") as? TagDetailPageViewController else { return }
         
-    }*/
+        nextVC.modalPresentationStyle = .fullScreen
+        nextVC.tagName = tagInfo[indexPath.row].id
+        
+        self.present(nextVC, animated: true, completion: nil)
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {

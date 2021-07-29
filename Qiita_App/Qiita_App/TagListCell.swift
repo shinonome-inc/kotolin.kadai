@@ -18,7 +18,7 @@ class TagListCellViewController: UICollectionViewCell {
     
     
     func setTagCell(data: TagItem) {
-        guard let imageUrl = URL(string: data.icon_url) else { return }
+        guard let imageUrl = URL(string: data.iconUrl) else { return }
         
         do{
             let image = UIImage(data: try Data(contentsOf: imageUrl))
@@ -30,7 +30,7 @@ class TagListCellViewController: UICollectionViewCell {
         }
         
         tagName.text = data.id
-        tagCount.text = "記事件数：" + String(data.items_count)
-        tagfollowers.text = "フォロワー数：" + String(data.followers_count)
+        tagCount.text = "記事件数：" + String(data.itemsCount)
+        tagfollowers.text = "フォロワー数：" + String(data.followersCount)
     }
 }
