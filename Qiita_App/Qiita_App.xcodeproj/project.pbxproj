@@ -20,6 +20,7 @@
 		071772C626479D6700899627 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C526479D6700899627 /* DataModel.swift */; };
 		071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C72647A22300899627 /* QiitaArticlePageViewController.swift */; };
 		071772CF2647B38200899627 /* FeedPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772CD2647B38200899627 /* FeedPageCell.swift */; };
+		072C44C826BA75CF00340215 /* FollowPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C44C726BA75CF00340215 /* FollowPageViewController.swift */; };
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
 		0755231926B2BB2100108A66 /* setTagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* setTagDetailCell.swift */; };
@@ -74,6 +75,7 @@
 		071772C526479D6700899627 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		071772C72647A22300899627 /* QiitaArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaArticlePageViewController.swift; sourceTree = "<group>"; };
 		071772CD2647B38200899627 /* FeedPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageCell.swift; sourceTree = "<group>"; };
+		072C44C726BA75CF00340215 /* FollowPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageViewController.swift; sourceTree = "<group>"; };
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
 		0755231826B2BB2100108A66 /* setTagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setTagDetailCell.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				07DE4A29268D9B8300ED9048 /* DataFormate.swift */,
 				0755231626B2B75400108A66 /* TagDetailPageViewController.swift */,
 				0755231826B2BB2100108A66 /* setTagDetailCell.swift */,
+				072C44C726BA75CF00340215 /* FollowPageViewController.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
 				07B7550D2685D348009CD7EF /* TagModel.swift in Sources */,
 				0716D7D0261EED7B008038D1 /* SceneDelegate.swift in Sources */,
+				072C44C826BA75CF00340215 /* FollowPageViewController.swift in Sources */,
 				071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
