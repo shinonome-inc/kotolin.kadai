@@ -11,8 +11,6 @@ import Alamofire
 
 class TagDetailPageViewController: UIViewController {
     
-    
-    @IBOutlet var tagLabel: UILabel!
     @IBOutlet var tagDetailArticle: UITableView!
     
     var tagName = ""
@@ -25,7 +23,7 @@ class TagDetailPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tagLabel.text = tagName
+        self.navigationItem.title = tagName
         
         tagDetailArticle.delegate = self
         tagDetailArticle.dataSource = self

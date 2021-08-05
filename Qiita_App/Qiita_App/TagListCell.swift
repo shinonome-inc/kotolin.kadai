@@ -18,7 +18,11 @@ class TagListCellViewController: UICollectionViewCell {
     
     
     func setTagCell(data: TagItem) {
-        guard let imageUrl = URL(string: data.iconUrl) else { return }
+        tagName.text = data.id
+        tagCount.text = "記事件数：" + String(data.itemsCount)
+        tagfollowers.text = "フォロワー数：" + String(data.followersCount)
+        
+        guard let imageUrl = URL(string: data.iconUrl) else { print("error: Can't get Tagimage"); return }
         
         do{
             let image = UIImage(data: try Data(contentsOf: imageUrl))
@@ -28,9 +32,5 @@ class TagListCellViewController: UICollectionViewCell {
         } catch {
             print("error: Can't get Tagimage")
         }
-        
-        tagName.text = data.id
-        tagCount.text = "記事件数：" + String(data.itemsCount)
-        tagfollowers.text = "フォロワー数：" + String(data.followersCount)
     }
 }
