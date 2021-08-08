@@ -12,19 +12,17 @@ import Alamofire
 class FollowPageViewController: UIViewController {
 
     @IBOutlet var selectSegmentedIndex: UISegmentedControl!
+    @IBOutlet var followList: UITableView!
+    
     var userId = "0901_yasyun"
     var url = "https://qiita.com/api/v2/users/"
-    var userInfos: [userInfo] = []
-    
-    struct userInfo: Decodable {
-        var description: String?
-        var name: String
-        var profile_image_url: String
-        var id: String
-    }
+    var userInfos: [UserItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        followList.delegate = self
+        followList.dataSource = self
         
         url += "\(userId)/followees"
         request()
@@ -65,7 +63,7 @@ class FollowPageViewController: UIViewController {
                // JSONDecoder().keyDecodingStrategy = .convertFromSnakeCase
                 
                 let dataItem =
-                    try JSONDecoder().decode([userInfo].self,from:data)
+                    try JSONDecoder().decode([UserItem].self,from:data)
                 
                 (0..<dataItem.count).forEach {
                     self.userInfos.append(dataItem[$0])
@@ -76,7 +74,7 @@ class FollowPageViewController: UIViewController {
                 }
                 
                 print(self.userInfos)
-                //self.qiitaArticle.reloadData()
+                self.followList.reloadData()
                 
             //TODO:エラー用の画面を実装する
             } catch let error {
@@ -84,13 +82,45 @@ class FollowPageViewController: UIViewController {
             }
         }
     }
+}
+
+extension FollowPageViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userInfos.count//userInfos.count
+    }
     
-    func checkNum(_ number: String?) -> String {
-        var numAnswer = ""
-        if let num = number { //※ここが重要
-            numAnswer = num
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return userInfos.count
+    }
+    
+    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FollowPageCellViewController else {
+            return UITableViewCell()
         }
         
-        return numAnswer
+        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderWidth = 0.5
+        cell.layer.cornerRadius = 10
+        cell.setArticleCell(data: userInfos[indexPath.row])
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if userInfos.count >= 20 && indexPath.row == ( userInfos.count - 10) {
+            self.request()
+        }
+    }
+}
+
+extension FollowPageViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
