@@ -22,7 +22,7 @@
 		071772CF2647B38200899627 /* FeedPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772CD2647B38200899627 /* FeedPageCell.swift */; };
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
-		0755231926B2BB2100108A66 /* setTagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* setTagDetailCell.swift */; };
+		0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* TagDetailCell.swift */; };
 		075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075BE0D5266B77C200D2DBCD /* TagListCell.swift */; };
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
 		079DF1792662546B00F298F6 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DF1782662546B00F298F6 /* SecretKey.swift */; };
@@ -76,7 +76,7 @@
 		071772CD2647B38200899627 /* FeedPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageCell.swift; sourceTree = "<group>"; };
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
-		0755231826B2BB2100108A66 /* setTagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setTagDetailCell.swift; sourceTree = "<group>"; };
+		0755231826B2BB2100108A66 /* TagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailCell.swift; sourceTree = "<group>"; };
 		075BE0D5266B77C200D2DBCD /* TagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCell.swift; sourceTree = "<group>"; };
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		079DF1782662546B00F298F6 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				07B7550C2685D348009CD7EF /* TagModel.swift */,
 				07DE4A29268D9B8300ED9048 /* DataFormate.swift */,
 				0755231626B2B75400108A66 /* TagDetailPageViewController.swift */,
-				0755231826B2BB2100108A66 /* setTagDetailCell.swift */,
+				0755231826B2BB2100108A66 /* TagDetailCell.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -468,7 +468,7 @@
 				075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */,
 				079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */,
 				0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */,
-				0755231926B2BB2100108A66 /* setTagDetailCell.swift in Sources */,
+				0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */,
 				0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */,
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
 				07B7550D2685D348009CD7EF /* TagModel.swift in Sources */,
