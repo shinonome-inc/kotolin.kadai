@@ -19,9 +19,8 @@ class MyPageCellViewController: UITableViewCell {
         
         do {
             let imageData = try Data(contentsOf: imageUrl)
-            guard let image = UIImage(data: imageData)?.scaleImage(scaleSize: 0.1) else { return }
+            guard let image = UIImage(data: imageData) else { return }
             userIcon.image = image
-            userIcon.circle()
         } catch {
             print("error: Can't get image")
         }

@@ -93,7 +93,6 @@ extension MyPageViewController: UITableViewDataSource {
         do {
             let imageData = try Data(contentsOf: imageUrl)
             myIcon.image = UIImage(data: imageData)
-            myIcon.circle()
         } catch {
             print("error: Can't get image")
         }
