@@ -31,8 +31,6 @@ class FeedPageViewController: UIViewController {
         
         searchBar.enablesReturnKeyAutomatically = false
         
-        print("accessToken: ", self.accessToken)
-        
         self.request()
     }
     

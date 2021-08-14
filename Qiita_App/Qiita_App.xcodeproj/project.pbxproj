@@ -25,6 +25,11 @@
 		075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075BE0D5266B77C200D2DBCD /* TagListCell.swift */; };
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
 		079DF1792662546B00F298F6 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DF1782662546B00F298F6 /* SecretKey.swift */; };
+		07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */; };
+		07CF898326AEECF200FF1344 /* OauthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898226AEECF200FF1344 /* OauthModel.swift */; };
+		07CF898526AEF0F300FF1344 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898426AEF0F300FF1344 /* MyPageModel.swift */; };
+		07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */; };
+		07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */; };
 		07D042B626281B3B0096EDD7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D042B526281B3B0096EDD7 /* WebKit.framework */; };
 		07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */; };
 		07E7B89F2671F51800C0FB1E /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */; };
@@ -76,6 +81,11 @@
 		075BE0D5266B77C200D2DBCD /* TagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCell.swift; sourceTree = "<group>"; };
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		079DF1782662546B00F298F6 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		07CF898226AEECF200FF1344 /* OauthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OauthModel.swift; sourceTree = "<group>"; };
+		07CF898426AEF0F300FF1344 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
+		07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDelivery.swift; sourceTree = "<group>"; };
+		07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCellViewController.swift; sourceTree = "<group>"; };
 		07D042B526281B3B0096EDD7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -162,6 +172,11 @@
 				075BE0D5266B77C200D2DBCD /* TagListCell.swift */,
 				07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */,
 				07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */,
+				07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */,
+				07CF898226AEECF200FF1344 /* OauthModel.swift */,
+				07CF898426AEF0F300FF1344 /* MyPageModel.swift */,
+				07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */,
+				07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -454,14 +469,19 @@
 				071772C626479D6700899627 /* DataModel.swift in Sources */,
 				0716D7D2261EED7B008038D1 /* TopPageViewController.swift in Sources */,
 				0702CC792668CDD30095CF82 /* TagListPageViewController.swift in Sources */,
+				07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */,
 				0716D7CE261EED7B008038D1 /* AppDelegate.swift in Sources */,
+				07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */,
 				075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */,
+				07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */,
 				0702CC7B2668D2260095CF82 /* TagModel.swift in Sources */,
 				079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */,
 				0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */,
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
+				07CF898526AEF0F300FF1344 /* MyPageModel.swift in Sources */,
 				0716D7D0261EED7B008038D1 /* SceneDelegate.swift in Sources */,
 				071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */,
+				07CF898326AEECF200FF1344 /* OauthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
