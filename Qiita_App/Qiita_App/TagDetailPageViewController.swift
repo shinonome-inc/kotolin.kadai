@@ -1,35 +1,32 @@
 //
-//  02-Feed Page_ViewController.swift
+//  TagDetailViewController.swift
 //  Qiita_App
 //
-//  Created by Sakai Syunya on 2021/04/14.
+//  Created by Sakai Syunya on 2021/07/29.
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-class FeedPageViewController: UIViewController {
+class TagDetailPageViewController: UIViewController {
     
-    @IBOutlet var qiitaArticle: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var tagDetailArticle: UITableView!
+    
+    var tagName = ""
     var accessToken = ""
     var page = 0
     var titleNum = 0
-    var removeFlag = false
-    var searchText = ""
     var url = "https://qiita.com/api/v2/items?count=20"
     var articles: [DataItem] = []
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        qiitaArticle.dataSource = self
-        qiitaArticle.delegate = self
-        searchBar.delegate = self
+        self.navigationItem.title = tagName
         
-        searchBar.enablesReturnKeyAutomatically = false
+        tagDetailArticle.delegate = self
+        tagDetailArticle.dataSource = self
         
         self.request()
     }
@@ -38,7 +35,7 @@ class FeedPageViewController: UIViewController {
         page += 1
         
         AF.request(
-            url + "&page=\(page)&query=title%3A\(searchText)",
+            url + "&page=\(page)&query=tag%3A\(tagName)",
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
@@ -51,11 +48,6 @@ class FeedPageViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                // ページネーションの際は記事の中身を削除しないようにするため
-                if self.removeFlag {
-                    self.articles.removeAll()
-                }
-                
                 let dataItem =
                     try jsonDecoder.decode([DataItem].self,from:data)
                 
@@ -63,7 +55,7 @@ class FeedPageViewController: UIViewController {
                     self.articles.append($0)
                 }
                 
-                self.qiitaArticle.reloadData()
+                self.tagDetailArticle.reloadData()
                 
             //TODO:エラー用の画面を実装する
             } catch let error {
@@ -74,18 +66,18 @@ class FeedPageViewController: UIViewController {
     
 }
 
-extension FeedPageViewController: UITableViewDataSource {
+extension TagDetailPageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FeedPageCellViewController else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? TagDetailPageCellViewController else {
             return UITableViewCell()
         }
         
-        cell.setArticleCell(data: articles[indexPath.row])
+        cell.setTagDetailArticleCell(data: articles[indexPath.row])
 
         return cell
     }
@@ -98,7 +90,7 @@ extension FeedPageViewController: UITableViewDataSource {
     }
 }
 
-extension FeedPageViewController: UITableViewDelegate {
+extension TagDetailPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
@@ -108,24 +100,6 @@ extension FeedPageViewController: UITableViewDelegate {
         nextVC.articleUrl = articles[indexPath.row].url
         
         self.present(nextVC, animated: true, completion: nil)
-    }
-    
-}
-
-//ワードで検索できるAPIに変更しました
-extension FeedPageViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.endEditing(true)
-        
-        guard let text = searchBar.text else { return }
-        
-        searchText = text
-        page = 0
-        
-        removeFlag = text == ""
-        
-        self.request()
     }
     
 }
