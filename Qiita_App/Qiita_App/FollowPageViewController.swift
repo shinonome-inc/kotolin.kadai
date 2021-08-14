@@ -24,7 +24,9 @@ class FollowPageViewController: UIViewController {
         followList.delegate = self
         followList.dataSource = self
         
-        url += "\(userId)/followees"
+        followList.tableFooterView = UIView()
+        
+        url += "\(userId)/followers"
         request()
     }
     
@@ -32,11 +34,11 @@ class FollowPageViewController: UIViewController {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            url = "https://qiita.com/api/v2/users/\(userId)/followees"
+            url = "https://qiita.com/api/v2/users/\(userId)/followers"
             userInfos.removeAll()
             request()
         case 1:
-            url = "https://qiita.com/api/v2/users/\(userId)/followers"
+            url = "https://qiita.com/api/v2/users/\(userId)/followees"
             userInfos.removeAll()
             request()
         default:
@@ -87,15 +89,7 @@ class FollowPageViewController: UIViewController {
 extension FollowPageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userInfos.count//userInfos.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
         return userInfos.count
-    }
-    
-    internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,9 +97,9 @@ extension FollowPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        /*cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 10*/
         cell.setArticleCell(data: userInfos[indexPath.row])
 
         return cell
