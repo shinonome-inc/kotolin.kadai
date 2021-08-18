@@ -10,8 +10,8 @@ import Foundation
 
 struct TagItem: Codable {
     //TODO:後でキャメルメースに変更
-    let followers_count: Int
-    let icon_url: String
+    let followersCount: Int
+    let iconUrl: String
     let id: String
-    let items_count: Int
+    let itemsCount: Int
 }

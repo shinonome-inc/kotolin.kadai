@@ -9,15 +9,14 @@
 import UIKit
 
 class SetDataFormat {
-    func dateFormat(format: DateFormatter, defaultFormat: String, formatTarget: String) -> Date {
+    func dateFormat(formatTarget: String) -> String {
+        let format = DateFormatter()
         format.dateFormat = formatTarget
         format.timeStyle = .none
         format.dateStyle = .medium
         format.locale = Locale(identifier: "ja_JP")
-               
-        let formattedDate = StringToDate(dateValue: formatTarget, format: defaultFormat)
         
-        return formattedDate
+        return format.string(from: StringToDate(dateValue: formatTarget, format: "yyyy-MM-dd'T'HH:mm'+'HH:mm"))
     }
 
     func StringToDate(dateValue: String, format: String) -> Date {
