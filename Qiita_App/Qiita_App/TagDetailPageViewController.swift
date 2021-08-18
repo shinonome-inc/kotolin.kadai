@@ -14,10 +14,8 @@ class TagDetailPageViewController: UIViewController {
     @IBOutlet var tagDetailArticle: UITableView!
     
     var tagName = ""
-    var accessToken = ""
     var page = 0
-    var titleNum = 0
-    var url = "https://qiita.com/api/v2/items?count=20"
+    let url = "https://qiita.com/api/v2/items?count=20"
     var articles: [DataItem] = []
     
     override func viewDidLoad() {
@@ -31,6 +29,7 @@ class TagDetailPageViewController: UIViewController {
         self.request()
     }
     
+    //TODO: Alamofire部分共通化
     func request() {
         page += 1
         

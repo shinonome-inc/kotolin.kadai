@@ -12,8 +12,9 @@ import Alamofire
 class TagListPageViewController: UIViewController {
     
     @IBOutlet var qiitaTag: UICollectionView!
+    
     var tagInfo: [TagItem] = []
-    var url = "https://qiita.com/api/v2/tags?sort=count&page="
+    let url = "https://qiita.com/api/v2/tags?sort=count&page="
     var page = 0
     
     let margin: CGFloat = 16
@@ -78,6 +79,7 @@ class TagListPageViewController: UIViewController {
         let inset = 0.5 * (viewWidth + margin - CGFloat(itemsPerRows) * (cellWidth + margin))
         return inset
     }
+    
 }
 
 extension TagListPageViewController: UICollectionViewDelegateFlowLayout {
@@ -121,9 +123,10 @@ extension TagListPageViewController: UICollectionViewDataSource {
         }
         
         cell.setTagCell(data: tagInfo[indexPath.row])
-        cell.contentView.layer.borderColor = UIColor.gray.cgColor
+        cell.contentView.layer.borderColor = (UIColor {_ in return #colorLiteral(red: 0.9022639394, green: 0.9022851586, blue: 0.9022737145, alpha: 1)}).cgColor
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.cornerRadius = 10
+        cell.contentView.layoutIfNeeded()
         
         return cell
     }
