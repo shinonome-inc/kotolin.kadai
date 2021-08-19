@@ -14,6 +14,7 @@ struct MyItem: Codable {
     let renderedBody: String
     let title: String
     let url: String
+    let likesCount: Int
     var createdAt: String
     var user: User
     struct User: Codable {
