@@ -17,6 +17,7 @@ class FeedPageViewController: UIViewController {
     var page = 0
     var titleNum = 0
     var removeFlag = false
+    var searchTextDeleteFlag = false
     var searchText = ""
     var url = "https://qiita.com/api/v2/items?count=20"
     var articles: [DataItem] = []
@@ -54,6 +55,12 @@ class FeedPageViewController: UIViewController {
                 // ページネーションの際は記事の中身を削除しないようにするため
                 if self.removeFlag {
                     self.articles.removeAll()
+                    self.removeFlag = false
+                }
+                
+                if self.searchTextDeleteFlag {
+                    self.articles.removeAll()
+                    self.searchTextDeleteFlag = false
                 }
                 
                 let dataItem =
@@ -122,8 +129,12 @@ extension FeedPageViewController: UISearchBarDelegate {
         
         searchText = text
         page = 0
+        print(searchText)
+        removeFlag = text != ""
         
-        removeFlag = text == ""
+        if !removeFlag {
+            searchTextDeleteFlag = true
+        }
         
         self.request()
     }
