@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView {
 
-    func setImageByDefault(with url: URL) {
+    /*func setImageByDefault(with url: URL) {
 
         URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             // Success
@@ -22,6 +22,6 @@ extension UIImageView {
                 // error handling
             }
         }.resume()
-    }
+    }*/
 
 }

@@ -15,19 +15,28 @@ class MyPageCellViewController: UITableViewCell {
     @IBOutlet var articleTitle: UILabel!
     
     func setMyArticleCell(data: MyItem) {
-        guard let imageUrl = URL(string: data.user.profileImageUrl) else { return }
-        
-        do {
-            let imageData = try Data(contentsOf: imageUrl)
-            guard let image = UIImage(data: imageData) else { return }
-            userIcon.image = image
-        } catch {
-            print("error: Can't get image")
-        }
-        
         //ToDo:Dataフォーマット変更
         articleTitle.text = data.title
-        userId.text = "@" + data.user.id
-        postData.text = "投稿日：" + data.createdAt
+        userId.text = "@\(data.user.id)"
+        postData.text = "投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt))"
+        
+        guard let imageUrl = URL(string: data.user.profileImageUrl) else { print("error: Can't get Tagimage"); return }
+        
+        URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
+            
+                if error == nil, case .some(let result) = data, let image = UIImage(data: result) {
+                    
+                    guard let unwrappedSelf = self else { return }
+                    
+                    DispatchQueue.main.sync {
+                        unwrappedSelf.userIcon.image = image
+                    }
+
+                } else {
+                    DispatchQueue.main.sync {
+                        self?.userIcon.image = UIImage(named: "errorUserIcon")
+                    }
+                }
+        }.resume()
     }
 }
