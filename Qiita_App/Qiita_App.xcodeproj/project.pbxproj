@@ -22,6 +22,7 @@
 		071772C626479D6700899627 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C526479D6700899627 /* DataModel.swift */; };
 		071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C72647A22300899627 /* QiitaArticlePageViewController.swift */; };
 		071772CF2647B38200899627 /* FeedPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772CD2647B38200899627 /* FeedPageCell.swift */; };
+		073002CC26DA1684004735F0 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073002CB26DA1684004735F0 /* UserInfoModel.swift */; };
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
 		0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* TagDetailCell.swift */; };
@@ -82,6 +83,7 @@
 		071772C526479D6700899627 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		071772C72647A22300899627 /* QiitaArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaArticlePageViewController.swift; sourceTree = "<group>"; };
 		071772CD2647B38200899627 /* FeedPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageCell.swift; sourceTree = "<group>"; };
+		073002CB26DA1684004735F0 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
 		0755231826B2BB2100108A66 /* TagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailCell.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				071772C526479D6700899627 /* DataModel.swift */,
 				07014F1226C7BEE100221D45 /* TagModel.swift */,
 				07CF898426AEF0F300FF1344 /* MyPageModel.swift */,
+				073002CB26DA1684004735F0 /* UserInfoModel.swift */,
 				079DF1782662546B00F298F6 /* SecretKey.swift */,
 				07DE4A29268D9B8300ED9048 /* DataFormate.swift */,
 				07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */,
@@ -504,6 +507,7 @@
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
 				07CF898526AEF0F300FF1344 /* MyPageModel.swift in Sources */,
 				0716D7D0261EED7B008038D1 /* SceneDelegate.swift in Sources */,
+				073002CC26DA1684004735F0 /* UserInfoModel.swift in Sources */,
 				07014F1526C7C13000221D45 /* TagModel.swift in Sources */,
 				071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */,
 				07CF898326AEECF200FF1344 /* OauthModel.swift in Sources */,

@@ -20,6 +20,7 @@ class MyPageViewController: UIViewController {
     
     var url = "https://qiita.com/api/v2/authenticated_user/items"
     var myArticles: [MyItem] = []
+    var myInfo: UserInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +53,15 @@ class MyPageViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                let dataItem =
-                    try jsonDecoder.decode([MyItem].self,from:data)
+                let myArticleItem = try jsonDecoder.decode([MyItem].self,from:data)
                 
-                dataItem.forEach {
+                let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
+                
+                myArticleItem.forEach {
                     self.myArticles.append($0)
                 }
+                
+                self.myInfo = myInfoItem[0]
                 
                 self.myArticlesList.reloadData()
                 
@@ -80,7 +84,7 @@ extension MyPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let myData = myArticles[0].user
+        guard let myData = myInfo?.user else { return UITableViewCell() }
         
         myName.text = myData.name
         myId.text = "@\(myData.id)"
