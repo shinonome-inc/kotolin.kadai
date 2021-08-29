@@ -9,20 +9,8 @@
 import Foundation
 
 struct MyItem: Codable {
-    let body: String
-    let id: String
-    let renderedBody: String
     let title: String
     let url: String
     let likesCount: Int
     var createdAt: String
-    var user: User
-    struct User: Codable {
-        var id: String
-        var name: String
-        var description: String
-        var profileImageUrl: String
-        var followeesCount: Int
-        var followersCount: Int
-    }
 }

@@ -32,12 +32,9 @@ class MyPageViewController: UIViewController {
     }
     
     func request() {
-        
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
-        
-        print(headers)
         
         AF.request(
             url,
@@ -54,7 +51,6 @@ class MyPageViewController: UIViewController {
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 let myArticleItem = try jsonDecoder.decode([MyItem].self,from:data)
-                
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
                 
                 myArticleItem.forEach {
@@ -62,7 +58,6 @@ class MyPageViewController: UIViewController {
                 }
                 
                 self.myInfo = myInfoItem[0]
-                
                 self.myArticlesList.reloadData()
                 
             //TODO:エラー用の画面を実装する
@@ -98,12 +93,17 @@ extension MyPageViewController: UITableViewDataSource {
             let imageData = try Data(contentsOf: imageUrl)
             myIcon.image = UIImage(data: imageData)
         } catch {
+            myIcon.image = UIImage(named: "errorUserIcon")
             print("error: Can't get image")
         }
         
         cell.setMyArticleCell(data: myArticles[indexPath.row])
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "投稿記事"
     }
 }
 
@@ -113,9 +113,7 @@ extension MyPageViewController: UITableViewDelegate {
         guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         nextVC.articleUrl = myArticles[indexPath.row].url
-        
         self.present(nextVC, animated: true, completion: nil)
     }
     
