@@ -47,10 +47,19 @@ class FeedPageViewController: UIViewController {
         )
         .response { response in
             
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
+                
+                nextVC.receiveErrorTitle = "インターネットエラー"
+                nextVC.receiveErrorMessage =  "お手数ですが電波の良い場所で 再度読み込みをお願いします"
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
+            }
+            
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                //jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 // ページネーションの際は記事の中身を削除しないようにするため
                 if self.removeFlag {
@@ -74,7 +83,12 @@ class FeedPageViewController: UIViewController {
                 
             //TODO:エラー用の画面を実装する
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
+                
+                //nextVC.receiveErrorMessage = String(error)
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
             }
         }
     }
