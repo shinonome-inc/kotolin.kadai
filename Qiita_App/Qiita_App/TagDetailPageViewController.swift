@@ -42,6 +42,14 @@ class TagDetailPageViewController: UIViewController {
         )
         .response { response in
             
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
+                
+                nextVC.errorContents = .NetworkError
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
+            }
+            
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -56,9 +64,13 @@ class TagDetailPageViewController: UIViewController {
                 
                 self.tagDetailArticle.reloadData()
                 
-            //TODO:エラー用の画面を実装する
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
+                
+                nextVC.errorContents = .SystemError
+                nextVC.modalPresentationStyle = .fullScreen
+                self.present(nextVC, animated: true, completion: nil)
             }
         }
     }
