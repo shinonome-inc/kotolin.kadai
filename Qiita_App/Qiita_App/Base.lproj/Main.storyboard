@@ -250,51 +250,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cbD-uA-Vgv">
-                                <rect key="frame" x="0.0" y="345" width="414" height="468"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyArticleCell" rowHeight="59" id="zgb-KZ-RdS" customClass="MyPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="59"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgb-KZ-RdS" id="yuH-oe-Rbf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QH1-oK-nN5">
-                                                    <rect key="frame" x="20" y="37" width="391" height="14.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="391" id="w4h-Uf-9Ow"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事タイトル" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4V-vh-IXZ">
-                                                    <rect key="frame" x="20" y="11" width="391" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="391" id="Dyl-dy-ZjQ"/>
-                                                        <constraint firstAttribute="height" constant="18" id="Vsq-6f-JGY"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="QH1-oK-nN5" firstAttribute="top" secondItem="a4V-vh-IXZ" secondAttribute="bottom" constant="8" id="0PZ-TL-Mpf"/>
-                                                <constraint firstAttribute="bottom" secondItem="QH1-oK-nN5" secondAttribute="bottom" constant="7.5" id="Dy8-0k-8yA"/>
-                                                <constraint firstAttribute="trailing" secondItem="a4V-vh-IXZ" secondAttribute="trailing" constant="3" id="JF9-bA-CLJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="QH1-oK-nN5" secondAttribute="trailing" constant="3" id="qJq-QT-ehz"/>
-                                                <constraint firstItem="a4V-vh-IXZ" firstAttribute="top" secondItem="yuH-oe-Rbf" secondAttribute="top" constant="11" id="ua2-X3-Gdr"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="articleInfo" destination="QH1-oK-nN5" id="2IF-cK-M39"/>
-                                            <outlet property="articleTitle" destination="a4V-vh-IXZ" id="Nu8-LC-Ga2"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-W6-r2Y" customClass="EnhancedCircleImageView" customModule="Qiita_App" customModuleProvider="target">
                                 <rect key="frame" x="24" y="100" width="90" height="90"/>
                                 <constraints>
@@ -347,6 +302,53 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cbD-uA-Vgv">
+                                <rect key="frame" x="0.0" y="345" width="414" height="468"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyArticleCell" rowHeight="67" id="zgb-KZ-RdS" customClass="MyPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="67"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgb-KZ-RdS" id="yuH-oe-Rbf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QH1-oK-nN5">
+                                                    <rect key="frame" x="20" y="48" width="391" height="14.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="391" id="w4h-Uf-9Ow"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="記事タイトル" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4V-vh-IXZ">
+                                                    <rect key="frame" x="20" y="11" width="378" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="a0d-qX-5N3"/>
+                                                        <constraint firstAttribute="width" constant="378" id="gPm-1a-ggm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QH1-oK-nN5" firstAttribute="top" secondItem="a4V-vh-IXZ" secondAttribute="bottom" constant="-3" id="0PZ-TL-Mpf"/>
+                                                <constraint firstAttribute="bottom" secondItem="QH1-oK-nN5" secondAttribute="bottom" constant="4.5" id="Dy8-0k-8yA"/>
+                                                <constraint firstItem="a4V-vh-IXZ" firstAttribute="top" secondItem="yuH-oe-Rbf" secondAttribute="top" constant="11" id="QFF-PQ-1iq"/>
+                                                <constraint firstItem="QH1-oK-nN5" firstAttribute="leading" secondItem="yuH-oe-Rbf" secondAttribute="leading" constant="20" id="cTZ-wo-gSX"/>
+                                                <constraint firstItem="a4V-vh-IXZ" firstAttribute="leading" secondItem="yuH-oe-Rbf" secondAttribute="leading" constant="20" id="jRE-2Z-5k4"/>
+                                                <constraint firstAttribute="trailing" secondItem="QH1-oK-nN5" secondAttribute="trailing" constant="3" id="qJq-QT-ehz"/>
+                                                <constraint firstAttribute="trailing" secondItem="a4V-vh-IXZ" secondAttribute="trailing" constant="16" id="s0o-9c-aTP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="articleInfo" destination="QH1-oK-nN5" id="2IF-cK-M39"/>
+                                            <outlet property="articleTitle" destination="a4V-vh-IXZ" id="Nu8-LC-Ga2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
