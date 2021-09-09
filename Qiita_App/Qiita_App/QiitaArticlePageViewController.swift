@@ -27,22 +27,14 @@ class QiitaArticlePageViewController: UIViewController {
 }
 
 extension QiitaArticlePageViewController: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-
-    }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        transitionNetworkError()
+        transitionErrorPage(errorTitle: "NetworkError")
         print(error)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        transitionNetworkError()
+        transitionErrorPage(errorTitle: "NetworkError")
         print(error)
-    }
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-
     }
 }

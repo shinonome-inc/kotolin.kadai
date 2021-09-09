@@ -60,11 +60,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
             .response{ response in
                 
                 if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                    guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
-                    
-                    nextVC.errorContents = .NetworkError
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
+                    self.transitionErrorPage(errorTitle: "NetworkError")
                 }
                 
                 guard let data = response.data else { return }
@@ -76,11 +72,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                     
                 } catch let error {
                     print("This is error message -> : \(error)")
-                    guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
-                    
-                    nextVC.errorContents = .SystemError
-                    nextVC.modalPresentationStyle = .fullScreen
-                    self.present(nextVC, animated: true, completion: nil)
+                    self.transitionErrorPage(errorTitle: "SystemError")
                 }
             }
             
@@ -92,23 +84,15 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
         
         decisionHandler(.allow)
     }
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-
-    }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        transitionNetworkError()
+        transitionErrorPage(errorTitle: "NetworkError")
         print(error)
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        transitionNetworkError()
+        transitionErrorPage(errorTitle: "NetworkError")
         print(error)
-    }
-
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-
     }
 }
 

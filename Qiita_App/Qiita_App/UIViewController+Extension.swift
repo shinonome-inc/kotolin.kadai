@@ -9,10 +9,18 @@
 import UIKit
 
 extension UIViewController {
-    func transitionNetworkError() {
+    func transitionErrorPage(errorTitle: String) {
         guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
         
-        nextVC.errorContents = .NetworkError
+        switch errorTitle {
+        case "SystemError":
+            nextVC.errorContents = .SystemError
+        case "NetworkError":
+            nextVC.errorContents = .NetworkError
+        default:
+            nextVC.errorContents = .OtherError
+        }
+        
         nextVC.modalPresentationStyle = .fullScreen
         self.present(nextVC, animated: true, completion: nil)
     }

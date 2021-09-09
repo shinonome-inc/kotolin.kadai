@@ -12,10 +12,10 @@ class ErrorPageViewController: UIViewController {
     
     @IBOutlet var errorTitle: UILabel!
     @IBOutlet var errorMessage: UILabel!
+    @IBOutlet var errorIcon: UIImageView!
     
     var receiveErrorTitle = ""
     var receiveErrorMessage = ""
-    
     var errorContents = ErrorType.OtherError
     
     enum ErrorType {
@@ -44,14 +44,36 @@ class ErrorPageViewController: UIViewController {
                 return "お手数ですが製作者までご連絡ください"
             }
         }
+        
+        var errorIcon: UIImage? {
+            switch self {
+            case .SystemError:
+                return UIImage(systemName: "exclamationmark.icloud.fill")
+            case .NetworkError:
+                return UIImage(systemName: "wifi.exclamationmark")
+            case .OtherError:
+                return UIImage(systemName: "arrow.2.circlepath.circle.fill")
+            }
+        }
     }
+    
+    @IBAction func reloadAction(_ sender: Any) {
+        let nextVC = storyboard?.instantiateViewController(identifier: "TopPage")
+        nextVC?.modalPresentationStyle = .fullScreen
+        
+        self.present(nextVC!, animated: true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         errorHandling(errorType: errorContents)
     }
     
     func errorHandling(errorType: ErrorType) {
+        guard errorType.errorIcon != nil else { return }
+        
         errorTitle.text = errorType.decideErrorTitle
         errorMessage.text = errorType.decideErrorMessage
+        errorIcon.image = errorType.errorIcon
     }
 }

@@ -43,11 +43,7 @@ class TagDetailPageViewController: UIViewController {
         .response { response in
             
             if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
-                
-                nextVC.errorContents = .NetworkError
-                nextVC.modalPresentationStyle = .fullScreen
-                self.present(nextVC, animated: true, completion: nil)
+                self.transitionErrorPage(errorTitle: "NetworkError")
             }
             
             guard let data = response.data else { return }
@@ -66,11 +62,7 @@ class TagDetailPageViewController: UIViewController {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
-                
-                nextVC.errorContents = .SystemError
-                nextVC.modalPresentationStyle = .fullScreen
-                self.present(nextVC, animated: true, completion: nil)
+                self.transitionErrorPage(errorTitle: "SystemError")
             }
         }
     }

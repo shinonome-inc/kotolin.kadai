@@ -45,7 +45,7 @@
         <!--TopPage_ViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="TopPage_ViewController" customClass="TopPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopPage" id="BYZ-38-t0r" userLabel="TopPage_ViewController" customClass="TopPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -502,8 +502,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.exclamationmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RIG-Jz-zpk">
-                                <rect key="frame" x="157" y="264" width="100" height="97"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.icloud.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RIG-Jz-zpk">
+                                <rect key="frame" x="157" y="264" width="100" height="96.5"/>
                                 <color key="tintColor" red="0.4549019608" green="0.75686274509999996" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5TJ-Wj-VpU"/>
@@ -534,6 +534,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="reloadAction:" destination="XHf-5u-mrP" eventType="touchUpInside" id="iJl-dj-KAh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="エラータイトル" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7Z-xS-mZi">
                                 <rect key="frame" x="132" y="371" width="150" height="17"/>
@@ -560,6 +563,7 @@
                         <viewLayoutGuide key="safeArea" id="pkD-yx-X8I"/>
                     </view>
                     <connections>
+                        <outlet property="errorIcon" destination="RIG-Jz-zpk" id="Cvv-Qs-zFH"/>
                         <outlet property="errorMessage" destination="KS8-WX-rHU" id="38y-Tj-hY8"/>
                         <outlet property="errorTitle" destination="e7Z-xS-mZi" id="C7e-4G-DXV"/>
                     </connections>
@@ -816,9 +820,9 @@
     </scenes>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="exclamationmark.icloud.fill" catalog="system" width="128" height="88"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="tag" catalog="system" width="128" height="116"/>
-        <image name="wifi.exclamationmark" catalog="system" width="128" height="101"/>
     </resources>
 </document>
