@@ -8,9 +8,4 @@
 
 import Foundation
 
-struct TagItem: Codable {
-    let followersCount: Int
-    let iconUrl: String
-    let id: String
-    let itemsCount: Int
-}
+

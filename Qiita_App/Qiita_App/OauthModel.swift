@@ -8,8 +8,3 @@
 
 import Foundation
 
-struct OauthItem: Codable {
-    let client_id: String
-    let scopes = [String]()
-    let token: String
-}

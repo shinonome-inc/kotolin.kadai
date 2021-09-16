@@ -8,9 +8,5 @@
 
 import Foundation
 
-struct MyItem: Codable {
-    let title: String
-    let url: String
-    let likesCount: Int
-    var createdAt: String
-}
+
+

@@ -8,14 +8,3 @@
 
 import Foundation
 
-struct UserInfo: Codable {
-    var user: User
-    struct User: Codable {
-        var id: String
-        var name: String
-        var description: String
-        var profileImageUrl: String
-        var followeesCount: Int
-        var followersCount: Int
-    }
-}

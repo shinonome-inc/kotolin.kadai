@@ -8,14 +8,4 @@
 
 import Foundation
 
-struct DataItem: Codable {
-    let title: String
-    let url: String
-    var likesCount: Int
-    var createdAt: String
-    var user: User
-    struct User: Codable {
-        var id: String
-        var profileImageUrl: String
-    }
-}
+
