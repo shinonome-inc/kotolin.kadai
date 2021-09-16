@@ -57,21 +57,18 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
             )
             .response{ response in
                 
-                switch response.result {
-                case .success:
-                    guard let unwrappedResponse = response.value as? Data else { return }
-                    let result = String(data: unwrappedResponse, encoding: .utf8)
-                    //var token = ""
-                    //token = Dictionary(response.value!!)
-                    //feedPage?.accessToken = result!
-                    print(result!)
+                guard let data = response.data else { return }
+                do {
+                    let dataItem =
+                        try JSONDecoder().decode(OauthItem.self,from:data)
                     
-                //TODO:エラー用画面作成
-                case .failure(let error):
-                    print(error)
+                    AccessTokenDerivery.shared.setAccessToken(key: dataItem.token)
+                    
+                //TODO:エラー用の画面を実装する
+                } catch let error {
+                    print("Error: \(error)")
                 }
             }
-            print(params)
             
             let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar")
             nextVC?.modalPresentationStyle = .fullScreen

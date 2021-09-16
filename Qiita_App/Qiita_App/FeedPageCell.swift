@@ -20,7 +20,7 @@ class FeedPageCellViewController: UITableViewCell {
         articleTitle.text = data.title
         articleInfo.text = "@\(data.user.id) 投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt)) LGTM：\(data.likesCount)"
         
-        guard let imageUrl = URL(string: data.user.profileImageUrl) else { print("error: Can't get Tagimage"); return }
+        guard let imageUrl = URL(string: data.user.profileImageUrl) else { print("error: Can't get image"); return }
         
         URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
             
