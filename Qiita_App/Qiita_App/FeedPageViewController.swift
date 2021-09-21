@@ -14,11 +14,11 @@ class FeedPageViewController: UIViewController {
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     var accessToken = ""
-    var page = 0
+    var page = 1
     var titleNum = 0
     var removeFlag = false
+    var searchTextDeleteFlag = false
     var searchText = ""
-    var url = "https://qiita.com/api/v2/items?count=20"
     var articles: [DataItem] = []
     
     
@@ -31,49 +31,24 @@ class FeedPageViewController: UIViewController {
         
         searchBar.enablesReturnKeyAutomatically = false
         
-        print("accessToken: ", self.accessToken)
-        
-        self.request()
+        CommonApi.feedPageRequest(completion: { data in
+            self.articleManagement()
+            
+            data.forEach {
+                self.articles.append($0)
+            }
+            
+            self.qiitaArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
     }
     
-    func request() {
-        page += 1
-        
-        AF.request(
-            url + "&page=\(page)&query=title%3A\(searchText)",
-            method: .get,
-            parameters: nil,
-            encoding: JSONEncoding.default,
-            headers: nil
-        )
-        .response { response in
-            
-            guard let data = response.data else { return }
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                // ページネーションの際は記事の中身を削除しないようにするため
-                if self.removeFlag {
-                    self.articles.removeAll()
-                }
-                
-                let dataItem =
-                    try jsonDecoder.decode([DataItem].self,from:data)
-                
-                dataItem.forEach {
-                    self.articles.append($0)
-                }
-                
-                self.qiitaArticle.reloadData()
-                
-            //TODO:エラー用の画面を実装する
-            } catch let error {
-                print("Error: \(error)")
-            }
+    func articleManagement() {
+        if self.removeFlag || self.searchTextDeleteFlag {
+            self.articles.removeAll()
+            self.removeFlag = false
+            self.searchTextDeleteFlag = false
         }
     }
-    
 }
 
 extension FeedPageViewController: UITableViewDataSource {
@@ -95,7 +70,16 @@ extension FeedPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
-            self.request()
+            page += 1
+            CommonApi.feedPageRequest(completion: { data in
+                self.articleManagement()
+                
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                self.qiitaArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
         }
     }
 }
@@ -123,11 +107,22 @@ extension FeedPageViewController: UISearchBarDelegate {
         guard let text = searchBar.text else { return }
         
         searchText = text
-        page = 0
+        page = 1
+        removeFlag = text != ""
         
-        removeFlag = text == ""
+        if !removeFlag {
+            searchTextDeleteFlag = true
+        }
         
-        self.request()
+        CommonApi.feedPageRequest(completion: { data in
+            self.articleManagement()
+            
+            data.forEach {
+                self.articles.append($0)
+            }
+            
+            self.qiitaArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
     }
     
 }

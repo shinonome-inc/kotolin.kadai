@@ -18,19 +18,27 @@ class TagListCellViewController: UICollectionViewCell {
     
     
     func setTagCell(data: TagItem) {
-        guard let imageUrl = URL(string: data.iconUrl) else { return }
-        
-        do{
-            let image = UIImage(data: try Data(contentsOf: imageUrl))
-            
-            tagIcon.image = image
-            
-        } catch {
-            print("error: Can't get Tagimage")
-        }
-        
         tagName.text = data.id
         tagCount.text = "記事件数：" + String(data.itemsCount)
         tagfollowers.text = "フォロワー数：" + String(data.followersCount)
+        
+        guard let imageUrl = URL(string: data.iconUrl) else { print("error: Can't get Tagimage"); return }
+        
+        URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
+            
+                if error == nil, case .some(let result) = data, let image = UIImage(data: result) {
+                    
+                    guard let unwrappedSelf = self else { return }
+                    
+                    DispatchQueue.main.sync {
+                        unwrappedSelf.tagIcon.image = image
+                    }
+
+                } else {
+                    DispatchQueue.main.sync {
+                        self?.tagIcon.image = UIImage(named: "errorUserIcon")
+                    }
+                }
+        }.resume()
     }
 }

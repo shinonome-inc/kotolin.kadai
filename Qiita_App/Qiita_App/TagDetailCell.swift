@@ -16,8 +16,10 @@ class TagDetailPageCellViewController: UITableViewCell {
     @IBOutlet var articleInfo: UILabel!
     
     func setTagDetailArticleCell(data: DataItem) {
-        guard let imageUrl = URL(string: data.user.profileImageUrl) else { return }
-        let nowArticleTitle = data.title
+        articleTitle.text = data.title
+        articleInfo.text = "@\(data.user.id) 投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt)) LGTM：\(data.likesCount)"
+        
+        guard let imageUrl = URL(string: data.user.profileImageUrl) else { print("error: Can't get Tagimage"); return }
         
         URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
             
@@ -35,12 +37,5 @@ class TagDetailPageCellViewController: UITableViewCell {
                     }
                 }
         }.resume()
-        
-        //Dateのフォーマット変更
-        let format = DateFormatter()
-        let articleDate = SetDataFormat().dateFormat(format: format, defaultFormat: "yyyy-MM-dd'T'HH:mm'+'HH:mm", formatTarget: data.createdAt)
-        
-        articleTitle.text = nowArticleTitle
-        articleInfo.text = "@\(data.user.id) 投稿日：\(format.string(from: articleDate)) LGTM：\(data.likesCount)"
     }
 }
