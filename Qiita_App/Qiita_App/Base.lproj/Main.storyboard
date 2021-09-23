@@ -414,7 +414,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Imc-JJ-1bm">
-                                <rect key="frame" x="20" y="93" width="374" height="803"/>
+                                <rect key="frame" x="20" y="99" width="374" height="797"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="101" id="if1-1a-e85" customClass="FollowPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="101"/>
@@ -443,7 +443,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自己紹介文" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av5-hc-78N">
-                                                    <rect key="frame" x="16" y="72" width="311" height="19"/>
+                                                    <rect key="frame" x="16" y="72" width="311" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="311" id="A6P-bo-Xke"/>
                                                     </constraints>
@@ -469,7 +469,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Av5-hc-78N" secondAttribute="bottom" constant="10" id="2Ln-S8-aHa"/>
+                                                <constraint firstAttribute="bottom" secondItem="Av5-hc-78N" secondAttribute="bottom" constant="8" id="2Ln-S8-aHa"/>
                                                 <constraint firstItem="Iud-CX-ZDK" firstAttribute="leading" secondItem="joa-fF-a41" secondAttribute="trailing" constant="8" id="Kjh-3w-OdX"/>
                                                 <constraint firstItem="joa-fF-a41" firstAttribute="leading" secondItem="Rss-XT-fwP" secondAttribute="leading" id="LdE-L8-Alo"/>
                                                 <constraint firstItem="Av5-hc-78N" firstAttribute="top" secondItem="Rss-XT-fwP" secondAttribute="bottom" constant="2" id="RWA-pa-xv5"/>
@@ -498,7 +498,7 @@
                                 </prototypes>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WMo-Wt-DW8">
-                                <rect key="frame" x="20" y="54" width="374" height="32"/>
+                                <rect key="frame" x="20" y="56" width="374" height="32"/>
                                 <segments>
                                     <segment title="フォロワー"/>
                                     <segment title="フォロー中"/>
@@ -510,12 +510,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Imc-JJ-1bm" secondAttribute="bottom" id="6Cg-L3-9xV"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="trailing" secondItem="s7U-P2-ZEh" secondAttribute="trailingMargin" id="Lx1-C7-5Ba"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="leading" secondItem="s7U-P2-ZEh" secondAttribute="leadingMargin" id="PVk-hF-hhC"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="leading" secondItem="Imc-JJ-1bm" secondAttribute="leading" id="TCb-yq-0AQ"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Imc-JJ-1bm" secondAttribute="bottom" constant="-34" id="ZIc-jl-9pu"/>
-                            <constraint firstItem="Imc-JJ-1bm" firstAttribute="top" secondItem="WMo-Wt-DW8" secondAttribute="bottom" constant="8" id="abq-8w-esD"/>
-                            <constraint firstItem="WMo-Wt-DW8" firstAttribute="top" secondItem="AcF-Wb-tzR" secondAttribute="top" constant="10" id="jl0-dS-XwT"/>
+                            <constraint firstItem="Imc-JJ-1bm" firstAttribute="top" secondItem="WMo-Wt-DW8" secondAttribute="bottom" constant="12" id="abq-8w-esD"/>
+                            <constraint firstItem="WMo-Wt-DW8" firstAttribute="top" secondItem="AcF-Wb-tzR" secondAttribute="top" constant="12" id="jl0-dS-XwT"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="trailing" secondItem="Imc-JJ-1bm" secondAttribute="trailing" id="rwc-HO-OSP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AcF-Wb-tzR"/>
