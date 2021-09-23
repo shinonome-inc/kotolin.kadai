@@ -243,6 +243,23 @@
             <point key="canvasLocation" x="2230.434782608696" y="863.83928571428567"/>
         </scene>
         <!--マイページ-->
+        <scene sceneID="hsb-Hk-kB5">
+            <objects>
+                <navigationController id="WuP-uo-gcr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="マイページ" selectedImage="person" catalog="system" id="o3v-Wy-5A1"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SpN-vf-hNX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rfk-ID-adA" kind="relationship" relationship="rootViewController" id="6lW-jN-Snr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pq3-Xh-0Ye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="2272"/>
+        </scene>
+        <!--MyPage-->
         <scene sceneID="D58-f7-OBZ">
             <objects>
                 <viewController id="rfk-ID-adA" customClass="MyPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -251,19 +268,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8fJ-W6-r2Y" customClass="EnhancedCircleImageView" customModule="Qiita_App" customModuleProvider="target">
-                                <rect key="frame" x="24" y="100" width="90" height="90"/>
+                                <rect key="frame" x="24" y="99" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="gqI-YX-gF9"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGU-0b-7mK">
-                                <rect key="frame" x="24" y="204" width="81" height="21"/>
+                                <rect key="frame" x="24" y="203" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@UserID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXV-K8-12x">
-                                <rect key="frame" x="24" y="233" width="374" height="15"/>
+                                <rect key="frame" x="24" y="232" width="374" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="374" id="cvq-D3-EGs"/>
                                 </constraints>
@@ -272,7 +289,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bcm-en-usB">
-                                <rect key="frame" x="24" y="307" width="62" height="27"/>
+                                <rect key="frame" x="24" y="306" width="62" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="フォロー中">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -282,7 +299,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqc-py-dwu">
-                                <rect key="frame" x="24" y="256" width="361" height="43"/>
+                                <rect key="frame" x="24" y="255" width="361" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="361" id="i1J-B6-zMX"/>
                                 </constraints>
@@ -291,15 +308,8 @@
                                 <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZz-At-gdm">
-                                <rect key="frame" x="0.0" y="44" width="396" height="44"/>
-                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <navigationItem title="My Page" largeTitleDisplayMode="never" id="T5t-i4-KgP"/>
-                                </items>
-                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOg-Qa-BSx">
-                                <rect key="frame" x="94" y="307" width="62" height="27"/>
+                                <rect key="frame" x="94" y="306" width="62" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="フォロワー">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -309,7 +319,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cbD-uA-Vgv">
-                                <rect key="frame" x="0.0" y="345" width="414" height="468"/>
+                                <rect key="frame" x="0.0" y="344" width="414" height="503"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyArticleCell" rowHeight="67" id="zgb-KZ-RdS" customClass="MyPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="67"/>
@@ -360,14 +370,12 @@
                         <constraints>
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="leading" secondItem="8fJ-W6-r2Y" secondAttribute="trailing" constant="-90" id="5Vh-qZ-eCd"/>
                             <constraint firstItem="tCC-Q8-hSv" firstAttribute="trailing" secondItem="8fJ-W6-r2Y" secondAttribute="trailing" constant="300" id="5k0-du-BIM"/>
-                            <constraint firstItem="rZz-At-gdm" firstAttribute="centerX" secondItem="OXV-K8-12x" secondAttribute="centerX" constant="-13" id="6Ed-3s-7ah"/>
                             <constraint firstItem="oqc-py-dwu" firstAttribute="top" secondItem="8fJ-W6-r2Y" secondAttribute="bottom" constant="66" id="93h-Te-Y8Y"/>
-                            <constraint firstItem="DGU-0b-7mK" firstAttribute="top" secondItem="tCC-Q8-hSv" secondAttribute="top" constant="160" id="A1z-33-MoI"/>
+                            <constraint firstItem="DGU-0b-7mK" firstAttribute="top" secondItem="tCC-Q8-hSv" secondAttribute="top" constant="115" id="A1z-33-MoI"/>
                             <constraint firstItem="8fJ-W6-r2Y" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="Ixk-Av-pWF"/>
                             <constraint firstItem="Bcm-en-usB" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="Kmc-9d-YxR"/>
-                            <constraint firstItem="cbD-uA-Vgv" firstAttribute="bottom" secondItem="tCC-Q8-hSv" secondAttribute="bottom" id="MRV-e0-ert"/>
+                            <constraint firstItem="cbD-uA-Vgv" firstAttribute="bottom" secondItem="tCC-Q8-hSv" secondAttribute="bottom" constant="34" id="MRV-e0-ert"/>
                             <constraint firstItem="8fJ-W6-r2Y" firstAttribute="leading" secondItem="cbD-uA-Vgv" secondAttribute="leading" constant="24" id="N5N-e6-GkO"/>
-                            <constraint firstItem="rZz-At-gdm" firstAttribute="top" secondItem="tCC-Q8-hSv" secondAttribute="top" id="OCX-Fp-c3X"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="trailing" secondItem="tCC-Q8-hSv" secondAttribute="trailing" id="T0J-Xk-lpD"/>
                             <constraint firstItem="OXV-K8-12x" firstAttribute="top" secondItem="DGU-0b-7mK" secondAttribute="bottom" constant="8" id="UJM-aw-rQe"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="top" secondItem="Bcm-en-usB" secondAttribute="bottom" constant="11" id="V03-lV-hrl"/>
@@ -377,12 +385,12 @@
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="eKW-B7-uRV"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="top" secondItem="8fJ-W6-r2Y" secondAttribute="bottom" constant="155" id="f9x-yz-gPW"/>
                             <constraint firstItem="oqc-py-dwu" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="sb2-yI-FZo"/>
-                            <constraint firstItem="rZz-At-gdm" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" id="wRh-qe-wXY"/>
                             <constraint firstItem="fOg-Qa-BSx" firstAttribute="leading" secondItem="Bcm-en-usB" secondAttribute="trailing" constant="8" id="yVg-6y-7UR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tCC-Q8-hSv"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" image="person" catalog="system" id="dym-Ky-SFG"/>
+                    <navigationItem key="navigationItem" title="MyPage" id="8Xf-s2-xZc"/>
                     <connections>
                         <outlet property="followCount" destination="Bcm-en-usB" id="TMU-wu-cEU"/>
                         <outlet property="followerCount" destination="fOg-Qa-BSx" id="KiM-e8-Ien"/>
@@ -395,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TaO-rH-7nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556.52173913043487" y="2237.9464285714284"/>
+            <point key="canvasLocation" x="1466.6666666666667" y="2272.7678571428569"/>
         </scene>
         <!--Follow Page View Controller-->
         <scene sceneID="sNb-R9-uyt">
@@ -405,18 +413,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WMo-Wt-DW8">
-                                <rect key="frame" x="20" y="102" width="374" height="32"/>
-                                <segments>
-                                    <segment title="フォロワー"/>
-                                    <segment title="フォロー中"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchButton:" destination="SLr-Gx-bt5" eventType="valueChanged" id="z7G-Xn-vV0"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Imc-JJ-1bm">
-                                <rect key="frame" x="20" y="156" width="374" height="740"/>
+                                <rect key="frame" x="20" y="93" width="374" height="803"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="101" id="if1-1a-e85" customClass="FollowPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="101"/>
@@ -499,6 +497,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WMo-Wt-DW8">
+                                <rect key="frame" x="20" y="54" width="374" height="32"/>
+                                <segments>
+                                    <segment title="フォロワー"/>
+                                    <segment title="フォロー中"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchButton:" destination="SLr-Gx-bt5" eventType="valueChanged" id="z7G-Xn-vV0"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -506,8 +514,8 @@
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="leading" secondItem="s7U-P2-ZEh" secondAttribute="leadingMargin" id="PVk-hF-hhC"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="leading" secondItem="Imc-JJ-1bm" secondAttribute="leading" id="TCb-yq-0AQ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Imc-JJ-1bm" secondAttribute="bottom" constant="-34" id="ZIc-jl-9pu"/>
-                            <constraint firstItem="Imc-JJ-1bm" firstAttribute="top" secondItem="WMo-Wt-DW8" secondAttribute="bottom" constant="23" id="abq-8w-esD"/>
-                            <constraint firstItem="WMo-Wt-DW8" firstAttribute="top" secondItem="AcF-Wb-tzR" secondAttribute="top" constant="58" id="jl0-dS-XwT"/>
+                            <constraint firstItem="Imc-JJ-1bm" firstAttribute="top" secondItem="WMo-Wt-DW8" secondAttribute="bottom" constant="8" id="abq-8w-esD"/>
+                            <constraint firstItem="WMo-Wt-DW8" firstAttribute="top" secondItem="AcF-Wb-tzR" secondAttribute="top" constant="10" id="jl0-dS-XwT"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="trailing" secondItem="Imc-JJ-1bm" secondAttribute="trailing" id="rwc-HO-OSP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AcF-Wb-tzR"/>
@@ -519,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwn-p9-E8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466.6666666666667" y="2237.9464285714284"/>
+            <point key="canvasLocation" x="2228.985507246377" y="2270.7589285714284"/>
         </scene>
         <!--設定-->
         <scene sceneID="kl9-rW-4kS">
@@ -844,7 +852,7 @@
                     <connections>
                         <segue destination="9kn-0S-tIm" kind="relationship" relationship="viewControllers" id="2Mo-Rd-Fln"/>
                         <segue destination="pew-yE-qLW" kind="relationship" relationship="viewControllers" id="EzS-lJ-lDT"/>
-                        <segue destination="rfk-ID-adA" kind="relationship" relationship="viewControllers" id="7xo-Pr-R6C"/>
+                        <segue destination="WuP-uo-gcr" kind="relationship" relationship="viewControllers" id="HL0-d5-Xg1"/>
                         <segue destination="XRa-gj-b4g" kind="relationship" relationship="viewControllers" id="DUR-9S-kD4"/>
                     </connections>
                 </tabBarController>

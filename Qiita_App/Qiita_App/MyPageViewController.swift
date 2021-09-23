@@ -66,7 +66,7 @@ class MyPageViewController: UIViewController {
         
         nextVC.infoType = "followees"
         nextVC.userId = id
-        self.present(nextVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     @IBAction func pushFollowerCount(_ sender: Any) {
@@ -74,7 +74,7 @@ class MyPageViewController: UIViewController {
         
         nextVC.infoType = "followers"
         nextVC.userId = id
-        self.present(nextVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 

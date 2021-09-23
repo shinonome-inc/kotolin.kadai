@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class CommonApi {
-
+    
     enum requestUrl {
         case FeedPage(page: Int, searchTitle: String)
         case tagPage(page: Int)
@@ -35,7 +35,7 @@ class CommonApi {
     }
     
     class func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-
+        
         AF.request(
             url,
             method: .get,
@@ -60,13 +60,16 @@ class CommonApi {
     }
     
     class func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
-
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
         AF.request(
             url,
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
-            headers: nil
+            headers: headers
         )
         .response { response in
 
@@ -85,13 +88,16 @@ class CommonApi {
     }
     
     class func tagDetailPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
         AF.request(
             url,
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
-            headers: nil
+            headers: headers
         )
         .response { response in
 
@@ -168,13 +174,16 @@ class CommonApi {
     }
     
     class func followPageRequest(completion: @escaping([UserItem]) -> Void, url: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
         
         AF.request(
             url,
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
-            headers: nil
+            headers: headers
         )
         .response { response in
             
