@@ -10,7 +10,6 @@ import UIKit
 
 class FollowPageCellViewController: UITableViewCell {
     
-    
     @IBOutlet var userIcon: EnhancedCircleImageView!
     @IBOutlet var userName: UILabel!
     @IBOutlet var userId: UILabel!
@@ -18,28 +17,12 @@ class FollowPageCellViewController: UITableViewCell {
     @IBOutlet var userIntroduction: UILabel!
     
     func setArticleCell(data: UserItem) {
-        guard let imageUrl = URL(string: data.profileImageUrl) else { return }
-        
-        URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
-            
-                if error == nil, case .some(let result) = data, let image = UIImage(data: result) {
-                    
-                    guard let unwrappedSelf = self else { return }
-                    
-                    DispatchQueue.main.sync {
-                        unwrappedSelf.userIcon.image = image
-                    }
-
-                } else {
-                    DispatchQueue.main.sync {
-                        self?.userIcon.image = UIImage(named: "errorUserIcon")
-                    }
-                }
-        }.resume()
-        
         userName.text = data.name
         userId.text = data.id
         userInfo.text = "\(data.followersCount) フォロワー　Posts：\(data.itemsCount)"
         userIntroduction.text = data.description
+        
+        guard let imageUrl = URL(string: data.profileImageUrl) else { print("error: Can't get Userimage"); return }
+        userIcon.setImageByDefault(with: imageUrl)
     }
 }
