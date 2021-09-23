@@ -29,7 +29,6 @@
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
 		079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CD2A226F2E7C80039D8B4 /* ApiModel.swift */; };
 		079DF1792662546B00F298F6 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DF1782662546B00F298F6 /* SecretKey.swift */; };
-		07BC1A6626F9C847004FB05F /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BC1A6526F9C847004FB05F /* UserItem.swift */; };
 		07C3818126BBD1A600AFD4F9 /* FollowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */; };
 		07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */; };
 		07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */; };
@@ -90,7 +89,6 @@
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		079CD2A226F2E7C80039D8B4 /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		079DF1782662546B00F298F6 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
-		07BC1A6526F9C847004FB05F /* UserItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageCell.swift; sourceTree = "<group>"; };
 		07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDelivery.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
 				0779878626EB426A009CDDE2 /* CommonApi.swift */,
 				079CD2A226F2E7C80039D8B4 /* ApiModel.swift */,
-				07BC1A6526F9C847004FB05F /* UserItem.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				07014F1726C7C4D100221D45 /* EnhancedCircleImageView.swift in Sources */,
 				0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */,
 				0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */,
-				07BC1A6626F9C847004FB05F /* UserItem.swift in Sources */,
 				0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */,
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
 				0716D7D0261EED7B008038D1 /* SceneDelegate.swift in Sources */,
