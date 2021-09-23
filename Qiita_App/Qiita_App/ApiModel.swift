@@ -54,3 +54,12 @@ struct UserInfo: Codable {
         var followeesCount: Int
         var followersCount: Int
     }
+
+struct UserItem: Codable {
+    var description: String?
+    var name: String
+    var profileImageUrl: String
+    var id: String
+    var followersCount: Int
+    var itemsCount: Int
+}

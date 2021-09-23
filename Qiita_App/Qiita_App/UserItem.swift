@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct UserItem: Codable {
-    var description: String?
-    var name: String
-    var profile_image_url: String
-    var id: String
-    var followers_count: Int
-    var items_count: Int
-}
+//struct UserItem: Codable {
+//    var description: String?
+//    var name: String
+//    var profile_image_url: String
+//    var id: String
+//    var followers_count: Int
+//    var items_count: Int
+//}

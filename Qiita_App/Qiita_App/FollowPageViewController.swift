@@ -14,8 +14,8 @@ class FollowPageViewController: UIViewController {
     @IBOutlet var selectSegmentedIndex: UISegmentedControl!
     @IBOutlet var followList: UITableView!
     
-    var userId = "0901_yasyun"
-    var url = "https://qiita.com/api/v2/users/"
+    var userId = ""
+    var infoType = ""
     var userInfos: [UserItem] = []
     
     override func viewDidLoad() {
@@ -24,63 +24,51 @@ class FollowPageViewController: UIViewController {
         followList.delegate = self
         followList.dataSource = self
         
-        followList.tableFooterView = UIView()
+        switch infoType {
+        case "followers":
+            selectSegmentedIndex.selectedSegmentIndex = 0
+        case "followees":
+            selectSegmentedIndex.selectedSegmentIndex = 1
+        default:
+            //TODO:エラー用の画面を実装する
+            print("error")
+        }
         
-        url += "\(userId)/followers"
-        request()
+        CommonApi.followPageRequest(completion: { data in
+            self.createUserInfos(userData: data)
+            self.followList.reloadData()
+        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
     }
     
     @IBAction func switchButton(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            url = "https://qiita.com/api/v2/users/\(userId)/followers"
+            infoType = "followers"
             userInfos.removeAll()
-            request()
+            CommonApi.followPageRequest(completion: { data in
+                self.createUserInfos(userData: data)
+                self.followList.reloadData()
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
         case 1:
-            url = "https://qiita.com/api/v2/users/\(userId)/followees"
+            infoType = "followees"
             userInfos.removeAll()
-            request()
+            CommonApi.followPageRequest(completion: { data in
+                self.createUserInfos(userData: data)
+                self.followList.reloadData()
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
         default:
+            //TODO:エラー用の画面を実装する
             print("URL Error")
         }
-        
     }
     
-    func request() {
-        //page += 1
-        
-        AF.request(
-            url,
-            method: .get,
-            parameters: nil,
-            encoding: JSONEncoding.default,
-            headers: nil
-        )
-        .response { response in
+    func createUserInfos(userData: [UserItem]) {
+        (0..<userData.count).forEach {
+            self.userInfos.append(userData[$0])
             
-            guard let data = response.data else { return }
-            do {
-                //let jsonDecoder = JSONDecoder()
-               // JSONDecoder().keyDecodingStrategy = .convertFromSnakeCase
-                
-                let dataItem =
-                    try JSONDecoder().decode([UserItem].self,from:data)
-                
-                (0..<dataItem.count).forEach {
-                    self.userInfos.append(dataItem[$0])
-                    
-                    if dataItem[$0].description == nil {
-                        self.userInfos[$0].description = ""
-                    }
-                }
-                
-                print(self.userInfos)
-                self.followList.reloadData()
-                
-            //TODO:エラー用の画面を実装する
-            } catch let error {
-                print("Error: \(error)")
+            if userData[$0].description == nil {
+                self.userInfos[$0].description = ""
             }
         }
     }
@@ -97,9 +85,9 @@ extension FollowPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        /*cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
-        cell.layer.cornerRadius = 10*/
+        cell.layer.cornerRadius = 10
         cell.setArticleCell(data: userInfos[indexPath.row])
 
         return cell
@@ -107,7 +95,10 @@ extension FollowPageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if userInfos.count >= 20 && indexPath.row == ( userInfos.count - 10) {
-            self.request()
+            CommonApi.followPageRequest(completion: { data in
+                self.createUserInfos(userData: data)
+                self.followList.reloadData()
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
         }
     }
 }

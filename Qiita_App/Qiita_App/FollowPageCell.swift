@@ -18,7 +18,7 @@ class FollowPageCellViewController: UITableViewCell {
     @IBOutlet var userIntroduction: UILabel!
     
     func setArticleCell(data: UserItem) {
-        guard let imageUrl = URL(string: data.profile_image_url) else { return }
+        guard let imageUrl = URL(string: data.profileImageUrl) else { return }
         
         URLSession.shared.dataTask(with: imageUrl) { [weak self] data, response, error in
             
@@ -39,7 +39,7 @@ class FollowPageCellViewController: UITableViewCell {
         
         userName.text = data.name
         userId.text = data.id
-        userInfo.text = "\(data.followers_count) フォロワー　Posts：\(data.items_count)"
+        userInfo.text = "\(data.followersCount) フォロワー　Posts：\(data.itemsCount)"
         userIntroduction.text = data.description
     }
 }
