@@ -76,6 +76,7 @@ extension TagListPageViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        page += 1
         // TODO: レイアウトが崩れる原因ここの閾値にあるかも
         if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
             CommonApi.tagPageRequest(completion: { data in

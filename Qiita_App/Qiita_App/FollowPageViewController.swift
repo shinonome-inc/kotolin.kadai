@@ -14,49 +14,53 @@ class FollowPageViewController: UIViewController {
     @IBOutlet var selectSegmentedIndex: UISegmentedControl!
     @IBOutlet var followList: UITableView!
     
+    enum infoType {
+        case followers
+        case followees
+    }
+    
     var userId = ""
-    var infoType = ""
+    var urlType = ""
+    var settingSegment: infoType = .followers
     var userInfos: [UserItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        followList.delegate = self
         followList.dataSource = self
         
-        switch infoType {
-        case "followers":
+        switch settingSegment {
+        case .followers:
             selectSegmentedIndex.selectedSegmentIndex = 0
-        case "followees":
+            urlType = "followers"
+        case .followees:
             selectSegmentedIndex.selectedSegmentIndex = 1
-        default:
-            //TODO:エラー用の画面を実装する
-            print("error")
+            urlType = "followees"
         }
         
         CommonApi.followPageRequest(completion: { data in
             self.createUserInfos(userData: data)
             self.followList.reloadData()
-        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
+        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
     }
     
     @IBAction func switchButton(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            infoType = "followers"
+            urlType = "followers"
             userInfos.removeAll()
             CommonApi.followPageRequest(completion: { data in
                 self.createUserInfos(userData: data)
                 self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
         case 1:
-            infoType = "followees"
+            urlType = "followees"
             userInfos.removeAll()
             CommonApi.followPageRequest(completion: { data in
                 self.createUserInfos(userData: data)
                 self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
         default:
             //TODO:エラー用の画面を実装する
             print("URL Error")
@@ -85,9 +89,6 @@ extension FollowPageViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.layer.borderWidth = 0.5
-        cell.layer.cornerRadius = 10
         cell.setArticleCell(data: userInfos[indexPath.row])
 
         return cell
@@ -98,14 +99,7 @@ extension FollowPageViewController: UITableViewDataSource {
             CommonApi.followPageRequest(completion: { data in
                 self.createUserInfos(userData: data)
                 self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(infoType)")
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
         }
-    }
-}
-
-extension FollowPageViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }

@@ -64,7 +64,7 @@ class MyPageViewController: UIViewController {
     @IBAction func pushFollowCount(_ sender: Any) {
         guard let nextVC: FollowPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "FollowPage") as? FollowPageViewController else { return }
         
-        nextVC.infoType = "followees"
+        nextVC.settingSegment = .followees
         nextVC.userId = id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -72,7 +72,7 @@ class MyPageViewController: UIViewController {
     @IBAction func pushFollowerCount(_ sender: Any) {
         guard let nextVC: FollowPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "FollowPage") as? FollowPageViewController else { return }
         
-        nextVC.infoType = "followers"
+        nextVC.settingSegment = .followers
         nextVC.userId = id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
