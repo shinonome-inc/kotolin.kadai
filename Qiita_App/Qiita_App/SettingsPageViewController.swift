@@ -114,6 +114,7 @@ extension SettingsPageViewController: UITableViewDelegate {
         case 2:
             guard let nextVC = storyboard?.instantiateViewController(identifier: "TopPage") else { return }
             nextVC.modalPresentationStyle = .fullScreen
+            AccessTokenDerivery.shared.deleteAccessToken()
             tableView.deselectRow(at: indexPath, animated: true)
             
             self.present(nextVC, animated: true, completion: nil)

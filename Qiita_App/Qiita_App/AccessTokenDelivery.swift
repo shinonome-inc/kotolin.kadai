@@ -22,4 +22,8 @@ final public class AccessTokenDerivery {
     public func setAccessToken(key: String) {
         token = key
     }
+    
+    public func deleteAccessToken() {
+        token = ""
+    }
 }

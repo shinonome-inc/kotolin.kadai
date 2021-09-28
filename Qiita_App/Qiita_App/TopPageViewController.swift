@@ -24,6 +24,7 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
         
         guard let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar") else { return }
         nextVC.modalPresentationStyle = .fullScreen
+        AccessTokenDerivery.shared.deleteAccessToken()
         
         self.present(nextVC, animated: true, completion: nil)
     }
