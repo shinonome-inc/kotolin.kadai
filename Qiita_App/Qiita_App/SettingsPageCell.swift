@@ -14,17 +14,15 @@ class SettingsPageCellViewController: UITableViewCell {
     @IBOutlet var otherTitle: UILabel!
     @IBOutlet var cellIcon: UILabel!
     
-    func setSettingsCell(title: String, tag: Int) {
-        switch tag {
-        case 1:
+    func setSettingsCell(title: String, tableViewType: SettingsPageViewController.tableViewType) {
+        switch tableViewType {
+        case .appInfoCell:
             appInfoTitle.text = title
             if title == "アプリバージョン" {
                 cellIcon.text = "v1.0.0"
             }
-        case 2:
+        case .otherCell:
             otherTitle.text = title
-        default:
-            print("error")
         }
     }
 }
