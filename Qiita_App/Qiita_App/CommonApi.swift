@@ -10,12 +10,13 @@ import UIKit
 import Alamofire
 
 class CommonApi {
-
+    
     enum requestUrl {
         case FeedPage(page: Int, searchTitle: String)
         case tagPage(page: Int)
         case tagDetailPage(page: Int, tagTitle: String)
         case myPage(page: Int)
+        case FollowPage
     }
 
     class func structUrl(option: requestUrl) -> String {
@@ -28,11 +29,13 @@ class CommonApi {
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=tag%3A\(tagTitle)"
         case .myPage(let page):
             return "https://qiita.com/api/v2/authenticated_user/items?page=\(page)"
+        case .FollowPage:
+            return "https://qiita.com/api/v2/users/"
         }
     }
     
     class func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-
+        
         AF.request(
             url,
             method: .get,
@@ -57,13 +60,16 @@ class CommonApi {
     }
     
     class func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
-
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
         AF.request(
             url,
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
-            headers: nil
+            headers: headers
         )
         .response { response in
 
@@ -82,13 +88,16 @@ class CommonApi {
     }
     
     class func tagDetailPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
         AF.request(
             url,
             method: .get,
             parameters: nil,
             encoding: JSONEncoding.default,
-            headers: nil
+            headers: headers
         )
         .response { response in
 
@@ -157,6 +166,37 @@ class CommonApi {
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
                 
                 completion(myInfoItem[0])
+            //TODO:エラー用の画面を実装する
+            } catch let error {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    class func followPageRequest(completion: @escaping([UserItem]) -> Void, url: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            parameters: nil,
+            encoding: JSONEncoding.default,
+            headers: headers
+        )
+        .response { response in
+            
+            guard let data = response.data else { return }
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                
+                let dataItem =
+                    try jsonDecoder.decode([UserItem].self,from:data)
+                
+                completion(dataItem)
+                
             //TODO:エラー用の画面を実装する
             } catch let error {
                 print("Error: \(error)")

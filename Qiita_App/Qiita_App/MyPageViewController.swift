@@ -21,6 +21,7 @@ class MyPageViewController: UIViewController {
     var myArticles: [MyItem] = []
     var myInfo: UserInfo?
     var page = 1
+    var id = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +54,27 @@ class MyPageViewController: UIViewController {
             
             self.myName.text = myData.name
             self.myId.text = "@\(myData.id)"
+            self.id = myData.id
             self.myIntroduction.text = myData.description
             self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
             self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
         }, url: CommonApi.structUrl(option: .myPage(page: page)))
+    }
+    
+    @IBAction func pushFollowCount(_ sender: Any) {
+        guard let nextVC: FollowPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "FollowPage") as? FollowPageViewController else { return }
+        
+        nextVC.tableViewInfo = .followees
+        nextVC.userId = id
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    @IBAction func pushFollowerCount(_ sender: Any) {
+        guard let nextVC: FollowPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "FollowPage") as? FollowPageViewController else { return }
+        
+        nextVC.tableViewInfo = .followers
+        nextVC.userId = id
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
