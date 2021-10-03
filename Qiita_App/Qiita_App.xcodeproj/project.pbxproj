@@ -22,12 +22,16 @@
 		071772C626479D6700899627 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C526479D6700899627 /* DataModel.swift */; };
 		071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C72647A22300899627 /* QiitaArticlePageViewController.swift */; };
 		071772CF2647B38200899627 /* FeedPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772CD2647B38200899627 /* FeedPageCell.swift */; };
+		072C44C826BA75CF00340215 /* FollowPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C44C726BA75CF00340215 /* FollowPageViewController.swift */; };
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
 		0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* TagDetailCell.swift */; };
 		075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075BE0D5266B77C200D2DBCD /* TagListCell.swift */; };
+		0779878726EB426A009CDDE2 /* CommonApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779878626EB426A009CDDE2 /* CommonApi.swift */; };
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
+		079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CD2A226F2E7C80039D8B4 /* ApiModel.swift */; };
 		079DF1792662546B00F298F6 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DF1782662546B00F298F6 /* SecretKey.swift */; };
+		07C3818126BBD1A600AFD4F9 /* FollowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */; };
 		07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */; };
 		07CF898326AEECF200FF1344 /* OauthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898226AEECF200FF1344 /* OauthModel.swift */; };
 		07CF898526AEF0F300FF1344 /* MyPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898426AEF0F300FF1344 /* MyPageModel.swift */; };
@@ -84,12 +88,16 @@
 		071772C526479D6700899627 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		071772C72647A22300899627 /* QiitaArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaArticlePageViewController.swift; sourceTree = "<group>"; };
 		071772CD2647B38200899627 /* FeedPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageCell.swift; sourceTree = "<group>"; };
+		072C44C726BA75CF00340215 /* FollowPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageViewController.swift; sourceTree = "<group>"; };
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
 		0755231826B2BB2100108A66 /* TagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailCell.swift; sourceTree = "<group>"; };
 		075BE0D5266B77C200D2DBCD /* TagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCell.swift; sourceTree = "<group>"; };
+		0779878626EB426A009CDDE2 /* CommonApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonApi.swift; sourceTree = "<group>"; };
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		079CD2A226F2E7C80039D8B4 /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
 		079DF1782662546B00F298F6 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageCell.swift; sourceTree = "<group>"; };
 		07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		07CF898226AEECF200FF1344 /* OauthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OauthModel.swift; sourceTree = "<group>"; };
 		07CF898426AEF0F300FF1344 /* MyPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModel.swift; sourceTree = "<group>"; };
@@ -191,6 +199,8 @@
 				0755231826B2BB2100108A66 /* TagDetailCell.swift */,
 				07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */,
 				07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */,
+				072C44C726BA75CF00340215 /* FollowPageViewController.swift */,
+				07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */,
 				07CF898226AEECF200FF1344 /* OauthModel.swift */,
 				071772C526479D6700899627 /* DataModel.swift */,
 				07014F1226C7BEE100221D45 /* TagModel.swift */,
@@ -203,6 +213,8 @@
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
 				07CFE74026D0C7270034641C /* SettingsPageViewController.swift */,
 				07CFE74226D0D96E0034641C /* SettingsPageCell.swift */,
+				0779878626EB426A009CDDE2 /* CommonApi.swift */,
+				079CD2A226F2E7C80039D8B4 /* ApiModel.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -497,7 +509,9 @@
 				07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */,
 				071772C626479D6700899627 /* DataModel.swift in Sources */,
 				0716D7D2261EED7B008038D1 /* TopPageViewController.swift in Sources */,
+				079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */,
 				0702CC792668CDD30095CF82 /* TagListPageViewController.swift in Sources */,
+				0779878726EB426A009CDDE2 /* CommonApi.swift in Sources */,
 				07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */,
 				0716D7CE261EED7B008038D1 /* AppDelegate.swift in Sources */,
 				07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */,
@@ -512,8 +526,10 @@
 				071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */,
 				07CF898526AEF0F300FF1344 /* MyPageModel.swift in Sources */,
 				0716D7D0261EED7B008038D1 /* SceneDelegate.swift in Sources */,
+				072C44C826BA75CF00340215 /* FollowPageViewController.swift in Sources */,
 				07014F1526C7C13000221D45 /* TagModel.swift in Sources */,
 				071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */,
+				07C3818126BBD1A600AFD4F9 /* FollowPageCell.swift in Sources */,
 				07CF898326AEECF200FF1344 /* OauthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,6 +705,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7LSK98VB6;
 				INFOPLIST_FILE = Qiita_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -707,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7LSK98VB6;
 				INFOPLIST_FILE = Qiita_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -14,8 +14,7 @@ class TagDetailPageViewController: UIViewController {
     @IBOutlet var tagDetailArticle: UITableView!
     
     var tagName = ""
-    var page = 0
-    let url = "https://qiita.com/api/v2/items?count=20"
+    var page = 1
     var articles: [DataItem] = []
     
     override func viewDidLoad() {
@@ -26,43 +25,14 @@ class TagDetailPageViewController: UIViewController {
         tagDetailArticle.delegate = self
         tagDetailArticle.dataSource = self
         
-        self.request()
-    }
-    
-    //TODO: Alamofire部分共通化
-    func request() {
-        page += 1
-        
-        AF.request(
-            url + "&page=\(page)&query=tag%3A\(tagName)",
-            method: .get,
-            parameters: nil,
-            encoding: JSONEncoding.default,
-            headers: nil
-        )
-        .response { response in
-            
-            guard let data = response.data else { return }
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                let dataItem =
-                    try jsonDecoder.decode([DataItem].self,from:data)
-                
-                dataItem.forEach {
-                    self.articles.append($0)
-                }
-                
-                self.tagDetailArticle.reloadData()
-                
-            //TODO:エラー用の画面を実装する
-            } catch let error {
-                print("Error: \(error)")
+        CommonApi.tagDetailPageRequest(completion: { data in
+            data.forEach {
+                self.articles.append($0)
             }
-        }
+            
+            self.tagDetailArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
     }
-    
 }
 
 extension TagDetailPageViewController: UITableViewDataSource {
@@ -84,7 +54,14 @@ extension TagDetailPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
-            self.request()
+            page += 1
+            CommonApi.tagDetailPageRequest(completion: { data in
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                self.tagDetailArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
         }
     }
 }
