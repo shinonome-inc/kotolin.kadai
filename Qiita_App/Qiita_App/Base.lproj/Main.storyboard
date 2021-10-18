@@ -572,6 +572,65 @@
             </objects>
             <point key="canvasLocation" x="1584.057971014493" y="2913.6160714285711"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="OyO-ae-JdU">
+            <objects>
+                <viewController id="f2R-nw-NaL" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DjG-He-Z52">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ログインが必要です" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sW-KW-4hB">
+                                <rect key="frame" x="143" y="356" width="129" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="マイページの機能を利用するにはログインを行っていただく必要があります" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-35-6Tu">
+                                <rect key="frame" x="89" y="381" width="236" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="2Z9-eD-kwV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAv-G0-4cD">
+                                <rect key="frame" x="24" y="697" width="366" height="50"/>
+                                <color key="backgroundColor" red="0.4549019608" green="0.75686274509999996" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2ts-Qr-6ou"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <state key="normal" title="ログインする">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6sW-KW-4hB" firstAttribute="leading" secondItem="wtZ-JU-EFu" secondAttribute="leading" constant="143" id="9OC-xj-EPy"/>
+                            <constraint firstItem="wtZ-JU-EFu" firstAttribute="bottom" secondItem="QAv-G0-4cD" secondAttribute="bottom" constant="115" id="Heb-WW-8L7"/>
+                            <constraint firstItem="6sW-KW-4hB" firstAttribute="centerX" secondItem="JbM-35-6Tu" secondAttribute="centerX" id="Jwp-CS-emh"/>
+                            <constraint firstItem="JbM-35-6Tu" firstAttribute="centerX" secondItem="QAv-G0-4cD" secondAttribute="centerX" id="Om6-vm-Rf1"/>
+                            <constraint firstItem="JbM-35-6Tu" firstAttribute="leading" secondItem="wtZ-JU-EFu" secondAttribute="leading" constant="89" id="e5K-ub-RiO"/>
+                            <constraint firstItem="QAv-G0-4cD" firstAttribute="leading" secondItem="wtZ-JU-EFu" secondAttribute="leading" constant="24" id="edm-hj-LuH"/>
+                            <constraint firstItem="6sW-KW-4hB" firstAttribute="top" secondItem="wtZ-JU-EFu" secondAttribute="top" constant="312" id="fh4-ie-Nb4"/>
+                            <constraint firstItem="wtZ-JU-EFu" firstAttribute="trailing" secondItem="QAv-G0-4cD" secondAttribute="trailing" constant="24" id="lfe-EQ-pqo"/>
+                            <constraint firstItem="JbM-35-6Tu" firstAttribute="top" secondItem="6sW-KW-4hB" secondAttribute="bottom" constant="8" id="sHa-7R-Rd8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wtZ-JU-EFu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s0t-Ch-A0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2347.826086956522" y="2914.9553571428569"/>
+        </scene>
         <!--タグ-->
         <scene sceneID="2XG-JJ-zmW">
             <objects>
