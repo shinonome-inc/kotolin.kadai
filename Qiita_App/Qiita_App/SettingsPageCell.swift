@@ -19,7 +19,7 @@ class SettingsPageCellViewController: UITableViewCell {
         case .appInfoCell:
             appInfoTitle.text = title
             if title == "アプリバージョン" {
-                cellIcon.text = "v1.0.0"
+                cellIcon.text = "v\(String(describing: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")))"
             }
         case .otherCell:
             otherTitle.text = title

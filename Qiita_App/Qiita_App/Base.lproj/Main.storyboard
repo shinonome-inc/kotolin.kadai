@@ -580,26 +580,20 @@
         <!--Title-->
         <scene sceneID="mA3-Nw-cZC">
             <objects>
-                <viewController storyboardIdentifier="PrivacyPolicyPage" id="sgy-1l-5Aw" customClass="PrivacyPolicyPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrivacyPolicyPage" id="sgy-1l-5Aw" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iG6-ve-4wx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-xV-nwx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="プライバシーポリシー" id="XMl-Cq-pi4"/>
-                                </items>
-                            </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUH-sV-vF1">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hb-WQ-gHc">
+                                <rect key="frame" x="16" y="106" width="382" height="790"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cv8-7A-x1X">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="a6f-Bn-xsX">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="1055"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0c-Fd-7hN">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="752"/>
-                                                <string key="text">プライバシーポリシー
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTA-sJ-zEb">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="1055"/>
+                                                <mutableString key="text">プライバシーポリシー
 
 情報の収集と使用
 
@@ -625,8 +619,8 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
 
 お問い合わせ
 
-プライバシーポリシーについてご質問やご提案がありましたら、sinozu@gmail.comまでお気軽にお問い合わせください。</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+プライバシーポリシーについてご質問やご提案がありましたら、sinozu@gmail.comまでお気軽にお問い合わせください。</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -634,23 +628,30 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="cv8-7A-x1X" secondAttribute="trailing" id="FZx-Di-XJj"/>
-                                    <constraint firstItem="cv8-7A-x1X" firstAttribute="top" secondItem="RUH-sV-vF1" secondAttribute="top" id="U8y-9C-28o"/>
-                                    <constraint firstItem="cv8-7A-x1X" firstAttribute="width" secondItem="RUH-sV-vF1" secondAttribute="width" id="UT3-bI-zM8"/>
-                                    <constraint firstAttribute="bottom" secondItem="cv8-7A-x1X" secondAttribute="bottom" id="hOD-aY-sf3"/>
-                                    <constraint firstItem="cv8-7A-x1X" firstAttribute="leading" secondItem="RUH-sV-vF1" secondAttribute="leading" id="uT9-cM-eMq"/>
+                                    <constraint firstAttribute="bottom" secondItem="a6f-Bn-xsX" secondAttribute="bottom" id="1K6-ck-yBr"/>
+                                    <constraint firstAttribute="trailing" secondItem="a6f-Bn-xsX" secondAttribute="trailing" id="4PY-W6-qcj"/>
+                                    <constraint firstItem="a6f-Bn-xsX" firstAttribute="width" secondItem="6Hb-WQ-gHc" secondAttribute="width" id="Vu0-Tl-roc"/>
+                                    <constraint firstItem="a6f-Bn-xsX" firstAttribute="leading" secondItem="6Hb-WQ-gHc" secondAttribute="leading" id="p3b-f7-gkb"/>
+                                    <constraint firstItem="a6f-Bn-xsX" firstAttribute="top" secondItem="6Hb-WQ-gHc" secondAttribute="top" id="qs8-Vh-jxh"/>
                                 </constraints>
                             </scrollView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dd-xV-nwx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="プライバシーポリシー" id="XMl-Cq-pi4"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="RUH-sV-vF1" firstAttribute="leading" secondItem="qjO-Tq-6L2" secondAttribute="leading" id="DEo-u7-yY4"/>
-                            <constraint firstItem="RUH-sV-vF1" firstAttribute="trailing" secondItem="qjO-Tq-6L2" secondAttribute="trailing" id="ZGU-xS-vGP"/>
-                            <constraint firstItem="RUH-sV-vF1" firstAttribute="top" secondItem="4dd-xV-nwx" secondAttribute="bottom" id="g2n-Cc-ziX"/>
-                            <constraint firstAttribute="bottom" secondItem="RUH-sV-vF1" secondAttribute="bottom" id="jdj-84-tpT"/>
-                            <constraint firstItem="4dd-xV-nwx" firstAttribute="leading" secondItem="RUH-sV-vF1" secondAttribute="leading" id="kCF-62-oZ4"/>
+                            <constraint firstItem="4dd-xV-nwx" firstAttribute="leading" secondItem="iG6-ve-4wx" secondAttribute="leading" id="5Ib-yE-aY0"/>
+                            <constraint firstItem="6Hb-WQ-gHc" firstAttribute="top" secondItem="4dd-xV-nwx" secondAttribute="bottom" constant="18" id="62D-h4-EaF"/>
+                            <constraint firstItem="4dd-xV-nwx" firstAttribute="centerX" secondItem="6Hb-WQ-gHc" secondAttribute="centerX" id="RN3-sU-W9h"/>
+                            <constraint firstItem="qjO-Tq-6L2" firstAttribute="trailing" secondItem="6Hb-WQ-gHc" secondAttribute="trailing" constant="16" id="Z2B-2b-NWN"/>
+                            <constraint firstAttribute="bottom" secondItem="6Hb-WQ-gHc" secondAttribute="bottom" id="Zkt-It-QdR"/>
+                            <constraint firstItem="6Hb-WQ-gHc" firstAttribute="leading" secondItem="qjO-Tq-6L2" secondAttribute="leading" constant="16" id="lla-Da-wVD"/>
                             <constraint firstItem="4dd-xV-nwx" firstAttribute="top" secondItem="qjO-Tq-6L2" secondAttribute="top" id="ndS-bY-Io3"/>
-                            <constraint firstItem="4dd-xV-nwx" firstAttribute="trailing" secondItem="RUH-sV-vF1" secondAttribute="trailing" id="ueX-2c-4ik"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qjO-Tq-6L2"/>
                     </view>
@@ -658,7 +659,7 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3KK-V7-hoc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301.449275362319" y="2909.5982142857142"/>
+            <point key="canvasLocation" x="1467" y="2938"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NtE-21-EAA">
@@ -670,19 +671,20 @@ Qiita Feed Appではアプリの利便性向上を目的にして、個人を特
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oh6-pd-paP">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="利用規約" id="lDe-aW-Dkx"/>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqg-SS-Asu">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXz-Nj-1Si">
+                                <rect key="frame" x="16" y="106" width="382" height="790"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="JMy-HK-3hd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1337"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="03Q-Cc-f2I">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="1866.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XZP-tt-ooj">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1337"/>
-                                                <string key="text">Qiita Feed App プライバシーポリシー
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKn-ao-4y1">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="1866.5"/>
+                                                <mutableString key="text">Qiita Feed App プライバシーポリシー
 Shinonome, inc.（以下「当社」といいます。）は、当社が運営するサービス（以下「本サービス」といいます。）を提供するにあたり、個人情報保護に関する法規範を遵守し、以下のプライバシーポリシー（以下「本ポリシー」といいます。）に従って個人情報の適切な取得、利用、提供等を行います。
 
 1. 個人情報について
@@ -724,8 +726,8 @@ Shinonome, inc.（以下「当社」といいます。）は、当社が運営�
 8. 個人情報に関するお問い合わせ等について
 このプライバシーポリシーに関するお問い合わせは、下記までお願いいたします。
 Shinonome, inc. アプリ開発チーム
-MAIL: Matarai@shinonome.io</string>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+MAIL: Matarai@shinonome.io</mutableString>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -733,22 +735,22 @@ MAIL: Matarai@shinonome.io</string>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="JMy-HK-3hd" secondAttribute="bottom" id="GS3-E6-TGc"/>
-                                    <constraint firstItem="JMy-HK-3hd" firstAttribute="top" secondItem="Rqg-SS-Asu" secondAttribute="top" id="RYv-Dq-hYI"/>
-                                    <constraint firstItem="JMy-HK-3hd" firstAttribute="leading" secondItem="Rqg-SS-Asu" secondAttribute="leading" id="To6-2m-dhX"/>
-                                    <constraint firstAttribute="trailing" secondItem="JMy-HK-3hd" secondAttribute="trailing" id="ndk-tL-Uo1"/>
-                                    <constraint firstItem="JMy-HK-3hd" firstAttribute="width" secondItem="Rqg-SS-Asu" secondAttribute="width" id="xKQ-Fe-ubb"/>
+                                    <constraint firstAttribute="bottom" secondItem="03Q-Cc-f2I" secondAttribute="bottom" id="GOo-C5-9m2"/>
+                                    <constraint firstItem="03Q-Cc-f2I" firstAttribute="leading" secondItem="nXz-Nj-1Si" secondAttribute="leading" id="OhI-MQ-6TV"/>
+                                    <constraint firstItem="03Q-Cc-f2I" firstAttribute="top" secondItem="nXz-Nj-1Si" secondAttribute="top" id="VE0-du-E2O"/>
+                                    <constraint firstItem="03Q-Cc-f2I" firstAttribute="width" secondItem="nXz-Nj-1Si" secondAttribute="width" id="Vdb-7V-BHB"/>
+                                    <constraint firstAttribute="trailing" secondItem="03Q-Cc-f2I" secondAttribute="trailing" id="wPn-1s-BaD"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Rqg-SS-Asu" secondAttribute="bottom" id="4e3-93-yXR"/>
-                            <constraint firstItem="Rqg-SS-Asu" firstAttribute="trailing" secondItem="Lf5-tN-F6i" secondAttribute="trailing" id="Bvv-RV-woo"/>
+                            <constraint firstItem="nXz-Nj-1Si" firstAttribute="top" secondItem="oh6-pd-paP" secondAttribute="bottom" constant="18" id="2u9-Mh-HS7"/>
                             <constraint firstItem="oh6-pd-paP" firstAttribute="leading" secondItem="3jt-bA-uDS" secondAttribute="leading" id="GOk-9n-U3r"/>
+                            <constraint firstItem="Lf5-tN-F6i" firstAttribute="trailing" secondItem="nXz-Nj-1Si" secondAttribute="trailing" constant="16" id="IEe-XY-njy"/>
+                            <constraint firstAttribute="bottom" secondItem="nXz-Nj-1Si" secondAttribute="bottom" id="UjD-Jl-mJ4"/>
                             <constraint firstItem="oh6-pd-paP" firstAttribute="top" secondItem="Lf5-tN-F6i" secondAttribute="top" id="fqh-zI-w71"/>
-                            <constraint firstItem="Rqg-SS-Asu" firstAttribute="leading" secondItem="Lf5-tN-F6i" secondAttribute="leading" id="gNQ-qS-uiv"/>
-                            <constraint firstItem="Rqg-SS-Asu" firstAttribute="top" secondItem="oh6-pd-paP" secondAttribute="bottom" id="uua-pp-26b"/>
+                            <constraint firstItem="nXz-Nj-1Si" firstAttribute="leading" secondItem="Lf5-tN-F6i" secondAttribute="leading" constant="16" id="lsl-iH-zh6"/>
                             <constraint firstAttribute="trailing" secondItem="oh6-pd-paP" secondAttribute="trailing" id="wVK-2M-KdO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lf5-tN-F6i"/>
@@ -756,7 +758,7 @@ MAIL: Matarai@shinonome.io</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJx-GQ-RYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098.5507246376815" y="2909.5982142857142"/>
+            <point key="canvasLocation" x="2229" y="2938"/>
         </scene>
         <!--タグ-->
         <scene sceneID="2XG-JJ-zmW">
