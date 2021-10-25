@@ -849,7 +849,9 @@ MAIL: Matarai@shinonome.io</string>
                                                 <constraint firstItem="lWq-ew-MGJ" firstAttribute="top" secondItem="bUt-2a-ecq" secondAttribute="topMargin" constant="6" id="TVV-Ke-oze"/>
                                                 <constraint firstAttribute="trailing" secondItem="lWq-ew-MGJ" secondAttribute="trailing" constant="62" id="Ykj-Sp-mGo"/>
                                                 <constraint firstItem="lWq-ew-MGJ" firstAttribute="top" secondItem="bUt-2a-ecq" secondAttribute="top" constant="14" id="deg-LS-DWr"/>
+                                                <constraint firstItem="lLh-g7-DBA" firstAttribute="leading" secondItem="bUt-2a-ecq" secondAttribute="leading" constant="8" id="hCI-2J-g84"/>
                                                 <constraint firstItem="lWq-ew-MGJ" firstAttribute="centerX" secondItem="KUp-ch-Afc" secondAttribute="centerX" id="jSr-Gh-uRp"/>
+                                                <constraint firstAttribute="trailing" secondItem="lLh-g7-DBA" secondAttribute="trailing" constant="8" id="pOy-QI-PWb"/>
                                                 <constraint firstItem="lLh-g7-DBA" firstAttribute="top" secondItem="tWw-C9-Vcl" secondAttribute="bottom" constant="8" id="w31-VR-ftd"/>
                                                 <constraint firstItem="tWw-C9-Vcl" firstAttribute="top" secondItem="KUp-ch-Afc" secondAttribute="bottom" constant="8" id="x0r-mY-Ynh"/>
                                             </constraints>
