@@ -13,6 +13,7 @@ class FeedPageViewController: UIViewController {
     
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var nonSearchResult: UIView!
     var accessToken = ""
     var page = 0
     var titleNum = 0
@@ -29,6 +30,7 @@ class FeedPageViewController: UIViewController {
         qiitaArticle.delegate = self
         searchBar.delegate = self
         
+        nonSearchResult.isHidden = true
         searchBar.enablesReturnKeyAutomatically = false
         
         self.request()
@@ -73,12 +75,26 @@ class FeedPageViewController: UIViewController {
                     self.articles.append($0)
                 }
                 
+                self.checkSearchResults(ariticles: self.articles)
+                
                 self.qiitaArticle.reloadData()
                 
             } catch let error {
                 print("This is error message -> : \(error)")
                 self.transitionErrorPage(errorTitle: "SystemError")
             }
+        }
+    }
+    
+    func checkSearchResults(ariticles: [DataItem]) {
+        
+        switch ariticles.count {
+        case 0:
+            qiitaArticle.isHidden = true
+            nonSearchResult.isHidden = false
+        default:
+            qiitaArticle.isHidden = false
+            nonSearchResult.isHidden = true
         }
     }
     
