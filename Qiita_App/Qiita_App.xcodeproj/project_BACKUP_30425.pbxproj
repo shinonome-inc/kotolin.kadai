@@ -199,13 +199,13 @@
 				07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */,
 				07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */,
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
+<<<<<<< HEAD
 				07CFE74026D0C7270034641C /* SettingsPageViewController.swift */,
 				07CFE74226D0D96E0034641C /* SettingsPageCell.swift */,
-<<<<<<< HEAD
+=======
 				0779878626EB426A009CDDE2 /* CommonApi.swift */,
 				079CD2A226F2E7C80039D8B4 /* ApiModel.swift */,
-=======
->>>>>>> bcb9a85613fe4f1ddc68cc7f95013d5f12c9e1ff
+>>>>>>> feature/#5
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -501,10 +501,7 @@
 				0716D7D2261EED7B008038D1 /* TopPageViewController.swift in Sources */,
 				079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */,
 				0702CC792668CDD30095CF82 /* TagListPageViewController.swift in Sources */,
-<<<<<<< HEAD
 				0779878726EB426A009CDDE2 /* CommonApi.swift in Sources */,
-=======
->>>>>>> bcb9a85613fe4f1ddc68cc7f95013d5f12c9e1ff
 				07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */,
 				0716D7CE261EED7B008038D1 /* AppDelegate.swift in Sources */,
 				07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */,

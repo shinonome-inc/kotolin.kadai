@@ -30,7 +30,7 @@ struct DataItem: Codable {
 
 struct TagItem: Codable {
     let followersCount: Int
-    let iconUrl: String
+    let iconUrl: String?
     let id: String
     let itemsCount: Int
 }

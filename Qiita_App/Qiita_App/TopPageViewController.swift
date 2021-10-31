@@ -22,9 +22,10 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func notLoguinButton(_ sender: Any) {
         
-        let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar")
-        nextVC?.modalPresentationStyle = .fullScreen
+        guard let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar") else { return }
+        nextVC.modalPresentationStyle = .fullScreen
+        AccessTokenDerivery.shared.deleteAccessToken()
         
-        self.present(nextVC!, animated: true, completion: nil)
+        self.present(nextVC, animated: true, completion: nil)
     }
 }

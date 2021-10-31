@@ -33,6 +33,8 @@
 		07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */; };
 		07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */; };
 		07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */; };
+		07CFE74126D0C7270034641C /* SettingsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CFE74026D0C7270034641C /* SettingsPageViewController.swift */; };
+		07CFE74326D0D96E0034641C /* SettingsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CFE74226D0D96E0034641C /* SettingsPageCell.swift */; };
 		07D042B626281B3B0096EDD7 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D042B526281B3B0096EDD7 /* WebKit.framework */; };
 		07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DE4A29268D9B8300ED9048 /* DataFormate.swift */; };
 		07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */; };
@@ -93,6 +95,8 @@
 		07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDelivery.swift; sourceTree = "<group>"; };
 		07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCellViewController.swift; sourceTree = "<group>"; };
+		07CFE74026D0C7270034641C /* SettingsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageViewController.swift; sourceTree = "<group>"; };
+		07CFE74226D0D96E0034641C /* SettingsPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageCell.swift; sourceTree = "<group>"; };
 		07D042B526281B3B0096EDD7 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		07DE4A29268D9B8300ED9048 /* DataFormate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFormate.swift; sourceTree = "<group>"; };
 		07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */,
 				07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */,
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
+				07CFE74026D0C7270034641C /* SettingsPageViewController.swift */,
+				07CFE74226D0D96E0034641C /* SettingsPageCell.swift */,
 				0779878626EB426A009CDDE2 /* CommonApi.swift */,
 				079CD2A226F2E7C80039D8B4 /* ApiModel.swift */,
 			);
@@ -485,6 +491,7 @@
 				07E7B89F2671F51800C0FB1E /* UIImageView+Extension.swift in Sources */,
 				07E7B89F2671F51800C0FB1E /* UIImageView+Extension.swift in Sources */,
 				071772CF2647B38200899627 /* FeedPageCell.swift in Sources */,
+				07CFE74126D0C7270034641C /* SettingsPageViewController.swift in Sources */,
 				07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */,
 				079DF1792662546B00F298F6 /* SecretKey.swift in Sources */,
 				07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */,
@@ -498,6 +505,7 @@
 				075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */,
 				07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */,
 				079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */,
+				07CFE74326D0D96E0034641C /* SettingsPageCell.swift in Sources */,
 				07014F1726C7C4D100221D45 /* EnhancedCircleImageView.swift in Sources */,
 				0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */,
 				0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */,
@@ -687,6 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakai-mobileiOS.Qiita-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -706,6 +715,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakai-mobileiOS.Qiita-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
