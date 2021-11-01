@@ -14,9 +14,7 @@ class TagListPageViewController: UIViewController {
     @IBOutlet var qiitaTag: UICollectionView!
     
     var tagInfo: [TagItem] = []
-    let url = "https://qiita.com/api/v2/tags?sort=count&page="
-    var page = 0
-    
+    var page = 1
     let margin: CGFloat = 16
     var viewWidth: CGFloat {
         return view.frame.width
@@ -30,45 +28,13 @@ class TagListPageViewController: UIViewController {
         qiitaTag.dataSource = self
         qiitaTag.delegate = self
         
-        request()
-    }
-    
-    
-    func request() {
-        
-        page += 1
-        
-        AF.request(
-            url + String(page),
-            method: .get,
-            parameters: nil,
-            encoding: JSONEncoding.default,
-            headers: nil
-        )
-        .response { response in
-            
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                self.transitionErrorPage(errorTitle: "NetworkError")
+        CommonApi.tagPageRequest(completion: { data in
+            data.forEach {
+                self.tagInfo.append($0)
             }
             
-            guard let data = response.data else { return }
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let tagItem =
-                    try jsonDecoder.decode([TagItem].self,from:data)
-                
-                tagItem.forEach {
-                    self.tagInfo.append($0)
-                }
-                
-                self.qiitaTag.reloadData()
-                
-            } catch let error {
-                print("This is error message -> : \(error)")
-                self.transitionErrorPage(errorTitle: "SystemError")
-            }
-        }
+            self.qiitaTag.reloadData()
+        }, url: CommonApi.structUrl(option: .tagPage(page: page)))
     }
 
     func calcItemsPerRows() -> Int {
@@ -110,8 +76,16 @@ extension TagListPageViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        page += 1
+        // TODO: レイアウトが崩れる原因ここの閾値にあるかも
         if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
-            self.request()
+            CommonApi.tagPageRequest(completion: { data in
+                data.forEach {
+                    self.tagInfo.append($0)
+                }
+                
+                self.qiitaTag.reloadData()
+            }, url: CommonApi.structUrl(option: .tagPage(page: page)))
         }
     }
 }
