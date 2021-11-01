@@ -24,7 +24,9 @@
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
 		0755231926B2BB2100108A66 /* TagDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231826B2BB2100108A66 /* TagDetailCell.swift */; };
+		0758C5BB26E4C7EB00C80D6A /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0758C5BA26E4C7EB00C80D6A /* UIViewController+Extension.swift */; };
 		075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075BE0D5266B77C200D2DBCD /* TagListCell.swift */; };
+		07994E5D26E0DF3E0098C640 /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */; };
 		0779878726EB426A009CDDE2 /* CommonApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0779878626EB426A009CDDE2 /* CommonApi.swift */; };
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
 		079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CD2A226F2E7C80039D8B4 /* ApiModel.swift */; };
@@ -86,7 +88,9 @@
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
 		0755231826B2BB2100108A66 /* TagDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailCell.swift; sourceTree = "<group>"; };
+		0758C5BA26E4C7EB00C80D6A /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		075BE0D5266B77C200D2DBCD /* TagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCell.swift; sourceTree = "<group>"; };
+		07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		0779878626EB426A009CDDE2 /* CommonApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonApi.swift; sourceTree = "<group>"; };
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		079CD2A226F2E7C80039D8B4 /* ApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
@@ -198,14 +202,13 @@
 				07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */,
 				07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */,
 				07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */,
+				0758C5BA26E4C7EB00C80D6A /* UIViewController+Extension.swift */,
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
+				07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */,
 				07CFE74026D0C7270034641C /* SettingsPageViewController.swift */,
 				07CFE74226D0D96E0034641C /* SettingsPageCell.swift */,
-<<<<<<< HEAD
 				0779878626EB426A009CDDE2 /* CommonApi.swift */,
 				079CD2A226F2E7C80039D8B4 /* ApiModel.swift */,
-=======
->>>>>>> bcb9a85613fe4f1ddc68cc7f95013d5f12c9e1ff
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -496,21 +499,20 @@
 				071772CF2647B38200899627 /* FeedPageCell.swift in Sources */,
 				07CFE74126D0C7270034641C /* SettingsPageViewController.swift in Sources */,
 				07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */,
+				0758C5BB26E4C7EB00C80D6A /* UIViewController+Extension.swift in Sources */,
 				079DF1792662546B00F298F6 /* SecretKey.swift in Sources */,
 				07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */,
 				0716D7D2261EED7B008038D1 /* TopPageViewController.swift in Sources */,
 				079CD2A326F2E7C80039D8B4 /* ApiModel.swift in Sources */,
 				0702CC792668CDD30095CF82 /* TagListPageViewController.swift in Sources */,
-<<<<<<< HEAD
 				0779878726EB426A009CDDE2 /* CommonApi.swift in Sources */,
-=======
->>>>>>> bcb9a85613fe4f1ddc68cc7f95013d5f12c9e1ff
 				07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */,
 				0716D7CE261EED7B008038D1 /* AppDelegate.swift in Sources */,
 				07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */,
 				075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */,
 				07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */,
 				079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */,
+				07994E5D26E0DF3E0098C640 /* ErrorPageViewController.swift in Sources */,
 				07CFE74326D0D96E0034641C /* SettingsPageCell.swift in Sources */,
 				07014F1726C7C4D100221D45 /* EnhancedCircleImageView.swift in Sources */,
 				0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */,
@@ -701,6 +703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakai-mobileiOS.Qiita-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -720,6 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sakai-mobileiOS.Qiita-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
