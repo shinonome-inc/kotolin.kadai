@@ -14,6 +14,7 @@ class FeedPageViewController: UIViewController {
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var nonSearchResult: UIView!
+    
     var accessToken = ""
     var page = 1
     var titleNum = 0
@@ -39,6 +40,8 @@ class FeedPageViewController: UIViewController {
                 self.articles.append($0)
             }
             
+            self.checkSearchResults(articles: self.articles)
+            
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
     }
@@ -51,9 +54,9 @@ class FeedPageViewController: UIViewController {
         }
     }
     
-    func checkSearchResults(ariticles: [DataItem]) {
+    func checkSearchResults(articles: [DataItem]) {
         
-        switch ariticles.count {
+        switch articles.count {
         case 0:
             qiitaArticle.isHidden = true
             nonSearchResult.isHidden = false
@@ -134,6 +137,8 @@ extension FeedPageViewController: UISearchBarDelegate {
             data.forEach {
                 self.articles.append($0)
             }
+            
+            self.checkSearchResults(articles: self.articles)
             
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))

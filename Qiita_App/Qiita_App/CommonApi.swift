@@ -44,6 +44,10 @@ class CommonApi {
             headers: nil
         )
         .response { response in
+            
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                FeedPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+            }
 
             guard let data = response.data else { return }
             do {
@@ -52,17 +56,25 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                FeedPageViewController().transitionErrorPage(errorTitle: "SystemError")
             }
         }
     }
     
     class func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
-        let headers: HTTPHeaders = [
+        var headers: HTTPHeaders?
+        let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
+        
+        if AccessTokenDerivery.shared.getAccessToken().isEmpty {
+            headers = nil
+        } else {
+            headers = accessToken
+        }
         
         AF.request(
             url,
@@ -72,6 +84,10 @@ class CommonApi {
             headers: headers
         )
         .response { response in
+            
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                TagListPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+            }
 
             guard let data = response.data else { return }
             do {
@@ -80,17 +96,25 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([TagItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                TagListPageViewController().transitionErrorPage(errorTitle: "SystemError")
             }
         }
     }
     
     class func tagDetailPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-        let headers: HTTPHeaders = [
+        var headers: HTTPHeaders?
+        let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
+        
+        if AccessTokenDerivery.shared.getAccessToken().isEmpty {
+            headers = nil
+        } else {
+            headers = accessToken
+        }
         
         AF.request(
             url,
@@ -100,6 +124,10 @@ class CommonApi {
             headers: headers
         )
         .response { response in
+            
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                TagDetailPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+            }
 
             guard let data = response.data else { return }
             do {
@@ -108,9 +136,10 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                TagDetailPageViewController().transitionErrorPage(errorTitle: "SystemError")
             }
         }
     }
@@ -137,9 +166,11 @@ class CommonApi {
                 let dataItem = try jsonDecoder.decode([MyItem].self,from:data)
                 
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                let errorItem: [MyItem] = []
+                print("This is error message -> : \(error)")
+                completion(errorItem)
             }
         }
     }
@@ -157,6 +188,10 @@ class CommonApi {
             headers: headers
         )
         .response { response in
+            
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                MyPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+            }
 
             guard let data = response.data else { return }
             do {
@@ -166,9 +201,9 @@ class CommonApi {
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
                 
                 completion(myInfoItem[0])
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
             }
         }
     }
@@ -187,6 +222,10 @@ class CommonApi {
         )
         .response { response in
             
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                FollowPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+            }
+            
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -197,9 +236,9 @@ class CommonApi {
                 
                 completion(dataItem)
                 
-            //TODO:エラー用の画面を実装する
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                FollowPageViewController().transitionErrorPage(errorTitle: "SystemError")
             }
         }
     }

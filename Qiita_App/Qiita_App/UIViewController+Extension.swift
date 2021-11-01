@@ -12,6 +12,8 @@ extension UIViewController {
     func transitionErrorPage(errorTitle: String) {
         guard let nextVC: ErrorPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPage") as? ErrorPageViewController else { return }
         
+        print(errorTitle)
+        
         switch errorTitle {
         case "SystemError":
             nextVC.errorContents = .SystemError
@@ -20,8 +22,5 @@ extension UIViewController {
         default:
             nextVC.errorContents = .OtherError
         }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
     }
 }

@@ -17,6 +17,8 @@ class MyPageViewController: UIViewController {
     @IBOutlet var myIntroduction: UILabel!
     @IBOutlet var followCount: UIButton!
     @IBOutlet var followerCount: UIButton!
+    @IBOutlet var myPageErrorView: UIView!
+    @IBOutlet var networkErrorView: UIView!
     
     var myArticles: [MyItem] = []
     var myInfo: UserInfo?
@@ -29,7 +31,21 @@ class MyPageViewController: UIViewController {
         myArticlesList.dataSource = self
         myArticlesList.delegate = self
         
+        self.myPageErrorView.isHidden = true
+        self.networkErrorView.isHidden = true
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            self.transitionErrorPage(errorTitle: "NetworkError")
+            self.networkErrorView.isHidden = false
+            return
+        }
+        
         CommonApi.myPageRequest(completion: { data in
+            if data.isEmpty {
+                self.myPageErrorView.isHidden = false
+                return
+            }
+            
             data.forEach {
                 self.myArticles.append($0)
             }
