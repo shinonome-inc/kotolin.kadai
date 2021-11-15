@@ -35,7 +35,6 @@ class CommonApi {
     }
     
     class func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-        
         AF.request(
             url,
             method: .get,
@@ -44,10 +43,6 @@ class CommonApi {
             headers: nil
         )
         .response { response in
-            
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                FeedPageViewController().transitionErrorPage(errorTitle: "NetworkError")
-            }
 
             guard let data = response.data else { return }
             do {
@@ -58,8 +53,9 @@ class CommonApi {
                 completion(dataItem)
                 
             } catch let error {
+                let errorItem: [DataItem] = []
                 print("This is error message -> : \(error)")
-                FeedPageViewController().transitionErrorPage(errorTitle: "SystemError")
+                completion(errorItem)
             }
         }
     }
@@ -84,11 +80,6 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                TagListPageViewController().transitionErrorPage(errorTitle: "NetworkError")
-            }
-
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -98,8 +89,9 @@ class CommonApi {
                 completion(dataItem)
                 
             } catch let error {
+                let errorItem: [TagItem] = []
                 print("This is error message -> : \(error)")
-                TagListPageViewController().transitionErrorPage(errorTitle: "SystemError")
+                completion(errorItem)
             }
         }
     }
@@ -124,11 +116,6 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                TagDetailPageViewController().transitionErrorPage(errorTitle: "NetworkError")
-            }
-
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -139,7 +126,7 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                TagDetailPageViewController().transitionErrorPage(errorTitle: "SystemError")
+                
             }
         }
     }
@@ -188,10 +175,6 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                MyPageViewController().transitionErrorPage(errorTitle: "NetworkError")
-            }
 
             guard let data = response.data else { return }
             do {
@@ -223,7 +206,7 @@ class CommonApi {
         .response { response in
             
             if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                FollowPageViewController().transitionErrorPage(errorTitle: "NetworkError")
+                
             }
             
             guard let data = response.data else { return }
@@ -238,7 +221,7 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                FollowPageViewController().transitionErrorPage(errorTitle: "SystemError")
+                
             }
         }
     }

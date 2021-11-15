@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NetworkErrorView" customModule="Qiita_App" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.exclamationmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NDn-mV-uMY">
+                    <rect key="frame" x="161" y="225" width="100" height="97"/>
+                    <color key="tintColor" red="0.4549019608" green="0.75686274509999996" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="IFm-eY-u71"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QL7-FZ-LPK">
+                    <rect key="frame" x="24" y="643" width="366" height="50"/>
+                    <color key="backgroundColor" red="0.4549019608" green="0.75686274509999996" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="3Fh-dL-hmB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <state key="normal" title="再読み込みする">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="reloadButton:" destination="-1" eventType="touchUpInside" id="hX2-dM-pqC"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ネットワークエラー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXa-HC-o4k">
+                    <rect key="frame" x="129" y="366" width="165" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お手数ですが電波の良い場所で再度読み込みをお願いします" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1er-cn-uxb">
+                    <rect key="frame" x="129" y="391" width="165" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QL7-FZ-LPK" secondAttribute="bottom" constant="32" id="57G-Yc-cdn"/>
+                <constraint firstItem="NDn-mV-uMY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="180" id="8NM-IG-qdb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1er-cn-uxb" secondAttribute="trailing" constant="120" id="9di-1D-q3O"/>
+                <constraint firstItem="AXa-HC-o4k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="129" id="HGL-iU-U6K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AXa-HC-o4k" secondAttribute="trailing" constant="120" id="JbK-3b-yE1"/>
+                <constraint firstItem="1er-cn-uxb" firstAttribute="top" secondItem="AXa-HC-o4k" secondAttribute="bottom" constant="8" id="PUl-p2-ecX"/>
+                <constraint firstItem="AXa-HC-o4k" firstAttribute="top" secondItem="NDn-mV-uMY" secondAttribute="bottom" constant="42" id="Tes-iL-70C"/>
+                <constraint firstItem="QL7-FZ-LPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="ijH-tE-xNc"/>
+                <constraint firstItem="NDn-mV-uMY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="161" id="lWF-KX-DsL"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NDn-mV-uMY" secondAttribute="trailing" constant="153" id="uHh-rX-tAp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QL7-FZ-LPK" secondAttribute="trailing" constant="24" id="x4O-Yd-PUd"/>
+                <constraint firstItem="1er-cn-uxb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="129" id="yKh-bl-mfG"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="128.98550724637681" y="42.522321428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wifi.exclamationmark" catalog="system" width="128" height="101"/>
+    </resources>
+</document>

@@ -60,7 +60,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
             .response{ response in
                 
                 if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                    self.transitionErrorPage(errorTitle: "NetworkError")
+                    
                 }
                 
                 guard let data = response.data else { return }
@@ -72,7 +72,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                     
                 } catch let error {
                     print("This is error message -> : \(error)")
-                    self.transitionErrorPage(errorTitle: "SystemError")
+                    
                 }
             }
             
@@ -85,14 +85,14 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        transitionErrorPage(errorTitle: "NetworkError")
-        print(error)
-    }
-
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        transitionErrorPage(errorTitle: "NetworkError")
-        print(error)
-    }
+//    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+//
+//        print(error)
+//    }
+//
+//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+//
+//        print(error)
+//    }
 }
 

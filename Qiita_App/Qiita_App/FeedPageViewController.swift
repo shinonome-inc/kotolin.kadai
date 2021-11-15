@@ -14,6 +14,7 @@ class FeedPageViewController: UIViewController {
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var nonSearchResult: UIView!
+    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var accessToken = ""
     var page = 1
@@ -22,19 +23,30 @@ class FeedPageViewController: UIViewController {
     var searchTextDeleteFlag = false
     var searchText = ""
     var articles: [DataItem] = []
+    var errorInfo: NetworkErrorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        errorInfo = networkErrorView
         qiitaArticle.dataSource = self
         qiitaArticle.delegate = self
         searchBar.delegate = self
+        errorInfo.reloadActionDelegate = self
         
         nonSearchResult.isHidden = true
+        networkErrorView.isHidden = true
         searchBar.enablesReturnKeyAutomatically = false
+        
+        checkNetwork()
         
         CommonApi.feedPageRequest(completion: { data in
             self.articleManagement()
+            
+            if data.isEmpty {
+                self.networkErrorView.isHidden = false
+                return
+            }
             
             data.forEach {
                 self.articles.append($0)
@@ -66,6 +78,12 @@ class FeedPageViewController: UIViewController {
         }
     }
     
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            networkErrorView.isHidden = false
+            return
+        }
+    }
 }
 
 extension FeedPageViewController: UITableViewDataSource {
@@ -87,9 +105,15 @@ extension FeedPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
+            checkNetwork()
             page += 1
             CommonApi.feedPageRequest(completion: { data in
                 self.articleManagement()
+                
+                if data.isEmpty {
+                    self.networkErrorView.isHidden = false
+                    return
+                }
                 
                 data.forEach {
                     self.articles.append($0)
@@ -131,6 +155,8 @@ extension FeedPageViewController: UISearchBarDelegate {
             searchTextDeleteFlag = true
         }
         
+        checkNetwork()
+        
         CommonApi.feedPageRequest(completion: { data in
             self.articleManagement()
             
@@ -144,4 +170,34 @@ extension FeedPageViewController: UISearchBarDelegate {
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
     }
     
+}
+
+extension FeedPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        print("feedPage")
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            CommonApi.feedPageRequest(completion: { data in
+                self.articles.removeAll()
+                
+                if data.isEmpty {
+                    self.networkErrorView.isHidden = false
+                    return
+                }
+                
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                self.checkSearchResults(articles: self.articles)
+                
+                self.qiitaArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        }
+    }
 }

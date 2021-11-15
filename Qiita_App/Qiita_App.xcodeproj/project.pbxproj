@@ -20,6 +20,9 @@
 		071772C42647934000899627 /* QiitaQAuthPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C32647934000899627 /* QiitaQAuthPageViewController.swift */; };
 		071772C82647A22300899627 /* QiitaArticlePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772C72647A22300899627 /* QiitaArticlePageViewController.swift */; };
 		071772CF2647B38200899627 /* FeedPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071772CD2647B38200899627 /* FeedPageCell.swift */; };
+		071E7E512738E43F00E2E639 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E7E502738E43F00E2E639 /* NetworkErrorView.swift */; };
+		071E7E532738E45B00E2E639 /* NetworkErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 071E7E522738E45B00E2E639 /* NetworkErrorView.xib */; };
+		0728906A2742230C0096EF51 /* NotLoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072890692742230C0096EF51 /* NotLoginPageViewController.swift */; };
 		072C44C826BA75CF00340215 /* FollowPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072C44C726BA75CF00340215 /* FollowPageViewController.swift */; };
 		0738BD9E2626C98000E4580B /* FeedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0738BD9C2626C98000E4580B /* FeedPageViewController.swift */; };
 		0755231726B2B75400108A66 /* TagDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755231626B2B75400108A66 /* TagDetailPageViewController.swift */; };
@@ -84,6 +87,9 @@
 		071772C32647934000899627 /* QiitaQAuthPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaQAuthPageViewController.swift; sourceTree = "<group>"; };
 		071772C72647A22300899627 /* QiitaArticlePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaArticlePageViewController.swift; sourceTree = "<group>"; };
 		071772CD2647B38200899627 /* FeedPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageCell.swift; sourceTree = "<group>"; };
+		071E7E502738E43F00E2E639 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
+		071E7E522738E45B00E2E639 /* NetworkErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetworkErrorView.xib; sourceTree = "<group>"; };
+		072890692742230C0096EF51 /* NotLoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoginPageViewController.swift; sourceTree = "<group>"; };
 		072C44C726BA75CF00340215 /* FollowPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageViewController.swift; sourceTree = "<group>"; };
 		0738BD9C2626C98000E4580B /* FeedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPageViewController.swift; sourceTree = "<group>"; };
 		0755231626B2B75400108A66 /* TagDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,9 @@
 				0758C5BA26E4C7EB00C80D6A /* UIViewController+Extension.swift */,
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
 				07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */,
+				071E7E502738E43F00E2E639 /* NetworkErrorView.swift */,
+				071E7E522738E45B00E2E639 /* NetworkErrorView.xib */,
+				072890692742230C0096EF51 /* NotLoginPageViewController.swift */,
 			);
 			path = Qiita_App;
 			sourceTree = "<group>";
@@ -364,6 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071E7E532738E45B00E2E639 /* NetworkErrorView.xib in Resources */,
 				0716D7DA261EED7C008038D1 /* LaunchScreen.storyboard in Resources */,
 				0716D7D7261EED7C008038D1 /* Assets.xcassets in Resources */,
 				0716D7D5261EED7B008038D1 /* Main.storyboard in Resources */,
@@ -499,6 +509,7 @@
 				071772CF2647B38200899627 /* FeedPageCell.swift in Sources */,
 				075B8153272FAA5400A90CC2 /* ApiModel.swift in Sources */,
 				07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */,
+				0728906A2742230C0096EF51 /* NotLoginPageViewController.swift in Sources */,
 				0758C5BB26E4C7EB00C80D6A /* UIViewController+Extension.swift in Sources */,
 				079DF1792662546B00F298F6 /* SecretKey.swift in Sources */,
 				07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */,
@@ -510,6 +521,7 @@
 				075B8157272FAAF200A90CC2 /* SettingsPageViewController.swift in Sources */,
 				075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */,
 				07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */,
+				071E7E512738E43F00E2E639 /* NetworkErrorView.swift in Sources */,
 				079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */,
 				075B8155272FAADA00A90CC2 /* SettingsPageCell.swift in Sources */,
 				07994E5D26E0DF3E0098C640 /* ErrorPageViewController.swift in Sources */,

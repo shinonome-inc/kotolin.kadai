@@ -18,27 +18,26 @@ class MyPageViewController: UIViewController {
     @IBOutlet var followCount: UIButton!
     @IBOutlet var followerCount: UIButton!
     @IBOutlet var myPageErrorView: UIView!
-    @IBOutlet var networkErrorView: UIView!
+    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var myArticles: [MyItem] = []
     var myInfo: UserInfo?
     var page = 1
     var id = ""
+    var errorInfo: NetworkErrorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        errorInfo = networkErrorView
         myArticlesList.dataSource = self
         myArticlesList.delegate = self
+        errorInfo.reloadActionDelegate = self
         
-        self.myPageErrorView.isHidden = true
-        self.networkErrorView.isHidden = true
+        myPageErrorView.isHidden = true
+        networkErrorView.isHidden = true
         
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            self.transitionErrorPage(errorTitle: "NetworkError")
-            self.networkErrorView.isHidden = false
-            return
-        }
+        checkNetwork()
         
         CommonApi.myPageRequest(completion: { data in
             if data.isEmpty {
@@ -92,6 +91,13 @@ class MyPageViewController: UIViewController {
         nextVC.userId = id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            networkErrorView.isHidden = false
+            return
+        }
+    }
 }
 
 extension MyPageViewController: UITableViewDataSource {
@@ -124,5 +130,60 @@ extension MyPageViewController: UITableViewDelegate {
         nextVC.articleUrl = myArticles[indexPath.row].url
         self.present(nextVC, animated: true, completion: nil)
     }
+}
+
+extension MyPageViewController: ReloadActionDelegate {
     
+    func errorReload() {
+        print("myPage")
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            CommonApi.myPageRequest(completion: { data in
+                self.myArticles.removeAll()
+                
+                if data.isEmpty {
+                    self.myPageErrorView.isHidden = false
+                    return
+                }
+                
+                data.forEach {
+                    self.myArticles.append($0)
+                }
+                
+                self.myArticlesList.reloadData()
+            }, url: CommonApi.structUrl(option: .myPage(page: page)))
+            
+            CommonApi.myPageHeaderRequest(completion: { data in
+                if data.user.id.isEmpty {
+                    self.networkErrorView.isHidden = false
+                    return
+                }
+                
+                self.myInfo = data
+                
+                guard let myData = self.myInfo?.user else { return }
+                
+                guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
+                
+                do {
+                    let imageData = try Data(contentsOf: imageUrl)
+                    self.myIcon.image = UIImage(data: imageData)
+                } catch {
+                    self.myIcon.image = UIImage(named: "errorUserIcon")
+                    print("error: Can't get image")
+                }
+                
+                self.myName.text = myData.name
+                self.myId.text = "@\(myData.id)"
+                self.id = myData.id
+                self.myIntroduction.text = myData.description
+                self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
+                self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
+            }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        }
+        
+    }
 }

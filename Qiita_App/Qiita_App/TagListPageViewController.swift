@@ -12,9 +12,11 @@ import Alamofire
 class TagListPageViewController: UIViewController {
     
     @IBOutlet var qiitaTag: UICollectionView!
+    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var tagInfo: [TagItem] = []
     var page = 1
+    var errorInfo: NetworkErrorView!
     let margin: CGFloat = 16
     var viewWidth: CGFloat {
         return view.frame.width
@@ -25,10 +27,21 @@ class TagListPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        errorInfo = networkErrorView
         qiitaTag.dataSource = self
         qiitaTag.delegate = self
+        errorInfo.reloadActionDelegate = self
+        
+        networkErrorView.isHidden = true
+        
+        checkNetwork()
         
         CommonApi.tagPageRequest(completion: { data in
+            if data.isEmpty {
+                self.networkErrorView.isHidden = false
+                return
+            }
+            
             data.forEach {
                 self.tagInfo.append($0)
             }
@@ -50,6 +63,12 @@ class TagListPageViewController: UIViewController {
         return inset
     }
     
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            networkErrorView.isHidden = false
+            return
+        }
+    }
 }
 
 extension TagListPageViewController: UICollectionViewDelegateFlowLayout {
@@ -76,10 +95,15 @@ extension TagListPageViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        page += 1
-        // TODO: レイアウトが崩れる原因ここの閾値にあるかも
         if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
+            checkNetwork()
+            page += 1
             CommonApi.tagPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.networkErrorView.isHidden = false
+                    return
+                }
+                
                 data.forEach {
                     self.tagInfo.append($0)
                 }
@@ -110,3 +134,33 @@ extension TagListPageViewController: UICollectionViewDataSource {
     }
     
 }
+
+extension TagListPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        print("tagpage")
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            CommonApi.tagPageRequest(completion: { data in
+                self.tagInfo.removeAll()
+                
+                if data.isEmpty {
+                    self.networkErrorView.isHidden = false
+                    return
+                }
+                
+                data.forEach {
+                    self.tagInfo.append($0)
+                }
+                
+                print(self.tagInfo)
+                
+                self.qiitaTag.reloadData()
+            }, url: CommonApi.structUrl(option: .tagPage(page: page)))
+        }
+    }
+}
+
