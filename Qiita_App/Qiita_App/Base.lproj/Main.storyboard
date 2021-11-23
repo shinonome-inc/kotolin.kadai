@@ -201,27 +201,20 @@
                                     <segue destination="pLE-wb-Jih" kind="embed" id="szp-3k-Nue"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfP-q0-a2d" customClass="NetworkErrorView" customModule="Qiita_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="KuV-Cs-ww6" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" constant="9" id="0fU-QU-qjl"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="centerX" secondItem="vl4-eH-VFU" secondAttribute="centerX" id="2uP-Ix-4XC"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="leading" secondItem="n3s-hk-Xk3" secondAttribute="leading" id="4Fs-JR-cep"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="DqP-eb-tT0"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="KAv-Td-CJo"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="bottom" secondItem="vl4-eH-VFU" secondAttribute="bottom" id="MKL-l1-0t1"/>
                             <constraint firstItem="29J-JQ-wLf" firstAttribute="bottom" secondItem="n3s-hk-Xk3" secondAttribute="bottom" id="NOk-Me-qsf"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="OOe-vH-i6P"/>
+                            <constraint firstItem="vl4-eH-VFU" firstAttribute="bottom" secondItem="29J-JQ-wLf" secondAttribute="bottom" id="P4Z-mZ-0zt"/>
                             <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="GNd-oe-QjG" secondAttribute="leading" id="azq-yX-2nH"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="centerX" secondItem="GNd-oe-QjG" secondAttribute="centerX" id="cdN-Z9-lM1"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="top" secondItem="KuV-Cs-ww6" secondAttribute="bottom" constant="10" id="gK8-yq-0e7"/>
                             <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="zEP-yN-DPG" secondAttribute="leadingMargin" id="hY6-Wf-Jxw"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="zEP-yN-DPG" secondAttribute="trailingMargin" id="j8k-5m-XG4"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" id="ncq-sE-IqH"/>
-                            <constraint firstItem="FfP-q0-a2d" firstAttribute="bottom" secondItem="n3s-hk-Xk3" secondAttribute="bottom" id="qgW-re-Vtf"/>
+                            <constraint firstItem="vl4-eH-VFU" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="nZq-8s-HKX"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="top" secondItem="29J-JQ-wLf" secondAttribute="top" id="u1Y-EB-kqb"/>
                             <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" id="vpU-Ms-Y1G"/>
                         </constraints>
@@ -230,7 +223,6 @@
                     <navigationItem key="navigationItem" id="mZ3-Pr-XbG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="networkErrorView" destination="FfP-q0-a2d" id="amb-iQ-KMZ"/>
                         <outlet property="nonSearchResult" destination="vl4-eH-VFU" id="lac-NO-0JE"/>
                         <outlet property="qiitaArticle" destination="29J-JQ-wLf" id="fMq-tq-5VD"/>
                         <outlet property="searchBar" destination="GNd-oe-QjG" id="i51-Ba-fxi"/>
@@ -397,25 +389,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fy2-ga-5fJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <connections>
-                                    <segue destination="k9k-wH-NCU" kind="embed" id="bkG-RM-g1S"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuH-2f-MsY" customClass="NetworkErrorView" customModule="Qiita_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="tCC-Q8-hSv" firstAttribute="trailing" secondItem="8fJ-W6-r2Y" secondAttribute="trailing" constant="300" id="5k0-du-BIM"/>
-                            <constraint firstItem="fy2-ga-5fJ" firstAttribute="trailing" secondItem="cbD-uA-Vgv" secondAttribute="trailing" id="6dG-zt-sqf"/>
                             <constraint firstItem="oqc-py-dwu" firstAttribute="top" secondItem="8fJ-W6-r2Y" secondAttribute="bottom" constant="66" id="93h-Te-Y8Y"/>
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="top" secondItem="tCC-Q8-hSv" secondAttribute="top" constant="115" id="A1z-33-MoI"/>
-                            <constraint firstItem="XuH-2f-MsY" firstAttribute="bottom" secondItem="fy2-ga-5fJ" secondAttribute="bottom" id="Bnu-sh-rVi"/>
-                            <constraint firstItem="XuH-2f-MsY" firstAttribute="top" secondItem="fy2-ga-5fJ" secondAttribute="top" id="Fgd-fe-0eN"/>
-                            <constraint firstItem="XuH-2f-MsY" firstAttribute="trailing" secondItem="fy2-ga-5fJ" secondAttribute="trailing" id="Fo5-ak-xxr"/>
                             <constraint firstItem="8fJ-W6-r2Y" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="Ixk-Av-pWF"/>
                             <constraint firstItem="Bcm-en-usB" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="Kmc-9d-YxR"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="bottom" secondItem="tCC-Q8-hSv" secondAttribute="bottom" constant="34" id="MRV-e0-ert"/>
@@ -424,14 +403,10 @@
                             <constraint firstItem="OXV-K8-12x" firstAttribute="top" secondItem="DGU-0b-7mK" secondAttribute="bottom" constant="8" id="UJM-aw-rQe"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="top" secondItem="Bcm-en-usB" secondAttribute="bottom" constant="11" id="V03-lV-hrl"/>
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="leading" secondItem="OXV-K8-12x" secondAttribute="leading" id="ZVu-io-TfX"/>
-                            <constraint firstItem="fy2-ga-5fJ" firstAttribute="bottom" secondItem="tCC-Q8-hSv" secondAttribute="bottom" id="aFL-oq-y5O"/>
                             <constraint firstItem="Bcm-en-usB" firstAttribute="baseline" secondItem="fOg-Qa-BSx" secondAttribute="baseline" id="bCA-yx-Erc"/>
-                            <constraint firstItem="fy2-ga-5fJ" firstAttribute="leading" secondItem="cbD-uA-Vgv" secondAttribute="leading" id="cEF-R8-NUg"/>
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="top" secondItem="8fJ-W6-r2Y" secondAttribute="bottom" constant="14" id="cVk-k8-ZZ9"/>
                             <constraint firstItem="DGU-0b-7mK" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="eKW-B7-uRV"/>
                             <constraint firstItem="cbD-uA-Vgv" firstAttribute="top" secondItem="8fJ-W6-r2Y" secondAttribute="bottom" constant="155" id="f9x-yz-gPW"/>
-                            <constraint firstItem="fy2-ga-5fJ" firstAttribute="top" secondItem="tCC-Q8-hSv" secondAttribute="top" id="hOk-jN-ezf"/>
-                            <constraint firstItem="XuH-2f-MsY" firstAttribute="leading" secondItem="fy2-ga-5fJ" secondAttribute="leading" id="mMk-rf-LpY"/>
                             <constraint firstItem="oqc-py-dwu" firstAttribute="leading" secondItem="tCC-Q8-hSv" secondAttribute="leading" constant="24" id="sb2-yI-FZo"/>
                             <constraint firstItem="fOg-Qa-BSx" firstAttribute="leading" secondItem="Bcm-en-usB" secondAttribute="trailing" constant="8" id="yVg-6y-7UR"/>
                         </constraints>
@@ -447,8 +422,6 @@
                         <outlet property="myId" destination="OXV-K8-12x" id="a2V-xw-asw"/>
                         <outlet property="myIntroduction" destination="oqc-py-dwu" id="IT0-KL-1hr"/>
                         <outlet property="myName" destination="DGU-0b-7mK" id="EH0-AA-rix"/>
-                        <outlet property="myPageErrorView" destination="fy2-ga-5fJ" id="hue-AQ-Ful"/>
-                        <outlet property="networkErrorView" destination="XuH-2f-MsY" id="auG-nu-LbU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TaO-rH-7nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -585,7 +558,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwn-p9-E8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228.985507246377" y="2270.7589285714284"/>
+            <point key="canvasLocation" x="2216" y="2271"/>
         </scene>
         <!--設定-->
         <scene sceneID="pXI-67-Efg">
@@ -625,7 +598,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UKh-Ie-0g2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="556.52173913043487" y="2937.7232142857142"/>
+            <point key="canvasLocation" x="559" y="2983"/>
         </scene>
         <!--Title-->
         <scene sceneID="mA3-Nw-cZC">
@@ -915,7 +888,7 @@ MAIL: Matarai@shinonome.io</string>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <containerView opaque="NO" contentMode="scaleToFill" id="2i1-Pb-w2b" customClass="NetworkErrorView" customModule="Qiita_App" customModuleProvider="target">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="2i1-Pb-w2b">
                                 <rect key="frame" x="0.0" y="85" width="414" height="728"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </containerView>
@@ -952,9 +925,8 @@ MAIL: Matarai@shinonome.io</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PU3-Ho-Xwg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PU3-Ho-Xwg">
                                 <rect key="frame" x="20" y="44" width="374" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="78" id="vuC-TZ-fue" customClass="TagDetailPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
@@ -1014,6 +986,12 @@ MAIL: Matarai@shinonome.io</string>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PU3-Ho-Xwg" firstAttribute="trailing" secondItem="2Oi-AD-NWQ" secondAttribute="trailingMargin" id="6lK-FU-HmQ"/>
+                            <constraint firstItem="PU3-Ho-Xwg" firstAttribute="leading" secondItem="2Oi-AD-NWQ" secondAttribute="leadingMargin" id="FSI-Bs-4Yw"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="PU3-Ho-Xwg" secondAttribute="bottom" constant="-34" id="X9J-Hq-beQ"/>
+                            <constraint firstItem="PU3-Ho-Xwg" firstAttribute="top" secondItem="ldX-VQ-dBC" secondAttribute="top" id="eFa-Qx-uKt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ldX-VQ-dBC"/>
                     </view>
                     <connections>
@@ -1022,7 +1000,7 @@ MAIL: Matarai@shinonome.io</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZv-Ay-Zrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228.985507246377" y="1562.9464285714284"/>
+            <point key="canvasLocation" x="2217" y="1563"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="tCe-na-xyL">
@@ -1218,69 +1196,7 @@ MAIL: Matarai@shinonome.io</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZwY-xr-XQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2157.971014492754" y="905.69196428571422"/>
-        </scene>
-        <!--Not Login Page View Controller-->
-        <scene sceneID="1za-Vf-a7G">
-            <objects>
-                <viewController id="k9k-wH-NCU" customClass="NotLoginPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5WU-5B-Luo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ログインが必要です" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pk-2G-04x">
-                                <rect key="frame" x="123" y="290" width="163" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="マイページの機能を利用するにはログインを行っていただく必要があります" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sel-dA-0ip">
-                                <rect key="frame" x="89" y="313" width="236" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="THa-Wz-bhc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7p2-gS-1pC">
-                                <rect key="frame" x="44" y="643" width="326" height="50"/>
-                                <color key="backgroundColor" red="0.4549019608" green="0.75686274509999996" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="hn5-SD-2fh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <state key="normal" title="ログインする">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginButton:" destination="k9k-wH-NCU" eventType="touchUpInside" id="RyV-iP-tGX"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="7p2-gS-1pC" secondAttribute="bottom" constant="32" id="Die-Kh-0Cb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4pk-2G-04x" secondAttribute="trailing" constant="108" id="GQw-wY-r8a"/>
-                            <constraint firstItem="Sel-dA-0ip" firstAttribute="top" secondItem="4pk-2G-04x" secondAttribute="bottom" constant="6" id="Mc6-xv-JeL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Sel-dA-0ip" secondAttribute="trailing" constant="69" id="Of3-de-Xth"/>
-                            <constraint firstItem="4pk-2G-04x" firstAttribute="top" secondItem="5WU-5B-Luo" secondAttribute="topMargin" constant="246" id="YFs-1v-Ld5"/>
-                            <constraint firstItem="Sel-dA-0ip" firstAttribute="leading" secondItem="5WU-5B-Luo" secondAttribute="leadingMargin" constant="69" id="s34-Ir-VKo"/>
-                            <constraint firstItem="7p2-gS-1pC" firstAttribute="leading" secondItem="5WU-5B-Luo" secondAttribute="leadingMargin" constant="24" id="sZi-Ux-BFO"/>
-                            <constraint firstItem="4pk-2G-04x" firstAttribute="leading" secondItem="5WU-5B-Luo" secondAttribute="leadingMargin" constant="103" id="wSo-aV-Yk2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7p2-gS-1pC" secondAttribute="trailing" constant="24" id="yNY-Az-44w"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="aAb-3J-K4i"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgv-1F-1mo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1466.6666666666667" y="2925.3348214285711"/>
+            <point key="canvasLocation" x="2187" y="902"/>
         </scene>
     </scenes>
     <resources>

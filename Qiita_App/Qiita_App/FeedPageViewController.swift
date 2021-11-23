@@ -14,39 +14,34 @@ class FeedPageViewController: UIViewController {
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var nonSearchResult: UIView!
-    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var accessToken = ""
     var page = 1
     var titleNum = 0
+    var commonApi = CommonApi()
     var removeFlag = false
     var searchTextDeleteFlag = false
     var searchText = ""
     var articles: [DataItem] = []
-    var errorInfo: NetworkErrorView!
+    var errorView = NetworkErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        errorInfo = networkErrorView
         qiitaArticle.dataSource = self
         qiitaArticle.delegate = self
         searchBar.delegate = self
-        errorInfo.reloadActionDelegate = self
+        
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
         
         nonSearchResult.isHidden = true
-        networkErrorView.isHidden = true
         searchBar.enablesReturnKeyAutomatically = false
         
         checkNetwork()
         
-        CommonApi.feedPageRequest(completion: { data in
+        CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
-            
-            if data.isEmpty {
-                self.networkErrorView.isHidden = false
-                return
-            }
             
             data.forEach {
                 self.articles.append($0)
@@ -72,6 +67,7 @@ class FeedPageViewController: UIViewController {
         case 0:
             qiitaArticle.isHidden = true
             nonSearchResult.isHidden = false
+            print("a")
         default:
             qiitaArticle.isHidden = false
             nonSearchResult.isHidden = true
@@ -80,7 +76,7 @@ class FeedPageViewController: UIViewController {
     
     func checkNetwork() {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            networkErrorView.isHidden = false
+            presentNetworkErrorView()
             return
         }
     }
@@ -107,13 +103,8 @@ extension FeedPageViewController: UITableViewDataSource {
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
             checkNetwork()
             page += 1
-            CommonApi.feedPageRequest(completion: { data in
+            CommonApi().feedPageRequest(completion: { data in
                 self.articleManagement()
-                
-                if data.isEmpty {
-                    self.networkErrorView.isHidden = false
-                    return
-                }
                 
                 data.forEach {
                     self.articles.append($0)
@@ -157,7 +148,7 @@ extension FeedPageViewController: UISearchBarDelegate {
         
         checkNetwork()
         
-        CommonApi.feedPageRequest(completion: { data in
+        CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
             
             data.forEach {
@@ -182,16 +173,15 @@ extension FeedPageViewController: ReloadActionDelegate {
         
         } else {
             qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            CommonApi.feedPageRequest(completion: { data in
+            CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
-                
-                if data.isEmpty {
-                    self.networkErrorView.isHidden = false
-                    return
-                }
                 
                 data.forEach {
                     self.articles.append($0)
+                }
+                
+                if !self.articles.isEmpty {
+                    self.errorView.removeFromSuperview()
                 }
                 
                 self.checkSearchResults(articles: self.articles)
@@ -199,5 +189,14 @@ extension FeedPageViewController: ReloadActionDelegate {
                 self.qiitaArticle.reloadData()
             }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
         }
+    }
+}
+
+extension FeedPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
     }
 }

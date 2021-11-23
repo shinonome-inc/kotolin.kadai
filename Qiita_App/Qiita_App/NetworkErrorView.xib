@@ -39,16 +39,16 @@
                         <action selector="reloadButton:" destination="-1" eventType="touchUpInside" id="hX2-dM-pqC"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ネットワークエラー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXa-HC-o4k">
-                    <rect key="frame" x="129" y="366" width="165" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お手数ですが電波の良い場所で再度読み込みをお願いします" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1er-cn-uxb">
                     <rect key="frame" x="129" y="391" width="165" height="43"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ネットワークエラー" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXa-HC-o4k">
+                    <rect key="frame" x="117" y="366" width="189" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -57,8 +57,8 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QL7-FZ-LPK" secondAttribute="bottom" constant="32" id="57G-Yc-cdn"/>
                 <constraint firstItem="NDn-mV-uMY" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="180" id="8NM-IG-qdb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1er-cn-uxb" secondAttribute="trailing" constant="120" id="9di-1D-q3O"/>
-                <constraint firstItem="AXa-HC-o4k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="129" id="HGL-iU-U6K"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AXa-HC-o4k" secondAttribute="trailing" constant="120" id="JbK-3b-yE1"/>
+                <constraint firstItem="AXa-HC-o4k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="117" id="HGL-iU-U6K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AXa-HC-o4k" secondAttribute="trailing" constant="108" id="JbK-3b-yE1"/>
                 <constraint firstItem="1er-cn-uxb" firstAttribute="top" secondItem="AXa-HC-o4k" secondAttribute="bottom" constant="8" id="PUl-p2-ecX"/>
                 <constraint firstItem="AXa-HC-o4k" firstAttribute="top" secondItem="NDn-mV-uMY" secondAttribute="bottom" constant="42" id="Tes-iL-70C"/>
                 <constraint firstItem="QL7-FZ-LPK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="ijH-tE-xNc"/>

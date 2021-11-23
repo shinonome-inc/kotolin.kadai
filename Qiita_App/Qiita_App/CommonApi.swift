@@ -6,10 +6,12 @@
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
-import UIKit
+//import UIKit
 import Alamofire
 
 class CommonApi {
+    
+    var presentNetworkErrorViewDelegate: PresentNetworkErrorViewDelegate?
     
     enum requestUrl {
         case FeedPage(page: Int, searchTitle: String)
@@ -34,7 +36,8 @@ class CommonApi {
         }
     }
     
-    class func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
+    func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
+        
         AF.request(
             url,
             method: .get,
@@ -53,9 +56,8 @@ class CommonApi {
                 completion(dataItem)
                 
             } catch let error {
-                let errorItem: [DataItem] = []
                 print("This is error message -> : \(error)")
-                completion(errorItem)
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
@@ -131,7 +133,7 @@ class CommonApi {
         }
     }
     
-    class func myPageRequest(completion: @escaping([MyItem]) -> Void, url: String) {
+    func myPageRequest(completion: @escaping([MyItem]) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -155,14 +157,13 @@ class CommonApi {
                 completion(dataItem)
                 
             } catch let error {
-                let errorItem: [MyItem] = []
                 print("This is error message -> : \(error)")
-                completion(errorItem)
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
     
-    class func myPageHeaderRequest(completion: @escaping(UserInfo) -> Void, url: String) {
+    func myPageHeaderRequest(completion: @escaping(UserInfo) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -187,6 +188,7 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
@@ -225,4 +227,8 @@ class CommonApi {
             }
         }
     }
+}
+
+protocol PresentNetworkErrorViewDelegate {
+    func presentNetworkErrorView()
 }

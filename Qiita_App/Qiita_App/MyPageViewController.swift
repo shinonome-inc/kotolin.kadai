@@ -17,34 +17,33 @@ class MyPageViewController: UIViewController {
     @IBOutlet var myIntroduction: UILabel!
     @IBOutlet var followCount: UIButton!
     @IBOutlet var followerCount: UIButton!
-    @IBOutlet var myPageErrorView: UIView!
-    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var myArticles: [MyItem] = []
     var myInfo: UserInfo?
     var page = 1
     var id = ""
-    var errorInfo: NetworkErrorView!
+    var commonApi = CommonApi()
+    var errorView = NetworkErrorView()
+    var reLogin = NotLoginPageViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        errorInfo = networkErrorView
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
+        reLogin.loginActionDelegate = self
         myArticlesList.dataSource = self
         myArticlesList.delegate = self
-        errorInfo.reloadActionDelegate = self
-        
-        myPageErrorView.isHidden = true
-        networkErrorView.isHidden = true
         
         checkNetwork()
         
-        CommonApi.myPageRequest(completion: { data in
-            if data.isEmpty {
-                self.myPageErrorView.isHidden = false
-                return
-            }
-            
+        if AccessTokenDerivery.shared.getAccessToken().isEmpty {
+            reLogin.center = self.view.center
+            reLogin.frame = self.view.frame
+            self.view.addSubview(reLogin)
+        }
+        
+        CommonApi().myPageRequest(completion: { data in
             data.forEach {
                 self.myArticles.append($0)
             }
@@ -52,7 +51,7 @@ class MyPageViewController: UIViewController {
             self.myArticlesList.reloadData()
         }, url: CommonApi.structUrl(option: .myPage(page: page)))
         
-        CommonApi.myPageHeaderRequest(completion: { data in
+        CommonApi().myPageHeaderRequest(completion: { data in
             self.myInfo = data
             
             guard let myData = self.myInfo?.user else { return }
@@ -94,7 +93,7 @@ class MyPageViewController: UIViewController {
     
     func checkNetwork() {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            networkErrorView.isHidden = false
+            presentNetworkErrorView()
             return
         }
     }
@@ -141,27 +140,22 @@ extension MyPageViewController: ReloadActionDelegate {
             print("Network error has not improved yet.")
         
         } else {
-            CommonApi.myPageRequest(completion: { data in
+            print("a")
+            CommonApi().myPageRequest(completion: { data in
                 self.myArticles.removeAll()
-                
-                if data.isEmpty {
-                    self.myPageErrorView.isHidden = false
-                    return
-                }
                 
                 data.forEach {
                     self.myArticles.append($0)
                 }
                 
+                if !self.myArticles.isEmpty {
+                    self.errorView.removeFromSuperview()
+                }
+                
                 self.myArticlesList.reloadData()
             }, url: CommonApi.structUrl(option: .myPage(page: page)))
             
-            CommonApi.myPageHeaderRequest(completion: { data in
-                if data.user.id.isEmpty {
-                    self.networkErrorView.isHidden = false
-                    return
-                }
-                
+            CommonApi().myPageHeaderRequest(completion: { data in
                 self.myInfo = data
                 
                 guard let myData = self.myInfo?.user else { return }
@@ -184,6 +178,25 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
             }, url: CommonApi.structUrl(option: .myPage(page: page)))
         }
+    }
+}
+
+extension MyPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
+    }
+}
+
+extension MyPageViewController: LoginActionDelegate {
+    
+    func loginAction() {
+        guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "TopPage") else { return }
         
+        nextVC.modalPresentationStyle = .fullScreen
+        self.present(nextVC, animated: true, completion: nil)
+        reLogin.removeFromSuperview()
     }
 }

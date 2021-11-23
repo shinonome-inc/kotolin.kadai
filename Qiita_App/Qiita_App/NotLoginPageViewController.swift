@@ -8,13 +8,28 @@
 
 import UIKit
 
-class NotLoginPageViewController: UIViewController {
+class NotLoginPageViewController: UIView {
+    var loginActionDelegate: LoginActionDelegate?
     
-    @IBAction func loginButton(_ sender: Any) {
-        guard let nextVC = storyboard?.instantiateViewController(withIdentifier: "TopPage") else { return }
-        
-        nextVC.modalPresentationStyle = .fullScreen
-        self.present(nextVC, animated: true, completion: nil)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    init() {
+        super.init(frame: .zero)
+
+        let view = UINib(nibName: "NotLoginPageViewController", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+        view.frame = bounds
+        addSubview(view)
     }
     
+    @IBAction func loginButton(_ sender: Any) {
+        guard let loginActionDelegate = loginActionDelegate else { return }
+        
+        loginActionDelegate.loginAction()
+    }
+}
+
+protocol  LoginActionDelegate {
+    func loginAction()
 }

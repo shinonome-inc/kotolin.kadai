@@ -11,38 +11,24 @@ import UIKit
 class NetworkErrorView: UIView {
     var reloadActionDelegate: ReloadActionDelegate?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        loadNib()
-    }
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-        loadNib()
-    }
-
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-
-        loadNib()
     }
     
-    private func loadNib() {
-        guard let errorView = UINib(nibName: "NetworkErrorView", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView else { return }
-        errorView.frame = self.bounds
-        addSubview(errorView)
+    init() {
+        super.init(frame: .zero)
+
+        let view = UINib(nibName: "NetworkErrorView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+        view.frame = bounds
+        addSubview(view)
     }
     
     @IBAction func reloadButton(_ sender: Any) {
-        print("a")
         guard let reloadActionDelegate = reloadActionDelegate else { print("echo"); return}
         
         print(reloadActionDelegate)
         
         reloadActionDelegate.errorReload()
-        self.isHidden = true
     }
 }
 
