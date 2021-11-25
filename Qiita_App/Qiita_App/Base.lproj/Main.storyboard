@@ -888,7 +888,7 @@ MAIL: Matarai@shinonome.io</string>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <containerView opaque="NO" contentMode="scaleToFill" id="2i1-Pb-w2b">
+                            <containerView opaque="NO" contentMode="scaleToFill" id="2i1-Pb-w2b" customClass="NetworkErrorView" customModule="Qiita_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="85" width="414" height="728"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </containerView>
