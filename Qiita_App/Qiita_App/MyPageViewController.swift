@@ -73,6 +73,8 @@ class MyPageViewController: UIViewController {
             self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
             self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
         }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        
+        configureRefreshControl()
     }
     
     @IBAction func pushFollowCount(_ sender: Any) {
@@ -95,6 +97,33 @@ class MyPageViewController: UIViewController {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             presentNetworkErrorView()
             return
+        }
+    }
+    
+    func configureRefreshControl () {
+        myArticlesList.refreshControl = UIRefreshControl()
+        myArticlesList.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            CommonApi().myPageRequest(completion: { data in
+                self.myArticles.removeAll()
+                
+                data.forEach {
+                    self.myArticles.append($0)
+                }
+                
+                self.myArticlesList.reloadData()
+            }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        }
+        
+        DispatchQueue.main.async {
+            self.myArticlesList.refreshControl?.endRefreshing()
         }
     }
 }

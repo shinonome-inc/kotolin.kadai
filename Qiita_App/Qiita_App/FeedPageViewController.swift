@@ -51,6 +51,8 @@ class FeedPageViewController: UIViewController {
             
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        
+        configureRefreshControl()
     }
     
     func articleManagement() {
@@ -67,7 +69,6 @@ class FeedPageViewController: UIViewController {
         case 0:
             qiitaArticle.isHidden = true
             nonSearchResult.isHidden = false
-            print("a")
         default:
             qiitaArticle.isHidden = false
             nonSearchResult.isHidden = true
@@ -78,6 +79,37 @@ class FeedPageViewController: UIViewController {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             presentNetworkErrorView()
             return
+        }
+    }
+    
+    func configureRefreshControl () {
+        //RefreshControlを追加する処理
+        qiitaArticle.refreshControl = UIRefreshControl()
+        qiitaArticle.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            CommonApi().feedPageRequest(completion: { data in
+                self.articles.removeAll()
+                
+                data.forEach {
+                self.articles.append($0)
+                }
+                
+                self.checkSearchResults(articles: self.articles)
+                
+                self.qiitaArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        }
+        
+        //上記の処理が終了したら下記が実行されます。
+        DispatchQueue.main.async {
+            self.qiitaArticle.refreshControl?.endRefreshing()
         }
     }
 }
