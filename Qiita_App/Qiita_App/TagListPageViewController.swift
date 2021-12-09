@@ -12,11 +12,11 @@ import Alamofire
 class TagListPageViewController: UIViewController {
     
     @IBOutlet var qiitaTag: UICollectionView!
-    @IBOutlet var networkErrorView: NetworkErrorView!
     
     var tagInfo: [TagItem] = []
     var page = 1
-    var errorInfo: NetworkErrorView!
+    var errorView = NetworkErrorView()
+    var commonApi = CommonApi()
     let margin: CGFloat = 16
     var viewWidth: CGFloat {
         return view.frame.width
@@ -27,20 +27,14 @@ class TagListPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        errorInfo = networkErrorView
         qiitaTag.dataSource = self
         qiitaTag.delegate = self
-        errorInfo.reloadActionDelegate = self
-        
-        networkErrorView.isHidden = true
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
         
         checkNetwork()
         
-        CommonApi.tagPageRequest(completion: { data in
-            if data.isEmpty {
-                self.networkErrorView.isHidden = false
-                return
-            }
+        CommonApi().tagPageRequest(completion: { data in
             
             data.forEach {
                 self.tagInfo.append($0)
@@ -65,7 +59,7 @@ class TagListPageViewController: UIViewController {
     
     func checkNetwork() {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            networkErrorView.isHidden = false
+            presentNetworkErrorView()
             return
         }
     }
@@ -98,11 +92,7 @@ extension TagListPageViewController: UICollectionViewDelegate {
         if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
             checkNetwork()
             page += 1
-            CommonApi.tagPageRequest(completion: { data in
-                if data.isEmpty {
-                    self.networkErrorView.isHidden = false
-                    return
-                }
+            CommonApi().tagPageRequest(completion: { data in
                 
                 data.forEach {
                     self.tagInfo.append($0)
@@ -144,19 +134,16 @@ extension TagListPageViewController: ReloadActionDelegate {
             print("Network error has not improved yet.")
         
         } else {
-            CommonApi.tagPageRequest(completion: { data in
+            CommonApi().tagPageRequest(completion: { data in
                 self.tagInfo.removeAll()
-                
-                if data.isEmpty {
-                    self.networkErrorView.isHidden = false
-                    return
-                }
                 
                 data.forEach {
                     self.tagInfo.append($0)
                 }
                 
-                print(self.tagInfo)
+                if !self.tagInfo.isEmpty {
+                    self.errorView.removeFromSuperview()
+                }
                 
                 self.qiitaTag.reloadData()
             }, url: CommonApi.structUrl(option: .tagPage(page: page)))
@@ -164,3 +151,11 @@ extension TagListPageViewController: ReloadActionDelegate {
     }
 }
 
+extension TagListPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
+    }
+}

@@ -6,7 +6,6 @@
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
-//import UIKit
 import Alamofire
 
 class CommonApi {
@@ -62,7 +61,7 @@ class CommonApi {
         }
     }
     
-    class func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
+    func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
         var headers: HTTPHeaders?
         let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
@@ -91,9 +90,8 @@ class CommonApi {
                 completion(dataItem)
                 
             } catch let error {
-                let errorItem: [TagItem] = []
                 print("This is error message -> : \(error)")
-                completion(errorItem)
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
