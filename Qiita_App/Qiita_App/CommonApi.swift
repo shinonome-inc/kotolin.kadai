@@ -13,16 +13,16 @@ class CommonApi {
     var presentNetworkErrorViewDelegate: PresentNetworkErrorViewDelegate?
     
     enum requestUrl {
-        case FeedPage(page: Int, searchTitle: String)
+        case feedPage(page: Int, searchTitle: String)
         case tagPage(page: Int)
         case tagDetailPage(page: Int, tagTitle: String)
         case myPage(page: Int)
-        case FollowPage
+        case followPage
     }
 
     class func structUrl(option: requestUrl) -> String {
         switch option {
-        case .FeedPage(let page, let searchTitle):
+        case .feedPage(let page, let searchTitle):
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=title%3A\(searchTitle)"
         case .tagPage(let page):
             return "https://qiita.com/api/v2/tags?sort=count&page=\(page)"
@@ -30,7 +30,7 @@ class CommonApi {
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=tag%3A\(tagTitle)"
         case .myPage(let page):
             return "https://qiita.com/api/v2/authenticated_user/items?page=\(page)"
-        case .FollowPage:
+        case .followPage:
             return "https://qiita.com/api/v2/users/"
         }
     }
@@ -46,7 +46,11 @@ class CommonApi {
         )
         .response { response in
 
-            guard let data = response.data else { return }
+            guard let data = response.data else {
+                let emptyData: [DataItem] = []
+                completion(emptyData)
+                return
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -56,7 +60,8 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
+                let emptyData: [DataItem] = []
+                completion(emptyData)
             }
         }
     }
@@ -81,7 +86,11 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            guard let data = response.data else { return }
+            guard let data = response.data else {
+                let emptyData: [TagItem] = []
+                completion(emptyData)
+                return
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -91,7 +100,8 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
+                let emptyData: [TagItem] = []
+                completion(emptyData)
             }
         }
     }
@@ -116,7 +126,11 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            guard let data = response.data else { return }
+            guard let data = response.data else {
+                let emptyData: [DataItem] = []
+                completion(emptyData)
+                return
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -126,7 +140,8 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                
+                let emptyData: [DataItem] = []
+                completion(emptyData)
             }
         }
     }
@@ -145,7 +160,11 @@ class CommonApi {
         )
         .response { response in
 
-            guard let data = response.data else { return }
+            guard let data = response.data else {
+                let emptyData: [MyItem] = []
+                completion(emptyData)
+                return
+            }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -156,7 +175,8 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
+                let emptyData: [MyItem] = []
+                completion(emptyData)
             }
         }
     }
@@ -186,7 +206,6 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
@@ -205,11 +224,11 @@ class CommonApi {
         )
         .response { response in
             
-            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                
+            guard let data = response.data else {
+                let emptyData: [UserItem] = []
+                completion(emptyData)
+                return
             }
-            
-            guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -221,7 +240,8 @@ class CommonApi {
                 
             } catch let error {
                 print("This is error message -> : \(error)")
-                
+                let emptyData: [UserItem] = []
+                completion(emptyData)
             }
         }
     }

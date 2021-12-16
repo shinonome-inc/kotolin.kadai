@@ -55,7 +55,7 @@ class FollowPageViewController: UIViewController {
                 self.userInfos.append($0)
             }
             self.followList.reloadData()
-        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+        }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
     }
     
     @IBAction func switchButton(_ sender: UISegmentedControl) {
@@ -66,7 +66,7 @@ class FollowPageViewController: UIViewController {
                 self.userInfos.append($0)
             }
             self.followList.reloadData()
-        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+        }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
     }
 }
 
@@ -93,7 +93,7 @@ extension FollowPageViewController: UITableViewDataSource {
                     self.userInfos.append($0)
                 }
                 self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+            }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }
     }
 }

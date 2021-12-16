@@ -35,6 +35,9 @@ class TagListPageViewController: UIViewController {
         checkNetwork()
         
         CommonApi().tagPageRequest(completion: { data in
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
             
             data.forEach {
                 self.tagInfo.append($0)
@@ -42,6 +45,10 @@ class TagListPageViewController: UIViewController {
             
             self.qiitaTag.reloadData()
         }, url: CommonApi.structUrl(option: .tagPage(page: page)))
+        
+        if !tagInfo.isEmpty {
+            presentNetworkErrorView()
+        }
     }
 
     func calcItemsPerRows() -> Int {
@@ -89,10 +96,15 @@ extension TagListPageViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if tagInfo.count >= 20 && indexPath.row == ( tagInfo.count - 10) {
+        let tagCount = tagInfo.count
+        
+        if tagCount >= 20 && indexPath.row == ( tagCount - 10) {
             checkNetwork()
             page += 1
             CommonApi().tagPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
                 
                 data.forEach {
                     self.tagInfo.append($0)
@@ -101,6 +113,10 @@ extension TagListPageViewController: UICollectionViewDelegate {
                 self.qiitaTag.reloadData()
             }, url: CommonApi.structUrl(option: .tagPage(page: page)))
         }
+        
+//        if tagCount ==  {
+//            presentNetworkErrorView()
+//        }
     }
 }
 
@@ -136,6 +152,9 @@ extension TagListPageViewController: ReloadActionDelegate {
         } else {
             CommonApi().tagPageRequest(completion: { data in
                 self.tagInfo.removeAll()
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
                 
                 data.forEach {
                     self.tagInfo.append($0)
