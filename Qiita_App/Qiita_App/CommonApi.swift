@@ -6,10 +6,11 @@
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 
 class CommonApi {
+    
+    var presentNetworkErrorViewDelegate: PresentNetworkErrorViewDelegate?
     
     enum requestUrl {
         case FeedPage(page: Int, searchTitle: String)
@@ -34,7 +35,7 @@ class CommonApi {
         }
     }
     
-    class func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
+    func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
         
         AF.request(
             url,
@@ -52,17 +53,25 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
     
-    class func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
-        let headers: HTTPHeaders = [
+    func tagPageRequest(completion: @escaping([TagItem]) -> Void, url: String) {
+        var headers: HTTPHeaders?
+        let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
+        
+        if AccessTokenDerivery.shared.getAccessToken().isEmpty {
+            headers = nil
+        } else {
+            headers = accessToken
+        }
         
         AF.request(
             url,
@@ -72,7 +81,6 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -80,17 +88,25 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([TagItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
     
     class func tagDetailPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-        let headers: HTTPHeaders = [
+        var headers: HTTPHeaders?
+        let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
+        
+        if AccessTokenDerivery.shared.getAccessToken().isEmpty {
+            headers = nil
+        } else {
+            headers = accessToken
+        }
         
         AF.request(
             url,
@@ -100,7 +116,6 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -108,14 +123,15 @@ class CommonApi {
                 
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                
             }
         }
     }
     
-    class func myPageRequest(completion: @escaping([MyItem]) -> Void, url: String) {
+    func myPageRequest(completion: @escaping([MyItem]) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -137,14 +153,15 @@ class CommonApi {
                 let dataItem = try jsonDecoder.decode([MyItem].self,from:data)
                 
                 completion(dataItem)
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
     
-    class func myPageHeaderRequest(completion: @escaping(UserInfo) -> Void, url: String) {
+    func myPageHeaderRequest(completion: @escaping(UserInfo) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -166,9 +183,10 @@ class CommonApi {
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
                 
                 completion(myInfoItem[0])
-            //TODO:エラー用の画面を実装する
+                
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                self.presentNetworkErrorViewDelegate?.presentNetworkErrorView()
             }
         }
     }
@@ -187,6 +205,10 @@ class CommonApi {
         )
         .response { response in
             
+            if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                
+            }
+            
             guard let data = response.data else { return }
             do {
                 let jsonDecoder = JSONDecoder()
@@ -197,10 +219,14 @@ class CommonApi {
                 
                 completion(dataItem)
                 
-            //TODO:エラー用の画面を実装する
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                
             }
         }
     }
+}
+
+protocol PresentNetworkErrorViewDelegate {
+    func presentNetworkErrorView()
 }

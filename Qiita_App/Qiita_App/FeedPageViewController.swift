@@ -13,14 +13,17 @@ class FeedPageViewController: UIViewController {
     
     @IBOutlet var qiitaArticle: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var nonSearchResult: UIView!
+    
     var accessToken = ""
     var page = 1
     var titleNum = 0
+    var commonApi = CommonApi()
     var removeFlag = false
     var searchTextDeleteFlag = false
     var searchText = ""
     var articles: [DataItem] = []
-    
+    var errorView = NetworkErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +32,22 @@ class FeedPageViewController: UIViewController {
         qiitaArticle.delegate = self
         searchBar.delegate = self
         
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
+        
+        nonSearchResult.isHidden = true
         searchBar.enablesReturnKeyAutomatically = false
         
-        CommonApi.feedPageRequest(completion: { data in
+        checkNetwork()
+        
+        CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
             
             data.forEach {
                 self.articles.append($0)
             }
+            
+            self.checkSearchResults(articles: self.articles)
             
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
@@ -47,6 +58,26 @@ class FeedPageViewController: UIViewController {
             self.articles.removeAll()
             self.removeFlag = false
             self.searchTextDeleteFlag = false
+        }
+    }
+    
+    func checkSearchResults(articles: [DataItem]) {
+        
+        switch articles.count {
+        case 0:
+            qiitaArticle.isHidden = true
+            nonSearchResult.isHidden = false
+            print("a")
+        default:
+            qiitaArticle.isHidden = false
+            nonSearchResult.isHidden = true
+        }
+    }
+    
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            presentNetworkErrorView()
+            return
         }
     }
 }
@@ -70,8 +101,9 @@ extension FeedPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
+            checkNetwork()
             page += 1
-            CommonApi.feedPageRequest(completion: { data in
+            CommonApi().feedPageRequest(completion: { data in
                 self.articleManagement()
                 
                 data.forEach {
@@ -114,15 +146,57 @@ extension FeedPageViewController: UISearchBarDelegate {
             searchTextDeleteFlag = true
         }
         
-        CommonApi.feedPageRequest(completion: { data in
+        checkNetwork()
+        
+        CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
             
             data.forEach {
                 self.articles.append($0)
             }
             
+            self.checkSearchResults(articles: self.articles)
+            
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
     }
     
+}
+
+extension FeedPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        print("feedPage")
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            CommonApi().feedPageRequest(completion: { data in
+                self.articles.removeAll()
+                
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                if !self.articles.isEmpty {
+                    self.errorView.removeFromSuperview()
+                }
+                
+                self.checkSearchResults(articles: self.articles)
+                
+                self.qiitaArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        }
+    }
+}
+
+extension FeedPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
+    }
 }

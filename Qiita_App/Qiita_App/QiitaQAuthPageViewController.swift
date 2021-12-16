@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import Alamofire
 
-class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
+class QiitaOAuthPageViewController: UIViewController {
     
     @IBOutlet var qiitaOAuthPage: WKWebView!
     let secretKeys = SecretKey()
@@ -30,7 +30,9 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
         guard let url = URLComponents(string: url) else { return nil }
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
-    
+}
+
+extension QiitaOAuthPageViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.scheme == "syunya-app", navigationAction.request.url?.host == "qiitasearch.com" {
             
@@ -57,6 +59,10 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
             )
             .response{ response in
                 
+                if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+                    
+                }
+                
                 guard let data = response.data else { return }
                 do {
                     let dataItem =
@@ -64,9 +70,9 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
                     
                     AccessTokenDerivery.shared.setAccessToken(key: dataItem.token)
                     
-                //TODO:エラー用の画面を実装する
                 } catch let error {
-                    print("Error: \(error)")
+                    print("This is error message -> : \(error)")
+                    
                 }
             }
             
@@ -78,4 +84,15 @@ class QiitaOAuthPageViewController: UIViewController, WKNavigationDelegate {
         
         decisionHandler(.allow)
     }
+
+//    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+//
+//        print(error)
+//    }
+//
+//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+//
+//        print(error)
+//    }
 }
+

@@ -18,8 +18,21 @@ class QiitaArticlePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        qiitaArticle.navigationDelegate = self
+        
         guard let unwrappedUrl = URL(string: articleUrl) else { return }
         let request = URLRequest(url: unwrappedUrl)
         self.qiitaArticle.load(request)
+    }
+}
+
+extension QiitaArticlePageViewController: WKNavigationDelegate {
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print(error)
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print(error)
     }
 }
