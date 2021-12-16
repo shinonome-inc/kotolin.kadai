@@ -42,6 +42,9 @@ class FeedPageViewController: UIViewController {
         
         CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
             
             data.forEach {
                 self.articles.append($0)
@@ -50,7 +53,7 @@ class FeedPageViewController: UIViewController {
             self.checkSearchResults(articles: self.articles)
             
             self.qiitaArticle.reloadData()
-        }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
     }
     
     func articleManagement() {
@@ -105,13 +108,16 @@ extension FeedPageViewController: UITableViewDataSource {
             page += 1
             CommonApi().feedPageRequest(completion: { data in
                 self.articleManagement()
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
                 
                 data.forEach {
                     self.articles.append($0)
                 }
                 
                 self.qiitaArticle.reloadData()
-            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+            }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
         }
     }
 }
@@ -150,6 +156,9 @@ extension FeedPageViewController: UISearchBarDelegate {
         
         CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
             
             data.forEach {
                 self.articles.append($0)
@@ -158,7 +167,7 @@ extension FeedPageViewController: UISearchBarDelegate {
             self.checkSearchResults(articles: self.articles)
             
             self.qiitaArticle.reloadData()
-        }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+        }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
     }
     
 }
@@ -175,6 +184,9 @@ extension FeedPageViewController: ReloadActionDelegate {
             qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
                 
                 data.forEach {
                     self.articles.append($0)
@@ -187,7 +199,7 @@ extension FeedPageViewController: ReloadActionDelegate {
                 self.checkSearchResults(articles: self.articles)
                 
                 self.qiitaArticle.reloadData()
-            }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
+            }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
         }
     }
 }

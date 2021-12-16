@@ -44,6 +44,10 @@ class MyPageViewController: UIViewController {
         }
         
         CommonApi().myPageRequest(completion: { data in
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            
             data.forEach {
                 self.myArticles.append($0)
             }
@@ -140,9 +144,11 @@ extension MyPageViewController: ReloadActionDelegate {
             print("Network error has not improved yet.")
         
         } else {
-            print("a")
             CommonApi().myPageRequest(completion: { data in
                 self.myArticles.removeAll()
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
                 
                 data.forEach {
                     self.myArticles.append($0)
