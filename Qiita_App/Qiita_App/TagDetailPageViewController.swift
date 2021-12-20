@@ -16,6 +16,8 @@ class TagDetailPageViewController: UIViewController {
     var tagName = ""
     var page = 1
     var articles: [DataItem] = []
+    var commonApi = CommonApi()
+    var errorView = NetworkErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +27,29 @@ class TagDetailPageViewController: UIViewController {
         tagDetailArticle.delegate = self
         tagDetailArticle.dataSource = self
         
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
+        
+        checkNetwork()
+        
         CommonApi.tagDetailPageRequest(completion: { data in
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            
             data.forEach {
                 self.articles.append($0)
             }
             
             self.tagDetailArticle.reloadData()
         }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+    }
+    
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            presentNetworkErrorView()
+            return
+        }
     }
 }
 
@@ -54,8 +72,13 @@ extension TagDetailPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
+            checkNetwork()
             page += 1
             CommonApi.tagDetailPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
+                
                 data.forEach {
                     self.articles.append($0)
                 }
@@ -78,4 +101,42 @@ extension TagDetailPageViewController: UITableViewDelegate {
         self.present(nextVC, animated: true, completion: nil)
     }
     
+}
+
+extension TagDetailPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        print("tagDetailPage")
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            CommonApi.tagDetailPageRequest(completion: { data in
+                self.articles.removeAll()
+                if data.isEmpty {
+                    self.presentNetworkErrorView()
+                }
+                
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                if !self.articles.isEmpty {
+                    self.errorView.removeFromSuperview()
+                }
+                
+                self.tagDetailArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+        }
+    }
+}
+
+extension TagDetailPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
+    }
 }

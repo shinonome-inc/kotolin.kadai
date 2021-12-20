@@ -14,21 +14,36 @@ class QiitaOAuthPageViewController: UIViewController {
     
     @IBOutlet var qiitaOAuthPage: WKWebView!
     let secretKeys = SecretKey()
+    var commonApi = CommonApi()
+    var errorView = NetworkErrorView()
+    var urlRequestFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         qiitaOAuthPage.navigationDelegate = self
         
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
+        
+        checkNetwork()
+        
         let oauthURL = secretKeys.oauth
         let request = URLRequest(url: oauthURL)
-
         qiitaOAuthPage.load(request)
+        urlRequestFlag = true
     }
     
     static func getQueryStringParameter(url: String, param: String) -> String? {
         guard let url = URLComponents(string: url) else { return nil }
         return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
+    func checkNetwork() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            presentNetworkErrorView()
+            return
+        }
     }
 }
 
@@ -50,6 +65,8 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 "code": code,
             ]
 
+            checkNetwork()
+            
             AF.request(
                 accessTokenUrl,
                 method: .post,
@@ -58,12 +75,10 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 headers: nil
             )
             .response{ response in
-                
-                if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-                    
+                guard let data = response.data else {
+                    self.presentNetworkErrorView()
+                    return
                 }
-                
-                guard let data = response.data else { return }
                 do {
                     let dataItem =
                         try JSONDecoder().decode(OauthItem.self,from:data)
@@ -85,14 +100,45 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
 
-//    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-//
-//        print(error)
-//    }
-//
-//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-//
-//        print(error)
-//    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        print(error)
+        presentNetworkErrorView()
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print(error)
+        presentNetworkErrorView()
+    }
 }
+
+extension QiitaOAuthPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        print("qiitaArticlePage")
+        
+        // 認証ページを開くタイミングでネットワークエラーが発生した場合
+        if urlRequestFlag {
+            let oauthURL = secretKeys.oauth
+            let request = URLRequest(url: oauthURL)
+            qiitaOAuthPage.load(request)
+            urlRequestFlag = true
+        
+        // 認証ページで「認証」ボタンを押したタイミングでネットワークエラーが発生した場合
+        } else if !urlRequestFlag {
+            urlRequestFlag = false
+        }
+        
+        self.errorView.removeFromSuperview()
+    }
+}
+
+extension QiitaOAuthPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
+    }
+}
+
 

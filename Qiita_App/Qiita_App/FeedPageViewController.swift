@@ -70,7 +70,6 @@ class FeedPageViewController: UIViewController {
         case 0:
             qiitaArticle.isHidden = true
             nonSearchResult.isHidden = false
-            print("a")
         default:
             qiitaArticle.isHidden = false
             nonSearchResult.isHidden = true
@@ -181,7 +180,6 @@ extension FeedPageViewController: ReloadActionDelegate {
             print("Network error has not improved yet.")
         
         } else {
-            qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
