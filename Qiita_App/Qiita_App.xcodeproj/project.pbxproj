@@ -188,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				0716D7CD261EED7B008038D1 /* AppDelegate.swift */,
+				07EBA54527741675009C6765 /* SceneDelegate.swift */,
 				0716D7D3261EED7B008038D1 /* Main.storyboard */,
 				0716D7D6261EED7C008038D1 /* Assets.xcassets */,
 				0716D7D8261EED7C008038D1 /* LaunchScreen.storyboard */,
@@ -196,6 +197,7 @@
 				07EBA516277415F0009C6765 /* Tag */,
 				07EBA51F27741619009C6765 /* MyPage */,
 				07EBA5292774164D009C6765 /* Follow */,
+				07EBA5522774191D009C6765 /* User */,
 				07EBA52427741644009C6765 /* Setting */,
 				07EBA52E2774166E009C6765 /* Error */,
 				07EBA53927741675009C6765 /* Other */,
@@ -306,9 +308,15 @@
 				07EBA54227741675009C6765 /* MainTabBarController.swift */,
 				07EBA54327741675009C6765 /* CommonApi.swift */,
 				07EBA54427741675009C6765 /* SecretKey.swift */,
-				07EBA54527741675009C6765 /* SceneDelegate.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		07EBA5522774191D009C6765 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		4A35D3E28404B141AB06AA12 /* Frameworks */ = {
