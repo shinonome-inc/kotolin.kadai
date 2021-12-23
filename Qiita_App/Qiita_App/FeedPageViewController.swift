@@ -94,11 +94,12 @@ class FeedPageViewController: UIViewController {
             print("Network error has not improved yet.")
         
         } else {
+            page = 1
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 
                 data.forEach {
-                self.articles.append($0)
+                    self.articles.append($0)
                 }
                 
                 self.checkSearchResults(articles: self.articles)
@@ -107,7 +108,7 @@ class FeedPageViewController: UIViewController {
             }, url: CommonApi.structUrl(option: .FeedPage(page: page, searchTitle: searchText)))
         }
         
-        //上記の処理が終了したら下記が実行されます。
+        //上記の処理が終了したら下記が実行される
         DispatchQueue.main.async {
             self.qiitaArticle.refreshControl?.endRefreshing()
         }

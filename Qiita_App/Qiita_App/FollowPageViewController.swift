@@ -43,6 +43,7 @@ class FollowPageViewController: UIViewController {
     }
     var tableViewInfo: infoType = .followers
     var userInfos: [UserItem] = []
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,18 +56,50 @@ class FollowPageViewController: UIViewController {
                 self.userInfos.append($0)
             }
             self.followList.reloadData()
-        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)?page=\(page)")
+        
+        configureRefreshControl()
     }
     
     @IBAction func switchButton(_ sender: UISegmentedControl) {
         tableViewInfo = infoType.allCases[sender.selectedSegmentIndex]
         userInfos.removeAll()
+        page = 1
         CommonApi.followPageRequest(completion: { data in
             data.forEach {
                 self.userInfos.append($0)
             }
             self.followList.reloadData()
-        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+        }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)?page=\(page)")
+    }
+    
+    func configureRefreshControl () {
+        //RefreshControlを追加する処理
+        followList.refreshControl = UIRefreshControl()
+        followList.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            page = 1
+            CommonApi.followPageRequest(completion: { data in
+                self.userInfos.removeAll()
+                
+                data.forEach {
+                    self.userInfos.append($0)
+                }
+                self.followList.reloadData()
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)?page=\(page)")
+        }
+        
+        //上記の処理が終了したら下記が実行される
+        DispatchQueue.main.async {
+            self.followList.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -88,12 +121,13 @@ extension FollowPageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if userInfos.count >= 20 && indexPath.row == ( userInfos.count - 10) {
+            page += 1
             CommonApi.followPageRequest(completion: { data in
                 data.forEach {
                     self.userInfos.append($0)
                 }
                 self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)")
+            }, url: CommonApi.structUrl(option: .FollowPage) + "\(userId)/\(urlType)?page=\(page)")
         }
     }
 }

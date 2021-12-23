@@ -32,6 +32,38 @@ class TagDetailPageViewController: UIViewController {
             
             self.tagDetailArticle.reloadData()
         }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+        
+        configureRefreshControl()
+    }
+    
+    func configureRefreshControl () {
+        //RefreshControlを追加する処理
+        tagDetailArticle.refreshControl = UIRefreshControl()
+        tagDetailArticle.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        
+        } else {
+            page = 1
+            CommonApi.tagDetailPageRequest(completion: { data in
+                self.articles.removeAll()
+                
+                data.forEach {
+                    self.articles.append($0)
+                }
+                
+                self.tagDetailArticle.reloadData()
+            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+        }
+        
+        //上記の処理が終了したら下記が実行される
+        DispatchQueue.main.async {
+            self.tagDetailArticle.refreshControl?.endRefreshing()
+        }
     }
 }
 

@@ -25,7 +25,7 @@ class CommonApi {
         case .FeedPage(let page, let searchTitle):
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=title%3A\(searchTitle)"
         case .tagPage(let page):
-            return "https://qiita.com/api/v2/tags?sort=count&page=\(page)"
+            return "https://qiita.com/api/v2/tags?count=20&sort=count&page=\(page)"
         case .tagDetailPage(let page, let tagTitle):
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=tag%3A\(tagTitle)"
         case .myPage(let page):
