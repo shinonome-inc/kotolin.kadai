@@ -36,8 +36,8 @@
 		075BE0D6266B77C200D2DBCD /* TagListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075BE0D5266B77C200D2DBCD /* TagListCell.swift */; };
 		07994E5D26E0DF3E0098C640 /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */; };
 		079A87BC263E7BD0008C2503 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079A87BB263E7BD0008C2503 /* MainTabBarController.swift */; };
-		079DF1792662546B00F298F6 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079DF1782662546B00F298F6 /* SecretKey.swift */; };
 		07C3818126BBD1A600AFD4F9 /* FollowPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */; };
+		07CBA53527742527008D6BC4 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA53427742527008D6BC4 /* SecretKey.swift */; };
 		07CF898126AEEBBF00FF1344 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */; };
 		07CF898726AEF32100FF1344 /* AccessTokenDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */; };
 		07CF898926AEF8D900FF1344 /* MyPageCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */; };
@@ -104,8 +104,8 @@
 		075BE0D5266B77C200D2DBCD /* TagListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCell.swift; sourceTree = "<group>"; };
 		07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		079A87BB263E7BD0008C2503 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		079DF1782662546B00F298F6 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowPageCell.swift; sourceTree = "<group>"; };
+		07CBA53427742527008D6BC4 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		07CF898026AEEBBF00FF1344 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenDelivery.swift; sourceTree = "<group>"; };
 		07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCellViewController.swift; sourceTree = "<group>"; };
@@ -209,11 +209,11 @@
 				07CF898826AEF8D900FF1344 /* MyPageCellViewController.swift */,
 				072C44C726BA75CF00340215 /* FollowPageViewController.swift */,
 				07C3818026BBD1A600AFD4F9 /* FollowPageCell.swift */,
-				079DF1782662546B00F298F6 /* SecretKey.swift */,
 				07DE4A29268D9B8300ED9048 /* DataFormate.swift */,
 				07CF898626AEF32100FF1344 /* AccessTokenDelivery.swift */,
 				07E7B89C2671F4A500C0FB1E /* UIImage+Extension.swift */,
 				07E7B89E2671F51800C0FB1E /* UIImageView+Extension.swift */,
+				07CBA53427742527008D6BC4 /* SecretKey.swift */,
 				0758C5BA26E4C7EB00C80D6A /* UIViewController+Extension.swift */,
 				07014F1626C7C4D100221D45 /* EnhancedCircleImageView.swift */,
 				07994E5C26E0DF3E0098C640 /* ErrorPageViewController.swift */,
@@ -514,8 +514,8 @@
 				075B8153272FAA5400A90CC2 /* ApiModel.swift in Sources */,
 				07E7B89D2671F4A500C0FB1E /* UIImage+Extension.swift in Sources */,
 				0728906A2742230C0096EF51 /* NotLoginPageViewController.swift in Sources */,
+				07CBA53527742527008D6BC4 /* SecretKey.swift in Sources */,
 				0758C5BB26E4C7EB00C80D6A /* UIViewController+Extension.swift in Sources */,
-				079DF1792662546B00F298F6 /* SecretKey.swift in Sources */,
 				07DE4A2A268D9B8300ED9048 /* DataFormate.swift in Sources */,
 				0716D7D2261EED7B008038D1 /* TopPageViewController.swift in Sources */,
 				0702CC792668CDD30095CF82 /* TagListPageViewController.swift in Sources */,
