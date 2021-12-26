@@ -36,7 +36,6 @@ class CommonApi {
     }
     
     func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
-        
         AF.request(
             url,
             method: .get,
@@ -45,12 +44,12 @@ class CommonApi {
             headers: nil
         )
         .response { response in
-
             guard let data = response.data else {
                 let emptyData: [DataItem] = []
                 completion(emptyData)
                 return
             }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -91,6 +90,7 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -131,6 +131,7 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -159,18 +160,17 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-
             guard let data = response.data else {
                 let emptyData: [MyItem] = []
                 completion(emptyData)
                 return
             }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 let dataItem = try jsonDecoder.decode([MyItem].self,from:data)
-                
                 completion(dataItem)
                 
             } catch let error {
@@ -194,14 +194,13 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-
             guard let data = response.data else { return }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
-                
                 completion(myInfoItem[0])
                 
             } catch let error {
@@ -223,19 +222,17 @@ class CommonApi {
             headers: headers
         )
         .response { response in
-            
             guard let data = response.data else {
                 let emptyData: [UserItem] = []
                 completion(emptyData)
                 return
             }
+            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                let dataItem =
-                    try jsonDecoder.decode([UserItem].self,from:data)
-                
+                let dataItem = try jsonDecoder.decode([UserItem].self,from:data)
                 completion(dataItem)
                 
             } catch let error {

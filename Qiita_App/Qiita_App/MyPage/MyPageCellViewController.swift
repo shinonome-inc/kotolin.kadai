@@ -9,6 +9,7 @@
 import UIKit
 
 class MyPageCellViewController: UITableViewCell {
+    
     @IBOutlet var articleTitle: UILabel!
     @IBOutlet var articleInfo: UILabel!
     

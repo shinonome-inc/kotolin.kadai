@@ -9,6 +9,7 @@
 import UIKit
 
 class SetDataFormat {
+    
     func dateFormat(formatTarget: String) -> String {
         let format = DateFormatter()
         format.dateFormat = formatTarget
@@ -23,6 +24,7 @@ class SetDataFormat {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = format
+        
         return dateFormatter.date(from: dateValue) ?? Date()
     }
 }

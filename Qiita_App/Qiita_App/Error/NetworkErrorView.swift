@@ -9,6 +9,7 @@
 import UIKit
 
 class NetworkErrorView: UIView {
+    
     var reloadActionDelegate: ReloadActionDelegate?
     
     required init?(coder aDecoder: NSCoder) {
@@ -17,7 +18,7 @@ class NetworkErrorView: UIView {
     
     init() {
         super.init(frame: .zero)
-
+        
         let view = UINib(nibName: "NetworkErrorView", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
         view.frame = bounds
         addSubview(view)
@@ -25,9 +26,6 @@ class NetworkErrorView: UIView {
     
     @IBAction func reloadButton(_ sender: Any) {
         guard let reloadActionDelegate = reloadActionDelegate else { print("echo"); return}
-        
-        print(reloadActionDelegate)
-        
         reloadActionDelegate.errorReload()
     }
 }

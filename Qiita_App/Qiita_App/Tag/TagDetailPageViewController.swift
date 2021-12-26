@@ -72,9 +72,7 @@ extension TagDetailPageViewController: UITableViewDelegate {
         guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         nextVC.articleUrl = articles[indexPath.row].url
-        
         self.present(nextVC, animated: true, completion: nil)
     }
     

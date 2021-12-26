@@ -19,11 +19,11 @@ class FeedPageViewController: UIViewController {
     var page = 1
     var titleNum = 0
     var commonApi = CommonApi()
+    var errorView = NetworkErrorView()
     var removeFlag = false
     var searchTextDeleteFlag = false
     var searchText = ""
     var articles: [DataItem] = []
-    var errorView = NetworkErrorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,6 @@ class FeedPageViewController: UIViewController {
         qiitaArticle.dataSource = self
         qiitaArticle.delegate = self
         searchBar.delegate = self
-        
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
         
@@ -51,7 +50,6 @@ class FeedPageViewController: UIViewController {
             }
             
             self.checkSearchResults(articles: self.articles)
-            
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
     }
@@ -65,12 +63,10 @@ class FeedPageViewController: UIViewController {
     }
     
     func checkSearchResults(articles: [DataItem]) {
-        
         switch articles.count {
         case 0:
             qiitaArticle.isHidden = true
             nonSearchResult.isHidden = false
-            print("a")
         default:
             qiitaArticle.isHidden = false
             nonSearchResult.isHidden = true
@@ -97,7 +93,7 @@ extension FeedPageViewController: UITableViewDataSource {
         }
         
         cell.setArticleCell(data: articles[indexPath.row])
-
+        
         return cell
     }
     
@@ -128,12 +124,9 @@ extension FeedPageViewController: UITableViewDelegate {
         guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         nextVC.articleUrl = articles[indexPath.row].url
-        
         self.present(nextVC, animated: true, completion: nil)
     }
-    
 }
 
 //ワードで検索できるAPIに変更しました
@@ -141,7 +134,6 @@ extension FeedPageViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
-        
         guard let text = searchBar.text else { return }
         
         searchText = text
@@ -165,18 +157,14 @@ extension FeedPageViewController: UISearchBarDelegate {
             }
             
             self.checkSearchResults(articles: self.articles)
-            
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
     }
-    
 }
 
 extension FeedPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("feedPage")
-        
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
         
@@ -197,7 +185,6 @@ extension FeedPageViewController: ReloadActionDelegate {
                 }
                 
                 self.checkSearchResults(articles: self.articles)
-                
                 self.qiitaArticle.reloadData()
             }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
         }

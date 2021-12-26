@@ -7,11 +7,10 @@
 //
 
 import Foundation
-
 // ネストしているstructにはインデントあけてます
 struct OauthItem: Codable {
     let client_id: String
-    let scopes = [String]()
+    var scopes = [String]()
     let token: String
 }
 

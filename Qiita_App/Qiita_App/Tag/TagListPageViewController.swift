@@ -17,10 +17,10 @@ class TagListPageViewController: UIViewController {
     var page = 1
     var errorView = NetworkErrorView()
     var commonApi = CommonApi()
-    let margin: CGFloat = 16
     var viewWidth: CGFloat {
         return view.frame.width
     }
+    let margin: CGFloat = 16
     let cellWidth: CGFloat = 162
     let cellHeight: CGFloat = 138
     
@@ -73,6 +73,7 @@ class TagListPageViewController: UIViewController {
 }
 
 extension TagListPageViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let itemsPerRow = calcItemsPerRows()
         let inset = calcLeftAndRightInsets(itemsPerRows: itemsPerRow)
@@ -91,7 +92,6 @@ extension TagListPageViewController: UICollectionViewDelegate {
         guard let nextVC: TagDetailPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagDetailPage") as? TagDetailPageViewController else { return }
         
         nextVC.tagName = tagInfo[indexPath.row].id
-        
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -113,14 +113,11 @@ extension TagListPageViewController: UICollectionViewDelegate {
                 self.qiitaTag.reloadData()
             }, url: CommonApi.structUrl(option: .tagPage(page: page)))
         }
-        
-//        if tagCount ==  {
-//            presentNetworkErrorView()
-//        }
     }
 }
 
 extension TagListPageViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tagInfo.count
     }
@@ -144,8 +141,6 @@ extension TagListPageViewController: UICollectionViewDataSource {
 extension TagListPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("tagpage")
-        
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
         

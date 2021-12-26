@@ -17,7 +17,6 @@ class QiitaOAuthPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         qiitaOAuthPage.navigationDelegate = self
         
         let oauthURL = secretKeys.oauth
@@ -41,9 +40,8 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 let code = QiitaOAuthPageViewController.getQueryStringParameter(url: url, param: "code") else {
                     return
             }
-
-            let accessTokenUrl = "https://qiita.com/api/v2/access_tokens"
             
+            let accessTokenUrl = "https://qiita.com/api/v2/access_tokens"
             let params: Parameters = [
                 "client_id": secretKeys.clientId,
                 "client_secret": secretKeys.clientSecret,
@@ -58,16 +56,13 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 headers: nil
             )
             .response{ response in
-                
                 if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
                     
                 }
                 
                 guard let data = response.data else { return }
                 do {
-                    let dataItem =
-                        try JSONDecoder().decode(OauthItem.self,from:data)
-                    
+                    let dataItem = try JSONDecoder().decode(OauthItem.self,from:data)
                     AccessTokenDerivery.shared.setAccessToken(key: dataItem.token)
                     
                 } catch let error {
@@ -79,9 +74,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
             let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar")
             nextVC?.modalPresentationStyle = .fullScreen
             self.present(nextVC!, animated: true, completion: nil)
-            
         }
-        
         decisionHandler(.allow)
     }
 

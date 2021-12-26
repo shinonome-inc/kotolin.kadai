@@ -13,7 +13,6 @@ import Alamofire
 class TopPageViewController: UIViewController, WKNavigationDelegate {
     
     @IBAction func loginButton(_ sender: Any) {
-        
         let storyboard: UIStoryboard = self.storyboard!
         let OAuthPage = storyboard.instantiateViewController(withIdentifier: "OAuthPage")
 
@@ -21,7 +20,6 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     @IBAction func notLoguinButton(_ sender: Any) {
-        
         guard let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar") else { return }
         nextVC.modalPresentationStyle = .fullScreen
         AccessTokenDerivery.shared.deleteAccessToken()

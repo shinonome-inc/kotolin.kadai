@@ -48,12 +48,12 @@ class FollowPageViewController: UIViewController {
         super.viewDidLoad()
         
         followList.dataSource = self
-        
         selectSegmentedIndex.selectedSegmentIndex = tableViewInfo.settingSeggment
         CommonApi.followPageRequest(completion: { data in
             data.forEach {
                 self.userInfos.append($0)
             }
+            
             self.followList.reloadData()
         }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
     }
@@ -65,6 +65,7 @@ class FollowPageViewController: UIViewController {
             data.forEach {
                 self.userInfos.append($0)
             }
+            
             self.followList.reloadData()
         }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
     }
@@ -92,6 +93,7 @@ extension FollowPageViewController: UITableViewDataSource {
                 data.forEach {
                     self.userInfos.append($0)
                 }
+                
                 self.followList.reloadData()
             }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }

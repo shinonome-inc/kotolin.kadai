@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class MyPageViewController: UIViewController {
+    
     @IBOutlet var myArticlesList: UITableView!
     @IBOutlet var myIcon: UIImageView!
     @IBOutlet var myName: UILabel!
@@ -59,12 +60,12 @@ class MyPageViewController: UIViewController {
             self.myInfo = data
             
             guard let myData = self.myInfo?.user else { return }
-            
             guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
             
             do {
                 let imageData = try Data(contentsOf: imageUrl)
                 self.myIcon.image = UIImage(data: imageData)
+                
             } catch {
                 self.myIcon.image = UIImage(named: "errorUserIcon")
                 print("error: Can't get image")
@@ -138,8 +139,6 @@ extension MyPageViewController: UITableViewDelegate {
 extension MyPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("myPage")
-        
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
         
@@ -165,12 +164,12 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myInfo = data
                 
                 guard let myData = self.myInfo?.user else { return }
-                
                 guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
                 
                 do {
                     let imageData = try Data(contentsOf: imageUrl)
                     self.myIcon.image = UIImage(data: imageData)
+                    
                 } catch {
                     self.myIcon.image = UIImage(named: "errorUserIcon")
                     print("error: Can't get image")

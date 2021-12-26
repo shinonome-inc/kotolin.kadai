@@ -13,13 +13,6 @@ class ErrorPageViewController: UIViewController {
     @IBAction func reloadAction(_ sender: Any) {
         let nextVC = storyboard?.instantiateViewController(identifier: "TopPage")
         nextVC?.modalPresentationStyle = .fullScreen
-        
         self.present(nextVC!, animated: true, completion: nil)
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //errorHandling(errorType: errorContents)
     }
 }
