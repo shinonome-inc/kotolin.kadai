@@ -12,16 +12,13 @@ import Alamofire
 class TagDetailPageViewController: UIViewController {
     
     @IBOutlet var tagDetailArticle: UITableView!
-    
     var tagName = ""
     var page = 1
     var articles: [DataItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = tagName
-        
         tagDetailArticle.delegate = self
         tagDetailArticle.dataSource = self
         
@@ -29,7 +26,6 @@ class TagDetailPageViewController: UIViewController {
             data.forEach {
                 self.articles.append($0)
             }
-            
             self.tagDetailArticle.reloadData()
         }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
     }
@@ -45,9 +41,7 @@ extension TagDetailPageViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? TagDetailPageCellViewController else {
             return UITableViewCell()
         }
-        
         cell.setTagDetailArticleCell(data: articles[indexPath.row])
-
         return cell
     }
     
@@ -59,7 +53,6 @@ extension TagDetailPageViewController: UITableViewDataSource {
                 data.forEach {
                     self.articles.append($0)
                 }
-                
                 self.tagDetailArticle.reloadData()
             }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
         }
@@ -70,10 +63,8 @@ extension TagDetailPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let nextVC: QiitaArticlePageViewController = self.storyboard?.instantiateViewController(withIdentifier: "ArticlePage") as? QiitaArticlePageViewController else { return }
-        
         tableView.deselectRow(at: indexPath, animated: true)
         nextVC.articleUrl = articles[indexPath.row].url
         self.present(nextVC, animated: true, completion: nil)
     }
-    
 }

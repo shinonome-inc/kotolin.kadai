@@ -19,7 +19,6 @@ class TagListCellViewController: UICollectionViewCell {
         tagName.text = data.id
         tagCount.text = "記事件数：" + String(data.itemsCount)
         tagfollowers.text = "フォロワー数：" + String(data.followersCount)
-        
         guard let icon = data.iconUrl else { return }
         guard let imageUrl = URL(string: icon) else { print("error: Can't get Tagimage"); return }
         tagIcon.setImageByDefault(with: imageUrl)

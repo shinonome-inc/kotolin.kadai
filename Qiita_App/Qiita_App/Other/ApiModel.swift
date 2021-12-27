@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 // ネストしているstructにはインデントあけてます
 struct OauthItem: Codable {
     let client_id: String

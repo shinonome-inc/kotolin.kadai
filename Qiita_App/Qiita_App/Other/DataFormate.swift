@@ -16,7 +16,6 @@ class SetDataFormat {
         format.timeStyle = .none
         format.dateStyle = .medium
         format.locale = Locale(identifier: "ja_JP")
-        
         return format.string(from: StringToDate(dateValue: formatTarget, format: "yyyy-MM-dd'T'HH:mm'+'HH:mm"))
     }
 
@@ -24,7 +23,6 @@ class SetDataFormat {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = format
-        
         return dateFormatter.date(from: dateValue) ?? Date()
     }
 }

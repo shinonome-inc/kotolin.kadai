@@ -19,7 +19,7 @@ class CommonApi {
         case myPage(page: Int)
         case followPage
     }
-
+    
     class func structUrl(option: requestUrl) -> String {
         switch option {
         case .feedPage(let page, let searchTitle):
@@ -36,6 +36,7 @@ class CommonApi {
     }
     
     func feedPageRequest(completion: @escaping([DataItem]) -> Void, url: String) {
+        
         AF.request(
             url,
             method: .get,
@@ -49,14 +50,11 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-                
             } catch let error {
                 print("This is error message -> : \(error)")
                 let emptyData: [DataItem] = []
@@ -70,7 +68,6 @@ class CommonApi {
         let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
-        
         if AccessTokenDerivery.shared.getAccessToken().isEmpty {
             headers = nil
         } else {
@@ -90,14 +87,11 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let dataItem = try jsonDecoder.decode([TagItem].self,from:data)
                 completion(dataItem)
-                
             } catch let error {
                 print("This is error message -> : \(error)")
                 let emptyData: [TagItem] = []
@@ -111,7 +105,6 @@ class CommonApi {
         let accessToken: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
-        
         if AccessTokenDerivery.shared.getAccessToken().isEmpty {
             headers = nil
         } else {
@@ -131,14 +124,11 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let dataItem = try jsonDecoder.decode([DataItem].self,from:data)
                 completion(dataItem)
-                
             } catch let error {
                 print("This is error message -> : \(error)")
                 let emptyData: [DataItem] = []
@@ -165,14 +155,11 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let dataItem = try jsonDecoder.decode([MyItem].self,from:data)
                 completion(dataItem)
-                
             } catch let error {
                 print("This is error message -> : \(error)")
                 let emptyData: [MyItem] = []
@@ -195,14 +182,11 @@ class CommonApi {
         )
         .response { response in
             guard let data = response.data else { return }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
                 completion(myInfoItem[0])
-                
             } catch let error {
                 print("This is error message -> : \(error)")
             }
@@ -227,14 +211,11 @@ class CommonApi {
                 completion(emptyData)
                 return
             }
-            
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                
                 let dataItem = try jsonDecoder.decode([UserItem].self,from:data)
                 completion(dataItem)
-                
             } catch let error {
                 print("This is error message -> : \(error)")
                 let emptyData: [UserItem] = []

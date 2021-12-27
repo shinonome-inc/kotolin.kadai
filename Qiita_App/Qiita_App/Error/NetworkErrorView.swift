@@ -11,11 +11,9 @@ import UIKit
 class NetworkErrorView: UIView {
     
     var reloadActionDelegate: ReloadActionDelegate?
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
     init() {
         super.init(frame: .zero)
         

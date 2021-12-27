@@ -15,7 +15,6 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
     @IBAction func loginButton(_ sender: Any) {
         let storyboard: UIStoryboard = self.storyboard!
         let OAuthPage = storyboard.instantiateViewController(withIdentifier: "OAuthPage")
-
         self.present(OAuthPage, animated: true, completion: nil)
     }
     
@@ -23,7 +22,6 @@ class TopPageViewController: UIViewController, WKNavigationDelegate {
         guard let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar") else { return }
         nextVC.modalPresentationStyle = .fullScreen
         AccessTokenDerivery.shared.deleteAccessToken()
-        
         self.present(nextVC, animated: true, completion: nil)
     }
 }
