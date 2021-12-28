@@ -21,12 +21,9 @@ class QiitaOAuthPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         qiitaOAuthPage.navigationDelegate = self
-        
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
-        
         checkNetwork()
-        
         let oauthURL = secretKeys.oauth
         let request = URLRequest(url: oauthURL)
         qiitaOAuthPage.load(request)
@@ -61,7 +58,6 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 "client_secret": secretKeys.clientSecret,
                 "code": code,
             ]
-
             checkNetwork()
             
             AF.request(
@@ -81,7 +77,7 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                     AccessTokenDerivery.shared.setAccessToken(key: dataItem.token)
                 } catch let error {
                     print("This is error message -> : \(error)")
-                    
+                    self.presentNetworkErrorView()
                 }
             }
             let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar")
@@ -105,20 +101,16 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
 extension QiitaOAuthPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("qiitaArticlePage")
-        
         // 認証ページを開くタイミングでネットワークエラーが発生した場合
         if urlRequestFlag {
             let oauthURL = secretKeys.oauth
             let request = URLRequest(url: oauthURL)
             qiitaOAuthPage.load(request)
             urlRequestFlag = true
-        
         // 認証ページで「認証」ボタンを押したタイミングでネットワークエラーが発生した場合
         } else if !urlRequestFlag {
             urlRequestFlag = false
         }
-        
         self.errorView.removeFromSuperview()
     }
 }

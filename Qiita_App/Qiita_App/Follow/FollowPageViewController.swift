@@ -47,18 +47,15 @@ class FollowPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         followList.dataSource = self
-        
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
-        
         checkNetwork()
-        
         selectSegmentedIndex.selectedSegmentIndex = tableViewInfo.settingSeggment
+        
         CommonApi.followPageRequest(completion: { data in
             if data.isEmpty {
                 self.presentNetworkErrorView()
             }
-            
             data.forEach {
                 self.userInfos.append($0)
             }
@@ -70,11 +67,11 @@ class FollowPageViewController: UIViewController {
         tableViewInfo = infoType.allCases[sender.selectedSegmentIndex]
         checkNetwork()
         userInfos.removeAll()
+        
         CommonApi.followPageRequest(completion: { data in
             if data.isEmpty {
                 self.presentNetworkErrorView()
             }
-            
             data.forEach {
                 self.userInfos.append($0)
             }
@@ -107,6 +104,7 @@ extension FollowPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if userInfos.count >= 20 && indexPath.row == ( userInfos.count - 10) {
             checkNetwork()
+            
             CommonApi.followPageRequest(completion: { data in
                 data.forEach {
                     self.userInfos.append($0)
@@ -120,26 +118,20 @@ extension FollowPageViewController: UITableViewDataSource {
 extension FollowPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("followPage")
-        
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
-        
         } else {
             CommonApi.followPageRequest(completion: { data in
                 self.userInfos.removeAll()
                 if data.isEmpty {
                     self.presentNetworkErrorView()
                 }
-                
                 data.forEach {
                     self.userInfos.append($0)
                 }
-                
                 if !self.userInfos.isEmpty {
                     self.errorView.removeFromSuperview()
                 }
-                
                 self.followList.reloadData()
             }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }

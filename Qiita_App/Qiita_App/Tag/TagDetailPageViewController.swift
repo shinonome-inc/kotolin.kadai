@@ -23,17 +23,14 @@ class TagDetailPageViewController: UIViewController {
         self.navigationItem.title = tagName
         tagDetailArticle.delegate = self
         tagDetailArticle.dataSource = self
-        
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
-        
         checkNetwork()
         
         CommonApi.tagDetailPageRequest(completion: { data in
             if data.isEmpty {
                 self.presentNetworkErrorView()
             }
-            
             data.forEach {
                 self.articles.append($0)
             }
@@ -72,7 +69,6 @@ extension TagDetailPageViewController: UITableViewDataSource {
                 if data.isEmpty {
                     self.presentNetworkErrorView()
                 }
-                
                 data.forEach {
                     self.articles.append($0)
                 }
@@ -95,26 +91,20 @@ extension TagDetailPageViewController: UITableViewDelegate {
 extension TagDetailPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        print("tagDetailPage")
-        
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
-        
         } else {
             CommonApi.tagDetailPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
                     self.presentNetworkErrorView()
                 }
-                
                 data.forEach {
                     self.articles.append($0)
                 }
-                
                 if !self.articles.isEmpty {
                     self.errorView.removeFromSuperview()
                 }
-                
                 self.tagDetailArticle.reloadData()
             }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
         }
