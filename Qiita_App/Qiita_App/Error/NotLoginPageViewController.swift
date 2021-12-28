@@ -9,12 +9,11 @@
 import UIKit
 
 class NotLoginPageViewController: UIView {
-    var loginActionDelegate: LoginActionDelegate?
     
+    var loginActionDelegate: LoginActionDelegate?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
     init() {
         super.init(frame: .zero)
 
@@ -25,7 +24,6 @@ class NotLoginPageViewController: UIView {
     
     @IBAction func loginButton(_ sender: Any) {
         guard let loginActionDelegate = loginActionDelegate else { return }
-        
         loginActionDelegate.loginAction()
     }
 }

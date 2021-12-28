@@ -9,10 +9,9 @@
 import UIKit
 
 final public class AccessTokenDerivery {
+    
     var token = ""
-    
     private init() {}
-    
     public static let shared = AccessTokenDerivery()
     
     public func getAccessToken() -> String {

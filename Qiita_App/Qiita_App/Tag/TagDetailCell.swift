@@ -17,7 +17,6 @@ class TagDetailPageCellViewController: UITableViewCell {
     func setTagDetailArticleCell(data: DataItem) {
         articleTitle.text = data.title
         articleInfo.text = "@\(data.user.id) 投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt)) LGTM：\(data.likesCount)"
-        
         guard let imageUrl = URL(string: data.user.profileImageUrl) else { print("error: Can't get Userimage"); return }
         userIcon.setImageByDefault(with: imageUrl)
     }

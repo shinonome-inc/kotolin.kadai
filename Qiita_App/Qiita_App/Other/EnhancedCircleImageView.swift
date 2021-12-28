@@ -23,5 +23,4 @@ class EnhancedCircleImageView: UIImageView {
             super.image = newValue?.roundImage()
         }
     }
-    
 }

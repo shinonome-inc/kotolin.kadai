@@ -9,13 +9,13 @@
 import UIKit
 
 class SetDataFormat {
+    
     func dateFormat(formatTarget: String) -> String {
         let format = DateFormatter()
         format.dateFormat = formatTarget
         format.timeStyle = .none
         format.dateStyle = .medium
         format.locale = Locale(identifier: "ja_JP")
-        
         return format.string(from: StringToDate(dateValue: formatTarget, format: "yyyy-MM-dd'T'HH:mm'+'HH:mm"))
     }
 

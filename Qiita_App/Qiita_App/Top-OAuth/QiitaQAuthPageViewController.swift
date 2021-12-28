@@ -17,12 +17,9 @@ class QiitaOAuthPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         qiitaOAuthPage.navigationDelegate = self
-        
         let oauthURL = secretKeys.oauth
         let request = URLRequest(url: oauthURL)
-
         qiitaOAuthPage.load(request)
     }
     
@@ -33,23 +30,21 @@ class QiitaOAuthPageViewController: UIViewController {
 }
 
 extension QiitaOAuthPageViewController: WKNavigationDelegate {
+    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.scheme == "syunya-app", navigationAction.request.url?.host == "qiitasearch.com" {
-            
             guard
                 let url = navigationAction.request.url?.absoluteString,
                 let code = QiitaOAuthPageViewController.getQueryStringParameter(url: url, param: "code") else {
                     return
             }
-
             let accessTokenUrl = "https://qiita.com/api/v2/access_tokens"
-            
             let params: Parameters = [
                 "client_id": secretKeys.clientId,
                 "client_secret": secretKeys.clientSecret,
                 "code": code,
             ]
-
+            
             AF.request(
                 accessTokenUrl,
                 method: .post,
@@ -58,30 +53,22 @@ extension QiitaOAuthPageViewController: WKNavigationDelegate {
                 headers: nil
             )
             .response{ response in
-                
                 if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
                     
                 }
-                
                 guard let data = response.data else { return }
                 do {
-                    let dataItem =
-                        try JSONDecoder().decode(OauthItem.self,from:data)
-                    
+                    let dataItem = try JSONDecoder().decode(OauthItem.self,from:data)
                     AccessTokenDerivery.shared.setAccessToken(key: dataItem.token)
-                    
                 } catch let error {
                     print("This is error message -> : \(error)")
                     
                 }
             }
-            
             let nextVC = storyboard?.instantiateViewController(identifier: "MainTabBar")
             nextVC?.modalPresentationStyle = .fullScreen
             self.present(nextVC!, animated: true, completion: nil)
-            
         }
-        
         decisionHandler(.allow)
     }
 

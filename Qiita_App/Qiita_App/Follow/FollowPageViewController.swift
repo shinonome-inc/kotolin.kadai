@@ -26,7 +26,6 @@ class FollowPageViewController: UIViewController {
                 return "followees"
             }
         }
-        
         var settingSeggment: Int {
             switch self {
             case .followers:
@@ -36,7 +35,6 @@ class FollowPageViewController: UIViewController {
             }
         }
     }
-    
     var userId = ""
     var urlType: String {
         return tableViewInfo.urlType
@@ -46,9 +44,7 @@ class FollowPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         followList.dataSource = self
-        
         selectSegmentedIndex.selectedSegmentIndex = tableViewInfo.settingSeggment
         CommonApi.followPageRequest(completion: { data in
             data.forEach {
@@ -80,9 +76,7 @@ extension FollowPageViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FollowPageCellViewController else {
             return UITableViewCell()
         }
-        
         cell.setArticleCell(data: userInfos[indexPath.row])
-
         return cell
     }
     

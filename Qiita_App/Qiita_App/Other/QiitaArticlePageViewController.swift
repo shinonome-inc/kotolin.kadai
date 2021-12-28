@@ -12,14 +12,11 @@ import WebKit
 class QiitaArticlePageViewController: UIViewController {
     
     @IBOutlet var qiitaArticle: WKWebView!
-    
     var articleUrl = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         qiitaArticle.navigationDelegate = self
-        
         guard let unwrappedUrl = URL(string: articleUrl) else { return }
         let request = URLRequest(url: unwrappedUrl)
         self.qiitaArticle.load(request)
