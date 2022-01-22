@@ -19,8 +19,13 @@ class QiitaArticlePageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         qiitaArticle.navigationDelegate = self
+<<<<<<< HEAD:Qiita_App/Qiita_App/QiitaArticlePageViewController.swift
+        
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
+        
+=======
+>>>>>>> feature/#12:Qiita_App/Qiita_App/Other/QiitaArticlePageViewController.swift
         guard let unwrappedUrl = URL(string: articleUrl) else { return }
         let request = URLRequest(url: unwrappedUrl)
         self.qiitaArticle.load(request)
@@ -43,9 +48,12 @@ extension QiitaArticlePageViewController: WKNavigationDelegate {
 extension QiitaArticlePageViewController: ReloadActionDelegate {
     
     func errorReload() {
+        print("qiitaArticlePage")
+        
         guard let unwrappedUrl = URL(string: articleUrl) else { return }
         let request = URLRequest(url: unwrappedUrl)
         self.qiitaArticle.load(request)
+        
         // TableView側のネットワーク復旧を確認してからerrorViewを閉じる
         CommonApi().feedPageRequest(completion: { data in
             if !data.isEmpty {

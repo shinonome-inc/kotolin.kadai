@@ -152,6 +152,11 @@ extension FeedPageViewController: ReloadActionDelegate {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             print("Network error has not improved yet.")
         } else {
+<<<<<<< HEAD:Qiita_App/Qiita_App/FeedPageViewController.swift
+=======
+            qiitaArticle.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            
+>>>>>>> feature/#12:Qiita_App/Qiita_App/Feed/FeedPageViewController.swift
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
