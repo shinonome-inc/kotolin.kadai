@@ -18,8 +18,8 @@ class MyPageViewController: UIViewController {
     @IBOutlet var myIntroduction: UILabel!
     @IBOutlet var followCount: UIButton!
     @IBOutlet var followerCount: UIButton!
-    var myArticles: [MyItem] = []
-    var myInfo: UserInfo?
+    var myArticles: [UserArticleItem] = []
+    var myInfo: UserHeader?
     var page = 1
     var id = ""
     var commonApi = CommonApi()
@@ -50,9 +50,9 @@ class MyPageViewController: UIViewController {
             self.myArticlesList.reloadData()
         }, url: CommonApi.structUrl(option: .myPage(page: page)))
         
-        CommonApi().myPageHeaderRequest(completion: { data in
+        CommonApi.myPageHeaderRequest(completion: { data in
             self.myInfo = data
-            guard let myData = self.myInfo?.user else { return }
+            guard let myData = self.myInfo else { return }
             guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
             do {
                 let imageData = try Data(contentsOf: imageUrl)
@@ -67,7 +67,7 @@ class MyPageViewController: UIViewController {
             self.myIntroduction.text = myData.description
             self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
             self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
-        }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        }, url: CommonApi.structUrl(option: .myPageHeader))
     }
     
     @IBAction func pushFollowCount(_ sender: Any) {
@@ -142,9 +142,9 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myArticlesList.reloadData()
             }, url: CommonApi.structUrl(option: .myPage(page: page)))
             
-            CommonApi().myPageHeaderRequest(completion: { data in
+            CommonApi.myPageHeaderRequest(completion: { data in
                 self.myInfo = data
-                guard let myData = self.myInfo?.user else { return }
+                guard let myData = self.myInfo else { return }
                 guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
                 do {
                     let imageData = try Data(contentsOf: imageUrl)
@@ -159,7 +159,7 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myIntroduction.text = myData.description
                 self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
                 self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
-            }, url: CommonApi.structUrl(option: .myPage(page: page)))
+            }, url: CommonApi.structUrl(option: .myPageHeader))
         }
     }
 }

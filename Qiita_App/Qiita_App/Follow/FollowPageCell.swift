@@ -22,6 +22,7 @@ class FollowPageCellViewController: UITableViewCell {
         userId.text = data.id
         userInfo.text = "\(data.followersCount) フォロワー　Posts：\(data.itemsCount)"
         userIntroduction.text = data.description
+        followCell.isUserInteractionEnabled = false
         followCell.layer.borderColor = UIColor.lightGray.cgColor
         followCell.layer.borderWidth = 0.5
         followCell.layer.cornerRadius = 10

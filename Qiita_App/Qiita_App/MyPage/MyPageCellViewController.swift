@@ -13,7 +13,7 @@ class MyPageCellViewController: UITableViewCell {
     @IBOutlet var articleTitle: UILabel!
     @IBOutlet var articleInfo: UILabel!
     
-    func setMyArticleCell(data: MyItem) {
+    func setMyArticleCell(data: UserArticleItem) {
         articleTitle.text = data.title
         articleInfo.text = "投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt)) LGTM：\(data.likesCount)"
     }

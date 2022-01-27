@@ -17,6 +17,9 @@ class CommonApi {
         case tagPage(page: Int)
         case tagDetailPage(page: Int, tagTitle: String)
         case myPage(page: Int)
+        case myPageHeader
+        case UserPage(page: Int, id: String)
+        case UserPageHeader(id: String)
         case followPage
     }
     
@@ -30,6 +33,12 @@ class CommonApi {
             return "https://qiita.com/api/v2/items?count=20&page=\(page)&query=tag%3A\(tagTitle)"
         case .myPage(let page):
             return "https://qiita.com/api/v2/authenticated_user/items?page=\(page)"
+        case .myPageHeader:
+            return "https://qiita.com/api/v2/authenticated_user"
+        case .UserPage(let page, let id):
+            return "https://qiita.com/api/v2/users/\(id)/items?page=\(page)"
+        case .UserPageHeader(let id):
+            return "https://qiita.com/api/v2/users/\(id)"
         case .followPage:
             return "https://qiita.com/api/v2/users/"
         }
@@ -137,7 +146,7 @@ class CommonApi {
         }
     }
     
-    func myPageRequest(completion: @escaping([MyItem]) -> Void, url: String) {
+    func myPageRequest(completion: @escaping([UserArticleItem]) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -151,24 +160,24 @@ class CommonApi {
         )
         .response { response in
             guard let data = response.data else {
-                let emptyData: [MyItem] = []
+                let emptyData: [UserArticleItem] = []
                 completion(emptyData)
                 return
             }
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let dataItem = try jsonDecoder.decode([MyItem].self,from:data)
+                let dataItem = try jsonDecoder.decode([UserArticleItem].self,from:data)
                 completion(dataItem)
             } catch let error {
                 print("This is error message -> : \(error)")
-                let emptyData: [MyItem] = []
+                let emptyData: [UserArticleItem] = []
                 completion(emptyData)
             }
         }
     }
     
-    func myPageHeaderRequest(completion: @escaping(UserInfo) -> Void, url: String) {
+    class func myPageHeaderRequest(completion: @escaping(UserHeader) -> Void, url: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
         ]
@@ -185,7 +194,83 @@ class CommonApi {
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let myInfoItem = try jsonDecoder.decode([UserInfo].self,from:data)
+                let myInfoItem = try jsonDecoder.decode(UserHeader.self,from:data)
+                completion(myInfoItem)
+            //TODO:エラー用の画面を実装する
+            } catch let error {
+                print("This is error message -> : \(error)")
+            }
+        }
+    }
+    
+    class func userPageRequest(completion: @escaping([UserArticleItem]) -> Void, url: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            parameters: nil,
+            encoding: JSONEncoding.default,
+            headers: headers
+        )
+        .response { response in
+            guard let data = response.data else { return }
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let dataItem = try jsonDecoder.decode([UserArticleItem].self,from:data)
+                completion(dataItem)
+            } catch let error {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    class func userPageHeaderRequest(completion: @escaping(UserHeader) -> Void, url: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            parameters: nil,
+            encoding: JSONEncoding.default,
+            headers: headers
+        )
+        .response { response in
+            guard let data = response.data else { return }
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let userInfoItem = try jsonDecoder.decode(UserHeader.self,from:data)
+                completion(userInfoItem)
+            } catch let error {
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    func myPageHeaderRequest(completion: @escaping(UserHeader) -> Void, url: String) {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
+        ]
+        
+        AF.request(
+            url,
+            method: .get,
+            parameters: nil,
+            encoding: JSONEncoding.default,
+            headers: headers
+        )
+        .response { response in
+            guard let data = response.data else { return }
+            do {
+                let jsonDecoder = JSONDecoder()
+                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+                let myInfoItem = try jsonDecoder.decode([UserHeader].self,from:data)
                 completion(myInfoItem[0])
             } catch let error {
                 print("This is error message -> : \(error)")

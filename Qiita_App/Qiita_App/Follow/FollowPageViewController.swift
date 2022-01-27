@@ -35,6 +35,7 @@ class FollowPageViewController: UIViewController {
             }
         }
     }
+    //let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(followCellTap(_:)))
     var userId = ""
     var urlType: String {
         return tableViewInfo.urlType
@@ -85,6 +86,12 @@ class FollowPageViewController: UIViewController {
             return
         }
     }
+    
+//    @objc func followCellTap(_ gesture: UITapGestureRecognizer) {
+//        guard let nextVC: UserPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "UserPage") as? UserPageViewController else { return }
+//        nextVC.id = userInfos[indexPath.row].id
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+//    }
 }
 
 extension FollowPageViewController: UITableViewDataSource {
@@ -112,6 +119,15 @@ extension FollowPageViewController: UITableViewDataSource {
                 self.followList.reloadData()
             }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }
+    }
+}
+
+extension FollowPageViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let nextVC: UserPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "UserPage") as? UserPageViewController else { return }
+        nextVC.id = userInfos[indexPath.row].id
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
