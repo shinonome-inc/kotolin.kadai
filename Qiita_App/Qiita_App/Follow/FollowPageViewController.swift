@@ -35,7 +35,6 @@ class FollowPageViewController: UIViewController {
             }
         }
     }
-    //let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(followCellTap(_:)))
     var userId = ""
     var urlType: String {
         return tableViewInfo.urlType
@@ -48,6 +47,7 @@ class FollowPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         followList.dataSource = self
+        followList.delegate = self
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
         checkNetwork()
@@ -86,12 +86,6 @@ class FollowPageViewController: UIViewController {
             return
         }
     }
-    
-//    @objc func followCellTap(_ gesture: UITapGestureRecognizer) {
-//        guard let nextVC: UserPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "UserPage") as? UserPageViewController else { return }
-//        nextVC.id = userInfos[indexPath.row].id
-//        self.navigationController?.pushViewController(nextVC, animated: true)
-//    }
 }
 
 extension FollowPageViewController: UITableViewDataSource {
@@ -101,7 +95,7 @@ extension FollowPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FollowPageCellViewController else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? FollowPageCellViewController else {
             return UITableViewCell()
         }
         cell.setArticleCell(data: userInfos[indexPath.row])
@@ -126,6 +120,7 @@ extension FollowPageViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let nextVC: UserPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "UserPage") as? UserPageViewController else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
         nextVC.id = userInfos[indexPath.row].id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }

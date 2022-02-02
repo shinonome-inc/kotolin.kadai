@@ -16,13 +16,13 @@ class FollowPageCellViewController: UITableViewCell {
     @IBOutlet var userInfo: UILabel!
     @IBOutlet var userIntroduction: UILabel!
     @IBOutlet var followCell: UIView!
+    var id: [String] = []
     
     func setArticleCell(data: UserItem) {
         userName.text = data.name
         userId.text = data.id
         userInfo.text = "\(data.followersCount) フォロワー　Posts：\(data.itemsCount)"
         userIntroduction.text = data.description
-        followCell.isUserInteractionEnabled = false
         followCell.layer.borderColor = UIColor.lightGray.cgColor
         followCell.layer.borderWidth = 0.5
         followCell.layer.cornerRadius = 10
