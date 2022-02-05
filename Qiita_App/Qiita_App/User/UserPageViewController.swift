@@ -88,6 +88,10 @@ extension UserPageViewController: UITableViewDataSource {
         cell.setUserArticleCell(data: userArticles[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "投稿記事"
+    }
 }
 
 extension UserPageViewController: UITableViewDelegate {
