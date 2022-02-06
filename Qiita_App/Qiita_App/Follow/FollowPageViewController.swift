@@ -64,6 +64,10 @@ class FollowPageViewController: UIViewController {
         }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     @IBAction func switchButton(_ sender: UISegmentedControl) {
         tableViewInfo = infoType.allCases[sender.selectedSegmentIndex]
         checkNetwork()
