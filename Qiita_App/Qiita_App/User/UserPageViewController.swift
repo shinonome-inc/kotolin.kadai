@@ -27,6 +27,7 @@ class UserPageViewController: UIViewController {
         userArticlesList.dataSource = self
         userArticlesList.delegate = self
         tabBarController?.tabBar.isHidden = true
+        MyPageViewController().settingHeader(userArticlesList)
         
         CommonApi.userPageRequest(completion: { data in
             data.forEach {
@@ -87,15 +88,6 @@ extension UserPageViewController: UITableViewDataSource {
         }
         cell.setUserArticleCell(data: userArticles[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
-        label.text = "　　投稿記事"
-        label.font = UIFont.systemFont(ofSize: 12.0)
-        label.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)}
-        label.textColor = UIColor {_ in return #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)}
-        return label
     }
 }
 

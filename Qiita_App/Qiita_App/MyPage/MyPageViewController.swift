@@ -33,6 +33,7 @@ class MyPageViewController: UIViewController {
         reLogin.loginActionDelegate = self
         myArticlesList.dataSource = self
         myArticlesList.delegate = self
+        settingHeader(myArticlesList)
         checkNetwork()
         if AccessTokenDerivery.shared.getAccessToken().isEmpty {
             reLogin.center = self.view.center
@@ -90,6 +91,15 @@ class MyPageViewController: UIViewController {
             return
         }
     }
+    
+    func settingHeader(_ tableView: UITableView) {
+        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 28))
+        label.text = "　　投稿記事"
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)}
+        label.textColor = UIColor {_ in return #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)}
+        tableView.tableHeaderView = label
+    }
 }
 
 extension MyPageViewController: UITableViewDataSource {
@@ -104,15 +114,6 @@ extension MyPageViewController: UITableViewDataSource {
         }
         cell.setMyArticleCell(data: myArticles[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
-        label.text = "　　投稿記事"
-        label.font = UIFont.systemFont(ofSize: 12.0)
-        label.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)}
-        label.textColor = UIColor {_ in return #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)}
-        return label
     }
 }
 
