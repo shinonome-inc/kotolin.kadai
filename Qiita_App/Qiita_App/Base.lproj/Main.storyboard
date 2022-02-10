@@ -595,7 +595,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Imc-JJ-1bm">
-                                <rect key="frame" x="20" y="99" width="374" height="797"/>
+                                <rect key="frame" x="20" y="99" width="374" height="714"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="114" id="if1-1a-e85" customClass="FollowPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="114"/>
@@ -695,7 +695,7 @@
                         <viewLayoutGuide key="safeArea" id="AcF-Wb-tzR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Imc-JJ-1bm" secondAttribute="bottom" id="2qY-cJ-r2J"/>
+                            <constraint firstAttribute="bottom" secondItem="Imc-JJ-1bm" secondAttribute="bottom" constant="83" id="2qY-cJ-r2J"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="leading" secondItem="Imc-JJ-1bm" secondAttribute="leading" id="3ZC-d1-eSa"/>
                             <constraint firstItem="WMo-Wt-DW8" firstAttribute="top" secondItem="AcF-Wb-tzR" secondAttribute="top" constant="12" id="4LB-k8-cOz"/>
                             <constraint firstItem="Imc-JJ-1bm" firstAttribute="top" secondItem="WMo-Wt-DW8" secondAttribute="bottom" constant="12" id="KSE-Kr-OQu"/>

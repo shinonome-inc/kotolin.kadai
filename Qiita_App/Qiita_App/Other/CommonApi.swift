@@ -18,8 +18,8 @@ class CommonApi {
         case tagDetailPage(page: Int, tagTitle: String)
         case myPage(page: Int)
         case myPageHeader
-        case UserPage(page: Int, id: String)
-        case UserPageHeader(id: String)
+        case userPage(page: Int, id: String)
+        case userPageHeader(id: String)
         case followPage
     }
     
@@ -35,9 +35,9 @@ class CommonApi {
             return "https://qiita.com/api/v2/authenticated_user/items?page=\(page)"
         case .myPageHeader:
             return "https://qiita.com/api/v2/authenticated_user"
-        case .UserPage(let page, let id):
+        case .userPage(let page, let id):
             return "https://qiita.com/api/v2/users/\(id)/items?page=\(page)"
-        case .UserPageHeader(let id):
+        case .userPageHeader(let id):
             return "https://qiita.com/api/v2/users/\(id)"
         case .followPage:
             return "https://qiita.com/api/v2/users/"

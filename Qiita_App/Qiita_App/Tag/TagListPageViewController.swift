@@ -40,6 +40,7 @@ class TagListPageViewController: UIViewController {
             }
             self.qiitaTag.reloadData()
         }, url: CommonApi.structUrl(option: .tagPage(page: page)))
+        configureRefreshControl()
     }
     
     func calcItemsPerRows() -> Int {
@@ -59,6 +60,30 @@ class TagListPageViewController: UIViewController {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             presentNetworkErrorView()
             return
+        }
+    }
+    
+    func configureRefreshControl () {
+        qiitaTag.refreshControl = UIRefreshControl()
+        qiitaTag.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+            print("Network error has not improved yet.")
+        } else {
+            page = 1
+            
+            CommonApi().tagPageRequest(completion: { data in
+                self.tagInfo.removeAll()
+                data.forEach {
+                    self.tagInfo.append($0)
+                }
+                self.qiitaTag.reloadData()
+            }, url: CommonApi.structUrl(option: .tagPage(page: page)))
+        }
+        DispatchQueue.main.async {
+            self.qiitaTag.refreshControl?.endRefreshing()
         }
     }
 }
