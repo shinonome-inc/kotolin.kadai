@@ -16,6 +16,7 @@ class FollowPageCellViewController: UITableViewCell {
     @IBOutlet var userInfo: UILabel!
     @IBOutlet var userIntroduction: UILabel!
     @IBOutlet var followCell: UIView!
+    var id: [String] = []
     
     func setArticleCell(data: UserItem) {
         userName.text = data.name

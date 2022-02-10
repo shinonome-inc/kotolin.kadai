@@ -35,25 +35,21 @@ struct TagItem: Codable {
     let itemsCount: Int
 }
 
-struct MyItem: Codable {
+struct UserArticleItem: Codable {
     let title: String
     let url: String
     let likesCount: Int
     var createdAt: String
 }
 
-struct UserInfo: Codable {
-    var user: MyHeader
+struct UserHeader: Codable {
+    var id: String
+    var name: String
+    var description: String?
+    var profileImageUrl: String
+    var followeesCount: Int
+    var followersCount: Int
 }
-
-    struct MyHeader: Codable {
-        var id: String
-        var name: String
-        var description: String
-        var profileImageUrl: String
-        var followeesCount: Int
-        var followersCount: Int
-    }
 
 struct UserItem: Codable {
     var description: String?

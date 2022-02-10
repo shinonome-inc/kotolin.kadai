@@ -18,8 +18,8 @@ class MyPageViewController: UIViewController {
     @IBOutlet var myIntroduction: UILabel!
     @IBOutlet var followCount: UIButton!
     @IBOutlet var followerCount: UIButton!
-    var myArticles: [MyItem] = []
-    var myInfo: UserInfo?
+    var myArticles: [UserArticleItem] = []
+    var myInfo: UserHeader?
     var page = 1
     var id = ""
     var commonApi = CommonApi()
@@ -33,6 +33,7 @@ class MyPageViewController: UIViewController {
         reLogin.loginActionDelegate = self
         myArticlesList.dataSource = self
         myArticlesList.delegate = self
+        settingHeader(myArticlesList)
         checkNetwork()
         if AccessTokenDerivery.shared.getAccessToken().isEmpty {
             reLogin.center = self.view.center
@@ -50,9 +51,9 @@ class MyPageViewController: UIViewController {
             self.myArticlesList.reloadData()
         }, url: CommonApi.structUrl(option: .myPage(page: page)))
         
-        CommonApi().myPageHeaderRequest(completion: { data in
+        CommonApi.myPageHeaderRequest(completion: { data in
             self.myInfo = data
-            guard let myData = self.myInfo?.user else { return }
+            guard let myData = self.myInfo else { return }
             guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
             do {
                 let imageData = try Data(contentsOf: imageUrl)
@@ -67,7 +68,7 @@ class MyPageViewController: UIViewController {
             self.myIntroduction.text = myData.description
             self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
             self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
-        }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        }, url: CommonApi.structUrl(option: .myPageHeader))
     }
     
     @IBAction func pushFollowCount(_ sender: Any) {
@@ -90,6 +91,15 @@ class MyPageViewController: UIViewController {
             return
         }
     }
+    
+    func settingHeader(_ tableView: UITableView) {
+        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 28))
+        label.text = "　　投稿記事"
+        label.font = UIFont.systemFont(ofSize: 12.0)
+        label.backgroundColor = UIColor {_ in return #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)}
+        label.textColor = UIColor {_ in return #colorLiteral(red: 0.5098039216, green: 0.5098039216, blue: 0.5098039216, alpha: 1)}
+        tableView.tableHeaderView = label
+    }
 }
 
 extension MyPageViewController: UITableViewDataSource {
@@ -104,10 +114,6 @@ extension MyPageViewController: UITableViewDataSource {
         }
         cell.setMyArticleCell(data: myArticles[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "投稿記事"
     }
 }
 
@@ -142,9 +148,9 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myArticlesList.reloadData()
             }, url: CommonApi.structUrl(option: .myPage(page: page)))
             
-            CommonApi().myPageHeaderRequest(completion: { data in
+            CommonApi.myPageHeaderRequest(completion: { data in
                 self.myInfo = data
-                guard let myData = self.myInfo?.user else { return }
+                guard let myData = self.myInfo else { return }
                 guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
                 do {
                     let imageData = try Data(contentsOf: imageUrl)
@@ -159,7 +165,7 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myIntroduction.text = myData.description
                 self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
                 self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
-            }, url: CommonApi.structUrl(option: .myPage(page: page)))
+            }, url: CommonApi.structUrl(option: .myPageHeader))
         }
     }
 }

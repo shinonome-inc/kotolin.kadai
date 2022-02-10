@@ -1,19 +1,19 @@
 //
-//  MyPageCellViewController.swift
+//  UserPageCell.swift
 //  Qiita_App
 //
-//  Created by Sakai Syunya on 2021/07/26.
+//  Created by Sakai Syunya on 2021/10/04.
 //  Copyright © 2021 Sakai Syunya. All rights reserved.
 //
 
 import UIKit
 
-class MyPageCellViewController: UITableViewCell {
+class UserPageCellViewController: UITableViewCell {
     
     @IBOutlet var articleTitle: UILabel!
     @IBOutlet var articleInfo: UILabel!
     
-    func setMyArticleCell(data: UserArticleItem) {
+    func setUserArticleCell(data: UserArticleItem) {
         articleTitle.text = data.title
         articleInfo.text = "投稿日：\(SetDataFormat().dateFormat(formatTarget: data.createdAt)) LGTM：\(data.likesCount)"
     }

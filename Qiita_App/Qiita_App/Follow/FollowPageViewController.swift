@@ -47,6 +47,7 @@ class FollowPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         followList.dataSource = self
+        followList.delegate = self
         errorView.reloadActionDelegate = self
         commonApi.presentNetworkErrorViewDelegate = self
         checkNetwork()
@@ -61,6 +62,10 @@ class FollowPageViewController: UIViewController {
             }
             self.followList.reloadData()
         }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func switchButton(_ sender: UISegmentedControl) {
@@ -94,7 +99,7 @@ extension FollowPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FollowPageCellViewController else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? FollowPageCellViewController else {
             return UITableViewCell()
         }
         cell.setArticleCell(data: userInfos[indexPath.row])
@@ -112,6 +117,16 @@ extension FollowPageViewController: UITableViewDataSource {
                 self.followList.reloadData()
             }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }
+    }
+}
+
+extension FollowPageViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let nextVC: UserPageViewController = self.storyboard?.instantiateViewController(withIdentifier: "UserPage") as? UserPageViewController else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+        nextVC.id = userInfos[indexPath.row].id
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
 }
 
