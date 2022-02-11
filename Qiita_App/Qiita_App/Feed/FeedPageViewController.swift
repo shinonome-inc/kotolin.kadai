@@ -46,6 +46,7 @@ class FeedPageViewController: UIViewController {
             self.checkSearchResults(articles: self.articles)
             self.qiitaArticle.reloadData()
         }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
+        configureRefreshControl()
     }
     
     func articleManagement() {
@@ -73,6 +74,30 @@ class FeedPageViewController: UIViewController {
             return
         }
     }
+    
+    func configureRefreshControl () {
+        qiitaArticle.refreshControl = UIRefreshControl()
+        qiitaArticle.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        page = 1
+        
+        CommonApi().feedPageRequest(completion: { data in
+            self.articles.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.articles.append($0)
+            }
+            self.checkSearchResults(articles: self.articles)
+            self.qiitaArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
+        DispatchQueue.main.async {
+            self.qiitaArticle.refreshControl?.endRefreshing()
+        }
+    }
 }
 
 extension FeedPageViewController: UITableViewDataSource {
@@ -94,6 +119,7 @@ extension FeedPageViewController: UITableViewDataSource {
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
             checkNetwork()
             page += 1
+            
             CommonApi().feedPageRequest(completion: { data in
                 self.articleManagement()
                 if data.isEmpty {
@@ -149,9 +175,8 @@ extension FeedPageViewController: UISearchBarDelegate {
 extension FeedPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {

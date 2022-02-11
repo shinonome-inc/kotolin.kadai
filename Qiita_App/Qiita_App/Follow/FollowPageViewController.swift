@@ -43,6 +43,7 @@ class FollowPageViewController: UIViewController {
     var userInfos: [UserItem] = []
     var commonApi = CommonApi()
     var errorView = NetworkErrorView()
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,7 @@ class FollowPageViewController: UIViewController {
             }
             self.followList.reloadData()
         }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
+        configureRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +74,7 @@ class FollowPageViewController: UIViewController {
         tableViewInfo = infoType.allCases[sender.selectedSegmentIndex]
         checkNetwork()
         userInfos.removeAll()
+        page = 1
         
         CommonApi.followPageRequest(completion: { data in
             if data.isEmpty {
@@ -88,6 +91,28 @@ class FollowPageViewController: UIViewController {
         if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
             presentNetworkErrorView()
             return
+        }
+    }
+    
+    func configureRefreshControl () {
+        followList.refreshControl = UIRefreshControl()
+        followList.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        page = 1
+        CommonApi.followPageRequest(completion: { data in
+            self.userInfos.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.userInfos.append($0)
+            }
+            self.followList.reloadData()
+        }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)?page=\(page)")
+        DispatchQueue.main.async {
+            self.followList.refreshControl?.endRefreshing()
         }
     }
 }
@@ -108,6 +133,7 @@ extension FollowPageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if userInfos.count >= 20 && indexPath.row == ( userInfos.count - 10) {
+            page += 1
             checkNetwork()
             
             CommonApi.followPageRequest(completion: { data in
@@ -133,9 +159,8 @@ extension FollowPageViewController: UITableViewDelegate {
 extension FollowPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi.followPageRequest(completion: { data in
                 self.userInfos.removeAll()
                 if data.isEmpty {

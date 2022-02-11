@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserPageViewController: UIViewController {
     
@@ -26,7 +27,6 @@ class UserPageViewController: UIViewController {
         super.viewDidLoad()
         userArticlesList.dataSource = self
         userArticlesList.delegate = self
-        tabBarController?.tabBar.isHidden = true
         MyPageViewController().settingHeader(userArticlesList)
         
         CommonApi.userPageRequest(completion: { data in
@@ -34,7 +34,7 @@ class UserPageViewController: UIViewController {
                 self.userArticles.append($0)
             }
             self.userArticlesList.reloadData()
-        }, url: CommonApi.structUrl(option: .UserPage(page: page, id: id)))
+        }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
         
         CommonApi.userPageHeaderRequest(completion: { data in
             self.userInfo = data
@@ -58,7 +58,12 @@ class UserPageViewController: UIViewController {
             }
             self.followCount.setTitle("\(userData.followeesCount) フォロー中", for: .normal)
             self.followerCount.setTitle("\(userData.followersCount) フォロワー", for: .normal)
-        }, url: CommonApi.structUrl(option: .UserPageHeader(id: id)))
+        }, url: CommonApi.structUrl(option: .userPageHeader(id: id)))
+        configureRefreshControl()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
     
     @IBAction func pushFollowCount(_ sender: Any) {
@@ -74,6 +79,50 @@ class UserPageViewController: UIViewController {
         nextVC.userId = id
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
+    
+    func configureRefreshControl () {
+        userArticlesList.refreshControl = UIRefreshControl()
+        userArticlesList.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        page = 1
+        
+        CommonApi.userPageRequest(completion: { data in
+            self.userArticles.removeAll()
+            data.forEach {
+                self.userArticles.append($0)
+            }
+            self.userArticlesList.reloadData()
+        }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
+        
+        CommonApi.userPageHeaderRequest(completion: { data in
+            self.userInfo = data
+            guard let userData = self.userInfo else { return }
+            guard let imageUrl = URL(string: userData.profileImageUrl) else { return }
+            do {
+                let imageData = try Data(contentsOf: imageUrl)
+                self.userIcon.image = UIImage(data: imageData)
+            } catch {
+                self.userIcon.image = UIImage(named: "errorUserIcon")
+                print("error: Can't get image")
+            }
+            self.userName.text = userData.name
+            self.userId.text = "@\(userData.id)"
+            self.id = userData.id
+            if userData.description == nil {
+                self.userIntroduction.text = "(設定されていません。)"
+                self.userIntroduction.textColor = UIColor {_ in return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
+            } else {
+                self.userIntroduction.text = userData.description
+            }
+            self.followCount.setTitle("\(userData.followeesCount) フォロー中", for: .normal)
+            self.followerCount.setTitle("\(userData.followersCount) フォロワー", for: .normal)
+        }, url: CommonApi.structUrl(option: .userPageHeader(id: id)))
+        DispatchQueue.main.async {
+            self.userArticlesList.refreshControl?.endRefreshing()
+        }
+    }
 }
 
 extension UserPageViewController: UITableViewDataSource {
@@ -88,6 +137,20 @@ extension UserPageViewController: UITableViewDataSource {
         }
         cell.setUserArticleCell(data: userArticles[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
+        if userArticles.count >= 20 && indexPath.row == ( userArticles.count - 10) {
+            page += 1
+            
+            CommonApi.userPageRequest(completion: { data in
+                data.forEach {
+                    self.userArticles.append($0)
+                }
+                self.userArticlesList.reloadData()
+            }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
+        }
     }
 }
 
