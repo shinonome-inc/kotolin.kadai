@@ -100,18 +100,17 @@ class FollowPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            CommonApi.followPageRequest(completion: { data in
-                self.userInfos.removeAll()
-                data.forEach {
-                    self.userInfos.append($0)
-                }
-                self.followList.reloadData()
-            }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)?page=\(page)")
-        }
+        page = 1
+        CommonApi.followPageRequest(completion: { data in
+            self.userInfos.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.userInfos.append($0)
+            }
+            self.followList.reloadData()
+        }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)?page=\(page)")
         DispatchQueue.main.async {
             self.followList.refreshControl?.endRefreshing()
         }
@@ -160,9 +159,8 @@ extension FollowPageViewController: UITableViewDelegate {
 extension FollowPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi.followPageRequest(completion: { data in
                 self.userInfos.removeAll()
                 if data.isEmpty {

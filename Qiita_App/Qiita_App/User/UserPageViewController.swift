@@ -86,43 +86,39 @@ class UserPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            
-            CommonApi.userPageRequest(completion: { data in
-                self.userArticles.removeAll()
-                data.forEach {
-                    self.userArticles.append($0)
-                }
-                self.userArticlesList.reloadData()
-            }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
-            
-            CommonApi.userPageHeaderRequest(completion: { data in
-                self.userInfo = data
-                guard let userData = self.userInfo else { return }
-                guard let imageUrl = URL(string: userData.profileImageUrl) else { return }
-                do {
-                    let imageData = try Data(contentsOf: imageUrl)
-                    self.userIcon.image = UIImage(data: imageData)
-                } catch {
-                    self.userIcon.image = UIImage(named: "errorUserIcon")
-                    print("error: Can't get image")
-                }
-                self.userName.text = userData.name
-                self.userId.text = "@\(userData.id)"
-                self.id = userData.id
-                if userData.description == nil {
-                    self.userIntroduction.text = "(設定されていません。)"
-                    self.userIntroduction.textColor = UIColor {_ in return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
-                } else {
-                    self.userIntroduction.text = userData.description
-                }
-                self.followCount.setTitle("\(userData.followeesCount) フォロー中", for: .normal)
-                self.followerCount.setTitle("\(userData.followersCount) フォロワー", for: .normal)
-            }, url: CommonApi.structUrl(option: .userPageHeader(id: id)))
-        }
+        page = 1
+        
+        CommonApi.userPageRequest(completion: { data in
+            self.userArticles.removeAll()
+            data.forEach {
+                self.userArticles.append($0)
+            }
+            self.userArticlesList.reloadData()
+        }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
+        
+        CommonApi.userPageHeaderRequest(completion: { data in
+            self.userInfo = data
+            guard let userData = self.userInfo else { return }
+            guard let imageUrl = URL(string: userData.profileImageUrl) else { return }
+            do {
+                let imageData = try Data(contentsOf: imageUrl)
+                self.userIcon.image = UIImage(data: imageData)
+            } catch {
+                self.userIcon.image = UIImage(named: "errorUserIcon")
+                print("error: Can't get image")
+            }
+            self.userName.text = userData.name
+            self.userId.text = "@\(userData.id)"
+            self.id = userData.id
+            if userData.description == nil {
+                self.userIntroduction.text = "(設定されていません。)"
+                self.userIntroduction.textColor = UIColor {_ in return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
+            } else {
+                self.userIntroduction.text = userData.description
+            }
+            self.followCount.setTitle("\(userData.followeesCount) フォロー中", for: .normal)
+            self.followerCount.setTitle("\(userData.followersCount) フォロワー", for: .normal)
+        }, url: CommonApi.structUrl(option: .userPageHeader(id: id)))
         DispatchQueue.main.async {
             self.userArticlesList.refreshControl?.endRefreshing()
         }

@@ -108,38 +108,37 @@ class MyPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            
-            CommonApi().myPageRequest(completion: { data in
-                self.myArticles.removeAll()
-                data.forEach {
-                    self.myArticles.append($0)
-                }
-                self.myArticlesList.reloadData()
-            }, url: CommonApi.structUrl(option: .myPage(page: page)))
-            
-            CommonApi.myPageHeaderRequest(completion: { data in
-                self.myInfo = data
-                guard let myData = self.myInfo else { return }
-                guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
-                do {
-                    let imageData = try Data(contentsOf: imageUrl)
-                    self.myIcon.image = UIImage(data: imageData)
-                } catch {
-                    self.myIcon.image = UIImage(named: "errorUserIcon")
-                    print("error: Can't get image")
-                }
-                self.myName.text = myData.name
-                self.myId.text = "@\(myData.id)"
-                self.id = myData.id
-                self.myIntroduction.text = myData.description
-                self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
-                self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
-            }, url: CommonApi.structUrl(option: .myPageHeader))
-        }
+        page = 1
+        
+        CommonApi().myPageRequest(completion: { data in
+            self.myArticles.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.myArticles.append($0)
+            }
+            self.myArticlesList.reloadData()
+        }, url: CommonApi.structUrl(option: .myPage(page: page)))
+        
+        CommonApi.myPageHeaderRequest(completion: { data in
+            self.myInfo = data
+            guard let myData = self.myInfo else { return }
+            guard let imageUrl = URL(string: myData.profileImageUrl) else { return }
+            do {
+                let imageData = try Data(contentsOf: imageUrl)
+                self.myIcon.image = UIImage(data: imageData)
+            } catch {
+                self.myIcon.image = UIImage(named: "errorUserIcon")
+                print("error: Can't get image")
+            }
+            self.myName.text = myData.name
+            self.myId.text = "@\(myData.id)"
+            self.id = myData.id
+            self.myIntroduction.text = myData.description
+            self.followCount.setTitle("\(myData.followeesCount) フォロー中", for: .normal)
+            self.followerCount.setTitle("\(myData.followersCount) フォロワー", for: .normal)
+        }, url: CommonApi.structUrl(option: .myPageHeader))
         DispatchQueue.main.async {
             self.myArticlesList.refreshControl?.endRefreshing()
         }
@@ -189,10 +188,8 @@ extension MyPageViewController: UITableViewDelegate {
 extension MyPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi().myPageRequest(completion: { data in
                 self.myArticles.removeAll()
                 if data.isEmpty {

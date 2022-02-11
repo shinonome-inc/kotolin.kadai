@@ -81,20 +81,19 @@ class FeedPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            
-            CommonApi().feedPageRequest(completion: { data in
-                self.articles.removeAll()
-                data.forEach {
-                    self.articles.append($0)
-                }
-                self.checkSearchResults(articles: self.articles)
-                self.qiitaArticle.reloadData()
-            }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
-        }
+        page = 1
+        
+        CommonApi().feedPageRequest(completion: { data in
+            self.articles.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.articles.append($0)
+            }
+            self.checkSearchResults(articles: self.articles)
+            self.qiitaArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
         DispatchQueue.main.async {
             self.qiitaArticle.refreshControl?.endRefreshing()
         }
@@ -176,9 +175,8 @@ extension FeedPageViewController: UISearchBarDelegate {
 extension FeedPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {

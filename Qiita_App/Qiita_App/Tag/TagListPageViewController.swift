@@ -69,19 +69,18 @@ class TagListPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            
-            CommonApi().tagPageRequest(completion: { data in
-                self.tagInfo.removeAll()
-                data.forEach {
-                    self.tagInfo.append($0)
-                }
-                self.qiitaTag.reloadData()
-            }, url: CommonApi.structUrl(option: .tagPage(page: page)))
-        }
+        page = 1
+        
+        CommonApi().tagPageRequest(completion: { data in
+            self.tagInfo.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.tagInfo.append($0)
+            }
+            self.qiitaTag.reloadData()
+        }, url: CommonApi.structUrl(option: .tagPage(page: page)))
         DispatchQueue.main.async {
             self.qiitaTag.refreshControl?.endRefreshing()
         }
@@ -150,10 +149,8 @@ extension TagListPageViewController: UICollectionViewDataSource {
 extension TagListPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi().tagPageRequest(completion: { data in
                 self.tagInfo.removeAll()
                 if data.isEmpty {

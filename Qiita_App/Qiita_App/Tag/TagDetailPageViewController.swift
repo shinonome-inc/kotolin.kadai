@@ -52,19 +52,18 @@ class TagDetailPageViewController: UIViewController {
     }
 
     @objc func handleRefreshControl() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
-            page = 1
-            
-            CommonApi.tagDetailPageRequest(completion: { data in
-                self.articles.removeAll()
-                data.forEach {
-                    self.articles.append($0)
-                }
-                self.tagDetailArticle.reloadData()
-            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
-        }
+        page = 1
+        
+        CommonApi.tagDetailPageRequest(completion: { data in
+            self.articles.removeAll()
+            if data.isEmpty {
+                self.presentNetworkErrorView()
+            }
+            data.forEach {
+                self.articles.append($0)
+            }
+            self.tagDetailArticle.reloadData()
+        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
         DispatchQueue.main.async {
             self.tagDetailArticle.refreshControl?.endRefreshing()
         }
@@ -117,9 +116,8 @@ extension TagDetailPageViewController: UITableViewDelegate {
 extension TagDetailPageViewController: ReloadActionDelegate {
     
     func errorReload() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
-            print("Network error has not improved yet.")
-        } else {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
             CommonApi.tagDetailPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
