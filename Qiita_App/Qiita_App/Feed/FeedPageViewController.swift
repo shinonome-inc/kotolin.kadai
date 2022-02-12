@@ -38,7 +38,7 @@ class FeedPageViewController: UIViewController {
         CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.articles.append($0)
@@ -69,7 +69,8 @@ class FeedPageViewController: UIViewController {
     }
     
     func checkNetwork() {
-        if let isConnected = NetworkReachabilityManager()?.isReachable, !isConnected {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if !isConnected {
             presentNetworkErrorView()
             return
         }
@@ -82,11 +83,12 @@ class FeedPageViewController: UIViewController {
 
     @objc func handleRefreshControl() {
         page = 1
+        checkNetwork()
         
         CommonApi().feedPageRequest(completion: { data in
             self.articles.removeAll()
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.articles.append($0)
@@ -117,13 +119,13 @@ extension FeedPageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if articles.count >= 20 && indexPath.row == ( articles.count - 10) {
-            checkNetwork()
             page += 1
+            checkNetwork()
             
             CommonApi().feedPageRequest(completion: { data in
                 self.articleManagement()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
+                    self.checkNetwork()
                 }
                 data.forEach {
                     self.articles.append($0)
@@ -161,7 +163,7 @@ extension FeedPageViewController: UISearchBarDelegate {
         CommonApi().feedPageRequest(completion: { data in
             self.articleManagement()
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.articles.append($0)

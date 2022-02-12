@@ -56,7 +56,7 @@ class FollowPageViewController: UIViewController {
         
         CommonApi.followPageRequest(completion: { data in
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.userInfos.append($0)
@@ -78,7 +78,7 @@ class FollowPageViewController: UIViewController {
         
         CommonApi.followPageRequest(completion: { data in
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.userInfos.append($0)
@@ -104,7 +104,7 @@ class FollowPageViewController: UIViewController {
         CommonApi.followPageRequest(completion: { data in
             self.userInfos.removeAll()
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.userInfos.append($0)
@@ -137,6 +137,9 @@ extension FollowPageViewController: UITableViewDataSource {
             checkNetwork()
             
             CommonApi.followPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.checkNetwork()
+                }
                 data.forEach {
                     self.userInfos.append($0)
                 }
