@@ -43,7 +43,7 @@ class MyPageViewController: UIViewController {
         
         CommonApi().myPageRequest(completion: { data in
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.myArticles.append($0)
@@ -113,7 +113,7 @@ class MyPageViewController: UIViewController {
         CommonApi().myPageRequest(completion: { data in
             self.myArticles.removeAll()
             if data.isEmpty {
-                self.presentNetworkErrorView()
+                self.checkNetwork()
             }
             data.forEach {
                 self.myArticles.append($0)
@@ -166,6 +166,9 @@ extension MyPageViewController: UITableViewDataSource {
             page += 1
             
             CommonApi().myPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.checkNetwork()
+                }
                 data.forEach {
                     self.myArticles.append($0)
                 }
@@ -193,7 +196,7 @@ extension MyPageViewController: ReloadActionDelegate {
             CommonApi().myPageRequest(completion: { data in
                 self.myArticles.removeAll()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
+                    self.checkNetwork()
                 }
                 data.forEach {
                     self.myArticles.append($0)
