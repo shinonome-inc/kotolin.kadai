@@ -20,6 +20,8 @@ class UserPageViewController: UIViewController {
     @IBOutlet var followerCount: UIButton!
     var userArticles: [UserArticleItem] = []
     var userInfo: UserHeader?
+    var commonApi = CommonApi()
+    var errorView = NetworkErrorView()
     var page = 1
     var id = ""
     
@@ -27,9 +29,15 @@ class UserPageViewController: UIViewController {
         super.viewDidLoad()
         userArticlesList.dataSource = self
         userArticlesList.delegate = self
+        errorView.reloadActionDelegate = self
+        commonApi.presentNetworkErrorViewDelegate = self
         MyPageViewController().settingHeader(userArticlesList)
+        checkNetwork()
         
         CommonApi.userPageRequest(completion: { data in
+            if data.isEmpty {
+                self.checkNetwork()
+            }
             data.forEach {
                 self.userArticles.append($0)
             }
@@ -80,6 +88,14 @@ class UserPageViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    func checkNetwork() {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if !isConnected {
+            presentNetworkErrorView()
+            return
+        }
+    }
+    
     func configureRefreshControl () {
         userArticlesList.refreshControl = UIRefreshControl()
         userArticlesList.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
@@ -87,9 +103,13 @@ class UserPageViewController: UIViewController {
 
     @objc func handleRefreshControl() {
         page = 1
+        checkNetwork()
         
         CommonApi.userPageRequest(completion: { data in
             self.userArticles.removeAll()
+            if data.isEmpty {
+                self.checkNetwork()
+            }
             data.forEach {
                 self.userArticles.append($0)
             }
@@ -143,8 +163,12 @@ extension UserPageViewController: UITableViewDataSource {
         //-10:基本的にはcountパラメータで20個の記事を取得してくるように指定しているので、20-10=10の10個目のセル、つまり最初に表示された半分までスクロールされたら、追加で記事を読み込む(ページネーション)するようになっています。
         if userArticles.count >= 20 && indexPath.row == ( userArticles.count - 10) {
             page += 1
+            checkNetwork()
             
             CommonApi.userPageRequest(completion: { data in
+                if data.isEmpty {
+                    self.checkNetwork()
+                }
                 data.forEach {
                     self.userArticles.append($0)
                 }
@@ -161,5 +185,60 @@ extension UserPageViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         nextVC.articleUrl = userArticles[indexPath.row].url
         self.present(nextVC, animated: true, completion: nil)
+    }
+}
+
+extension UserPageViewController: ReloadActionDelegate {
+    
+    func errorReload() {
+        guard let isConnected = NetworkReachabilityManager()?.isReachable else { return }
+        if isConnected {
+            CommonApi.userPageRequest(completion: { data in
+                self.userArticles.removeAll()
+                if data.isEmpty {
+                    self.checkNetwork()
+                }
+                data.forEach {
+                    self.userArticles.append($0)
+                }
+                if !self.userArticles.isEmpty {
+                    self.errorView.removeFromSuperview()
+                }
+                self.userArticlesList.reloadData()
+            }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
+            
+            CommonApi.userPageHeaderRequest(completion: { data in
+                self.userInfo = data
+                guard let userData = self.userInfo else { return }
+                guard let imageUrl = URL(string: userData.profileImageUrl) else { return }
+                do {
+                    let imageData = try Data(contentsOf: imageUrl)
+                    self.userIcon.image = UIImage(data: imageData)
+                } catch {
+                    self.userIcon.image = UIImage(named: "errorUserIcon")
+                    print("error: Can't get image")
+                }
+                self.userName.text = userData.name
+                self.userId.text = "@\(userData.id)"
+                self.id = userData.id
+                if userData.description == nil {
+                    self.userIntroduction.text = "(設定されていません。)"
+                    self.userIntroduction.textColor = UIColor {_ in return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)}
+                } else {
+                    self.userIntroduction.text = userData.description
+                }
+                self.followCount.setTitle("\(userData.followeesCount) フォロー中", for: .normal)
+                self.followerCount.setTitle("\(userData.followersCount) フォロワー", for: .normal)
+            }, url: CommonApi.structUrl(option: .userPageHeader(id: id)))
+        }
+    }
+}
+
+extension UserPageViewController: PresentNetworkErrorViewDelegate {
+    
+    func presentNetworkErrorView() {
+        errorView.center = self.view.center
+        errorView.frame = self.view.frame
+        self.view.addSubview(errorView)
     }
 }

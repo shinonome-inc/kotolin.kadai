@@ -223,7 +223,9 @@ class CommonApi {
                 let dataItem = try jsonDecoder.decode([UserArticleItem].self,from:data)
                 completion(dataItem)
             } catch let error {
-                print("Error: \(error)")
+                print("This is error message -> : \(error)")
+                let emptyData: [UserArticleItem] = []
+                completion(emptyData)
             }
         }
     }
@@ -249,31 +251,6 @@ class CommonApi {
                 completion(userInfoItem)
             } catch let error {
                 print("Error: \(error)")
-            }
-        }
-    }
-    
-    func myPageHeaderRequest(completion: @escaping(UserHeader) -> Void, url: String) {
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer " + AccessTokenDerivery.shared.getAccessToken()
-        ]
-        
-        AF.request(
-            url,
-            method: .get,
-            parameters: nil,
-            encoding: JSONEncoding.default,
-            headers: headers
-        )
-        .response { response in
-            guard let data = response.data else { return }
-            do {
-                let jsonDecoder = JSONDecoder()
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-                let myInfoItem = try jsonDecoder.decode([UserHeader].self,from:data)
-                completion(myInfoItem[0])
-            } catch let error {
-                print("This is error message -> : \(error)")
             }
         }
     }
