@@ -167,15 +167,14 @@ extension FollowPageViewController: ReloadActionDelegate {
             CommonApi.followPageRequest(completion: { data in
                 self.userInfos.removeAll()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
-                }
-                data.forEach {
-                    self.userInfos.append($0)
-                }
-                if !self.userInfos.isEmpty {
+                    self.checkNetwork()
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.userInfos.append($0)
+                    }
+                    self.followList.reloadData()
                 }
-                self.followList.reloadData()
             }, url: CommonApi.structUrl(option: .followPage) + "\(userId)/\(urlType)")
         }
     }

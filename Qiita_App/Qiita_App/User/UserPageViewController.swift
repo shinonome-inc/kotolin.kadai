@@ -197,14 +197,13 @@ extension UserPageViewController: ReloadActionDelegate {
                 self.userArticles.removeAll()
                 if data.isEmpty {
                     self.checkNetwork()
-                }
-                data.forEach {
-                    self.userArticles.append($0)
-                }
-                if !self.userArticles.isEmpty {
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.userArticles.append($0)
+                    }
+                    self.userArticlesList.reloadData()
                 }
-                self.userArticlesList.reloadData()
             }, url: CommonApi.structUrl(option: .userPage(page: page, id: id)))
             
             CommonApi.userPageHeaderRequest(completion: { data in

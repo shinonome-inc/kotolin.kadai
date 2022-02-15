@@ -121,15 +121,14 @@ extension TagDetailPageViewController: ReloadActionDelegate {
             CommonApi.tagDetailPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
-                }
-                data.forEach {
-                    self.articles.append($0)
-                }
-                if !self.articles.isEmpty {
+                    self.checkNetwork()
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.articles.append($0)
+                    }
+                    self.tagDetailArticle.reloadData()
                 }
-                self.tagDetailArticle.reloadData()
             }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
         }
     }
