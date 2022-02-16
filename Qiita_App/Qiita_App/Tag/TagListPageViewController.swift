@@ -154,15 +154,14 @@ extension TagListPageViewController: ReloadActionDelegate {
             CommonApi().tagPageRequest(completion: { data in
                 self.tagInfo.removeAll()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
-                }
-                data.forEach {
-                    self.tagInfo.append($0)
-                }
-                if !self.tagInfo.isEmpty {
+                    self.checkNetwork()
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.tagInfo.append($0)
+                    }
+                    self.qiitaTag.reloadData()
                 }
-                self.qiitaTag.reloadData()
             }, url: CommonApi.structUrl(option: .tagPage(page: page)))
         }
     }

@@ -182,16 +182,15 @@ extension FeedPageViewController: ReloadActionDelegate {
             CommonApi().feedPageRequest(completion: { data in
                 self.articles.removeAll()
                 if data.isEmpty {
-                    self.presentNetworkErrorView()
-                }
-                data.forEach {
-                    self.articles.append($0)
-                }
-                if !self.articles.isEmpty {
+                    self.checkNetwork()
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.articles.append($0)
+                    }
+                    self.checkSearchResults(articles: self.articles)
+                    self.qiitaArticle.reloadData()
                 }
-                self.checkSearchResults(articles: self.articles)
-                self.qiitaArticle.reloadData()
             }, url: CommonApi.structUrl(option: .feedPage(page: page, searchTitle: searchText)))
         }
     }

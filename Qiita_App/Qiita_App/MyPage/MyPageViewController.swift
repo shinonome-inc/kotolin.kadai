@@ -197,14 +197,13 @@ extension MyPageViewController: ReloadActionDelegate {
                 self.myArticles.removeAll()
                 if data.isEmpty {
                     self.checkNetwork()
-                }
-                data.forEach {
-                    self.myArticles.append($0)
-                }
-                if !self.myArticles.isEmpty {
+                } else {
                     self.errorView.removeFromSuperview()
+                    data.forEach {
+                        self.myArticles.append($0)
+                    }
+                    self.myArticlesList.reloadData()
                 }
-                self.myArticlesList.reloadData()
             }, url: CommonApi.structUrl(option: .myPage(page: page)))
             
             CommonApi.myPageHeaderRequest(completion: { data in
