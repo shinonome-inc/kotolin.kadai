@@ -152,7 +152,8 @@ extension UserPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserArticleCell", for: indexPath) as? UserPageCellViewController else {
+        let identifier = SettingCellidentifier.cellType.userPage.identifier
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? UserPageCellViewController else {
             return UITableViewCell()
         }
         cell.setUserArticleCell(data: userArticles[indexPath.row])

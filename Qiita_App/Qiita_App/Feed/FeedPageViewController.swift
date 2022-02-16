@@ -109,7 +109,8 @@ extension FeedPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? FeedPageCellViewController else {
+        let identifier = SettingCellidentifier.cellType.feedPage.identifier
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? FeedPageCellViewController else {
             return UITableViewCell()
         }
         cell.setArticleCell(data: articles[indexPath.row])
