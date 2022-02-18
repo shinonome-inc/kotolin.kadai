@@ -77,7 +77,7 @@ extension TagDetailPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = SettingCellidentifier.cellType.tagDetailPage.identifier
+        let identifier = IdentifierOption.cellType.tagDetailPage.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? TagDetailPageCellViewController else {
             return UITableViewCell()
         }
