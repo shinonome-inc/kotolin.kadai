@@ -50,6 +50,9 @@
 		8951C901D3280165AAA67226 /* Pods_Qiita_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D267A09C6D8BB6602C0AC844 /* Pods_Qiita_App.framework */; };
 		D52A24D5AF241FD14F048CBD /* Pods_Qiita_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAF87A7378337E9C6265B64 /* Pods_Qiita_AppTests.framework */; };
 		F195A01727BD00500092A684 /* SettingCellidentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F195A01627BD00500092A684 /* SettingCellidentifier.swift */; };
+		F195A01A27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
+		F195A01B27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
+		F195A01C27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +128,7 @@
 		E51BF7201AE226CA5FA6EA2A /* Pods_Qiita_App_Qiita_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qiita_App_Qiita_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB58EEE744CB75716F5B4C0B /* Pods-Qiita_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_App.release.xcconfig"; path = "Target Support Files/Pods-Qiita_App/Pods-Qiita_App.release.xcconfig"; sourceTree = "<group>"; };
 		F195A01627BD00500092A684 /* SettingCellidentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellidentifier.swift; sourceTree = "<group>"; };
+		F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pacifico-Regular.ttf"; path = "../../../../Downloads/Pacifico/Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,7 @@
 		0716D7CC261EED7B008038D1 /* Qiita_App */ = {
 			isa = PBXGroup;
 			children = (
+				F195A01827BDEF0A0092A684 /* fonts */,
 				0716D7CD261EED7B008038D1 /* AppDelegate.swift */,
 				07EBA54527741675009C6765 /* SceneDelegate.swift */,
 				0716D7D3261EED7B008038D1 /* Main.storyboard */,
@@ -346,6 +351,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F195A01827BDEF0A0092A684 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -458,6 +471,7 @@
 				0716D7DA261EED7C008038D1 /* LaunchScreen.storyboard in Resources */,
 				07EBA5352774166E009C6765 /* NotLoginPageViewController.xib in Resources */,
 				0716D7D7261EED7C008038D1 /* Assets.xcassets in Resources */,
+				F195A01A27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 				0716D7D5261EED7B008038D1 /* Main.storyboard in Resources */,
 				07EBA5382774166E009C6765 /* NetworkErrorView.xib in Resources */,
 			);
@@ -467,6 +481,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F195A01B27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +489,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F195A01C27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

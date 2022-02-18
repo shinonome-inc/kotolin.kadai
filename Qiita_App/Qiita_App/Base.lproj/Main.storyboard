@@ -9,6 +9,11 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Pacifico-Regular.ttf">
+            <string>Pacifico-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--QiitaO Auth Page View Controller-->
         <scene sceneID="dep-Mv-pSv">
@@ -52,19 +57,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qiita App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bs-XA-NBy">
-                                <rect key="frame" x="138.5" y="289.5" width="137" height="37"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
-                                <color key="textColor" red="0.50980392156862742" green="0.50980392156862742" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-NI-fZl">
-                                <rect key="frame" x="154.5" y="174.5" width="105" height="105"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="スクリーンショット 2022-02-17 11.38.41" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-NI-fZl">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="105" id="IFK-Rq-vWk"/>
-                                    <constraint firstAttribute="width" constant="105" id="vLl-Yf-T6s"/>
+                                    <constraint firstAttribute="height" constant="896" id="IFK-Rq-vWk"/>
+                                    <constraint firstAttribute="width" constant="414" id="vLl-Yf-T6s"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qiita Feed App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bs-XA-NBy">
+                                <rect key="frame" x="92" y="276.5" width="230" height="63.5"/>
+                                <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sog-wq-yBp">
                                 <rect key="frame" x="31" y="727.5" width="354" height="50"/>
                                 <color key="backgroundColor" systemColor="darkTextColor"/>
@@ -97,15 +102,24 @@
                                     <action selector="notLoguinButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ID5-MG-coN"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-PlayGround-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S95-g8-d0V">
+                                <rect key="frame" x="160" y="348" width="94" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S95-g8-d0V" secondAttribute="trailing" constant="160" id="0Yb-Bc-sbH"/>
                             <constraint firstItem="sw4-NI-fZl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3d4-7H-NRG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Sog-wq-yBp" secondAttribute="trailing" constant="29" id="4Sb-ZP-fFV"/>
                             <constraint firstItem="DIH-vh-OrX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="DKZ-tY-Wgr"/>
-                            <constraint firstItem="2bs-XA-NBy" firstAttribute="top" secondItem="sw4-NI-fZl" secondAttribute="bottom" constant="10" id="VVa-cf-qEy"/>
+                            <constraint firstItem="sw4-NI-fZl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VMU-Mu-5Ka"/>
                             <constraint firstItem="2bs-XA-NBy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-140" id="bs6-dP-tAY"/>
+                            <constraint firstItem="S95-g8-d0V" firstAttribute="top" secondItem="2bs-XA-NBy" secondAttribute="bottom" constant="8" id="dHw-3B-c43"/>
+                            <constraint firstItem="S95-g8-d0V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="160" id="ddL-fa-t5B"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DIH-vh-OrX" secondAttribute="trailing" constant="29" id="gNB-PL-KT7"/>
                             <constraint firstItem="2bs-XA-NBy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iga-EF-ag3"/>
                             <constraint firstItem="Sog-wq-yBp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="olO-id-AR2"/>
@@ -1370,6 +1384,7 @@ MAIL: Matarai@shinonome.io</string>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="tag" catalog="system" width="128" height="119"/>
+        <image name="スクリーンショット 2022-02-17 11.38.41" width="596" height="862"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
