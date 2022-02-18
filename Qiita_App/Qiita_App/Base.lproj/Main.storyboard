@@ -72,11 +72,11 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sog-wq-yBp">
                                 <rect key="frame" x="31" y="727.5" width="354" height="50"/>
-                                <color key="backgroundColor" systemColor="darkTextColor"/>
+                                <color key="backgroundColor" red="0.27450980390000002" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tgh-BS-Ltd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="ログインする">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -94,9 +94,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Nec-Pf-rKM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="ログインせずに利用する">
-                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="notLoguinButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ID5-MG-coN"/>
@@ -141,21 +141,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="GNd-oe-QjG">
-                                <rect key="frame" x="20" y="144" width="374" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="WcT-og-Pys"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuV-Cs-ww6">
-                                <rect key="frame" x="20" y="97" width="73" height="37"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
-                                <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="29J-JQ-wLf">
-                                <rect key="frame" x="20" y="188" width="374" height="625"/>
+                                <rect key="frame" x="20" y="161" width="374" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="78" id="L0b-bs-znE" customClass="FeedPageCellViewController" customModule="Qiita_App" customModuleProvider="target">
@@ -212,31 +199,38 @@
                                 </prototypes>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vl4-eH-VFU">
-                                <rect key="frame" x="20" y="188" width="374" height="625"/>
+                                <rect key="frame" x="20" y="161" width="374" height="652"/>
                                 <connections>
                                     <segue destination="pLE-wb-Jih" kind="embed" id="szp-3k-Nue"/>
                                 </connections>
                             </containerView>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="GNd-oe-QjG">
+                                <rect key="frame" x="20" y="107" width="374" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="WcT-og-Pys"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="n3s-hk-Xk3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" constant="9" id="0fU-QU-qjl"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="DqP-eb-tT0"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="leading" secondItem="29J-JQ-wLf" secondAttribute="leading" id="KAv-Td-CJo"/>
                             <constraint firstItem="29J-JQ-wLf" firstAttribute="bottom" secondItem="n3s-hk-Xk3" secondAttribute="bottom" id="NOk-Me-qsf"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="OOe-vH-i6P"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="bottom" secondItem="29J-JQ-wLf" secondAttribute="bottom" id="P4Z-mZ-0zt"/>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="GNd-oe-QjG" secondAttribute="leading" id="azq-yX-2nH"/>
-                            <constraint firstItem="GNd-oe-QjG" firstAttribute="top" secondItem="KuV-Cs-ww6" secondAttribute="bottom" constant="10" id="gK8-yq-0e7"/>
-                            <constraint firstItem="KuV-Cs-ww6" firstAttribute="leading" secondItem="zEP-yN-DPG" secondAttribute="leadingMargin" id="hY6-Wf-Jxw"/>
+                            <constraint firstItem="GNd-oe-QjG" firstAttribute="leading" secondItem="zEP-yN-DPG" secondAttribute="leadingMargin" id="hMe-S2-K0z"/>
                             <constraint firstItem="GNd-oe-QjG" firstAttribute="trailing" secondItem="zEP-yN-DPG" secondAttribute="trailingMargin" id="j8k-5m-XG4"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="trailing" secondItem="29J-JQ-wLf" secondAttribute="trailing" id="nZq-8s-HKX"/>
+                            <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" constant="10" id="qkG-Xw-kpd"/>
+                            <constraint firstItem="GNd-oe-QjG" firstAttribute="top" secondItem="n3s-hk-Xk3" secondAttribute="top" constant="19" id="smZ-ze-TxC"/>
                             <constraint firstItem="vl4-eH-VFU" firstAttribute="top" secondItem="29J-JQ-wLf" secondAttribute="top" id="u1Y-EB-kqb"/>
-                            <constraint firstItem="29J-JQ-wLf" firstAttribute="top" secondItem="GNd-oe-QjG" secondAttribute="bottom" id="vpU-Ms-Y1G"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mZ3-Pr-XbG"/>
+                    <navigationItem key="navigationItem" title="Feed" id="mZ3-Pr-XbG">
+                        <barButtonItem key="backBarButtonItem" title=" " id="6cb-UA-PEa"/>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="nonSearchResult" destination="vl4-eH-VFU" id="lac-NO-0JE"/>
@@ -246,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7A-4D-Ws0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466.6666666666667" y="868.52678571428567"/>
+            <point key="canvasLocation" x="1400" y="869"/>
         </scene>
         <!--Qiita Article Page View Controller-->
         <scene sceneID="lr7-Qu-w0v">
@@ -257,20 +251,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V2m-ib-O9f">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LF3-zF-CMe">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="article" id="vZs-za-GGO"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="D8v-3N-Gm7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="V2m-ib-O9f" firstAttribute="centerX" secondItem="Pya-tU-jRu" secondAttribute="centerX" id="2jI-dS-QZS"/>
                             <constraint firstAttribute="bottomMargin" secondItem="V2m-ib-O9f" secondAttribute="bottom" constant="-34" id="4hq-mX-4mH"/>
-                            <constraint firstItem="V2m-ib-O9f" firstAttribute="top" secondItem="D8v-3N-Gm7" secondAttribute="top" id="hm5-d5-Ceo"/>
+                            <constraint firstItem="LF3-zF-CMe" firstAttribute="trailing" secondItem="D8v-3N-Gm7" secondAttribute="trailing" id="ICS-86-ekT"/>
+                            <constraint firstItem="LF3-zF-CMe" firstAttribute="leading" secondItem="D8v-3N-Gm7" secondAttribute="leading" id="Lz3-bW-MnJ"/>
+                            <constraint firstItem="V2m-ib-O9f" firstAttribute="top" secondItem="LF3-zF-CMe" secondAttribute="bottom" id="ciG-7g-i29"/>
+                            <constraint firstItem="LF3-zF-CMe" firstAttribute="top" secondItem="D8v-3N-Gm7" secondAttribute="top" id="mjw-JT-q64"/>
                             <constraint firstItem="V2m-ib-O9f" firstAttribute="leading" secondItem="D8v-3N-Gm7" secondAttribute="leading" id="xtE-6h-BWz"/>
                         </constraints>
                     </view>
@@ -280,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slP-fF-7QI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4064" y="858"/>
+            <point key="canvasLocation" x="2920" y="869"/>
         </scene>
         <!--マイページ-->
         <scene sceneID="hsb-Hk-kB5">
@@ -290,6 +297,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SpN-vf-hNX">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.27450980390000002" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="rfk-ID-adA" kind="relationship" relationship="rootViewController" id="6lW-jN-Snr"/>
@@ -429,7 +440,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" image="person" catalog="system" id="dym-Ky-SFG"/>
-                    <navigationItem key="navigationItem" title="MyPage" id="8Xf-s2-xZc"/>
+                    <navigationItem key="navigationItem" title="MyPage" id="8Xf-s2-xZc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="rMF-rp-hkG"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="followCount" destination="Bcm-en-usB" id="TMU-wu-cEU"/>
                         <outlet property="followerCount" destination="fOg-Qa-BSx" id="KiM-e8-Ien"/>
@@ -442,7 +455,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TaO-rH-7nu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466.6666666666667" y="2270.7589285714284"/>
+            <point key="canvasLocation" x="1399" y="2271"/>
         </scene>
         <!--Users-->
         <scene sceneID="Zxk-rY-nSn">
@@ -575,7 +588,9 @@
                             <constraint firstItem="10O-jv-hVi" firstAttribute="top" secondItem="ahf-Nk-TDd" secondAttribute="top" constant="20" id="zS8-3Q-YAD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Users" id="iwz-cS-3XA"/>
+                    <navigationItem key="navigationItem" title="Users" id="iwz-cS-3XA">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BfM-YJ-0RK"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="followCount" destination="aXN-HL-dR0" id="pPc-E6-23h"/>
                         <outlet property="followerCount" destination="Zxx-FY-Gnq" id="HHh-jN-H43"/>
@@ -725,7 +740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwn-p9-E8m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2215.9420289855075" y="2270.7589285714284"/>
+            <point key="canvasLocation" x="2186" y="2271"/>
         </scene>
         <!--設定-->
         <scene sceneID="pXI-67-Efg">
@@ -737,7 +752,11 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2M-ir-c8P">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="tintColor" red="0.27450980390000002" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Settings" id="OdX-g6-jEK"/>
                                 </items>
@@ -958,6 +977,10 @@ MAIL: Matarai@shinonome.io</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mlz-bK-AJV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.27450980390000002" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="pVU-wN-cfL" kind="relationship" relationship="rootViewController" id="IZq-Lo-VIy"/>
@@ -967,7 +990,7 @@ MAIL: Matarai@shinonome.io</string>
             </objects>
             <point key="canvasLocation" x="557" y="1563"/>
         </scene>
-        <!--タグ-->
+        <!--Tag-->
         <scene sceneID="v0X-pZ-jqJ">
             <objects>
                 <viewController id="pVU-wN-cfL" customClass="TagListPageViewController" customModule="Qiita_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -975,12 +998,6 @@ MAIL: Matarai@shinonome.io</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7d4-Ys-ftK">
-                                <rect key="frame" x="20" y="44" width="73" height="48"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
-                                <color key="textColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VAe-uM-fag">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1059,25 +1076,23 @@ MAIL: Matarai@shinonome.io</string>
                         <viewLayoutGuide key="safeArea" id="hGf-2B-pKo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7d4-Ys-ftK" firstAttribute="top" secondItem="N23-fd-hrN" secondAttribute="topMargin" constant="-44" id="QYZ-1a-drK"/>
                             <constraint firstItem="VAe-uM-fag" firstAttribute="trailing" secondItem="hGf-2B-pKo" secondAttribute="trailing" id="Z71-Vg-wX0"/>
-                            <constraint firstItem="hGf-2B-pKo" firstAttribute="trailing" secondItem="7d4-Ys-ftK" secondAttribute="trailing" constant="321" id="a5e-Jg-lCu"/>
                             <constraint firstItem="VAe-uM-fag" firstAttribute="top" secondItem="hGf-2B-pKo" secondAttribute="top" id="atl-7k-pGx"/>
                             <constraint firstItem="VAe-uM-fag" firstAttribute="bottom" secondItem="hGf-2B-pKo" secondAttribute="bottom" id="bgw-CI-1o6"/>
                             <constraint firstItem="VAe-uM-fag" firstAttribute="leading" secondItem="hGf-2B-pKo" secondAttribute="leading" id="dFU-rH-Rsc"/>
-                            <constraint firstItem="7d4-Ys-ftK" firstAttribute="leading" secondItem="N23-fd-hrN" secondAttribute="leadingMargin" id="o5u-CZ-Cq7"/>
-                            <constraint firstItem="hGf-2B-pKo" firstAttribute="bottom" secondItem="7d4-Ys-ftK" secondAttribute="bottom" constant="721" id="sjL-11-FHG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="タグ" image="tag" catalog="system" id="TDN-2f-NWA"/>
-                    <navigationItem key="navigationItem" id="jKh-RU-gDq"/>
+                    <navigationItem key="navigationItem" title="Tag" id="jKh-RU-gDq">
+                        <barButtonItem key="backBarButtonItem" title=" " id="MPt-xo-W4T"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="qiitaTag" destination="VAe-uM-fag" id="xzM-Eg-TUr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qWq-zi-j0R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466.6666666666667" y="1562.9464285714284"/>
+            <point key="canvasLocation" x="1399" y="1563"/>
         </scene>
         <!--Tag Detail Page View Controller-->
         <scene sceneID="fgs-Zt-qko">
@@ -1162,7 +1177,7 @@ MAIL: Matarai@shinonome.io</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZv-Ay-Zrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2229" y="1563"/>
+            <point key="canvasLocation" x="2186" y="1563"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="tCe-na-xyL">
@@ -1195,6 +1210,10 @@ MAIL: Matarai@shinonome.io</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b4N-J7-RbE">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.27450980392156865" green="0.51372549019607838" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1328,7 +1347,7 @@ MAIL: Matarai@shinonome.io</string>
             <objects>
                 <viewController id="pLE-wb-Jih" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I8Q-ar-1PU">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="625"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="652"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="検索にマッチする記事はありませんでした" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAM-uG-EJu">
@@ -1358,7 +1377,7 @@ MAIL: Matarai@shinonome.io</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZwY-xr-XQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2187" y="902"/>
+            <point key="canvasLocation" x="2186" y="869"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vm7-2d-p4C">
@@ -1368,6 +1387,9 @@ MAIL: Matarai@shinonome.io</string>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="34V-gi-LY7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Pacifico-Regular" family="Pacifico" pointSize="17"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
