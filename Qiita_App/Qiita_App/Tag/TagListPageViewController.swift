@@ -134,7 +134,7 @@ extension TagListPageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = SettingCellidentifier.cellType.tagPage.identifier
+        let identifier = IdentifierOption.cellType.tagPage.identifier
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? TagListCellViewController else {
             return UICollectionViewCell()
         }

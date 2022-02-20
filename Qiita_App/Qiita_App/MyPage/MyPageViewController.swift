@@ -152,7 +152,7 @@ extension MyPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = SettingCellidentifier.cellType.myPage.identifier
+        let identifier = IdentifierOption.cellType.myPage.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? MyPageCellViewController else {
             return UITableViewCell()
         }

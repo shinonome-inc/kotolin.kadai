@@ -124,7 +124,7 @@ extension FollowPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = SettingCellidentifier.cellType.followPage.identifier
+        let identifier = IdentifierOption.cellType.followPage.identifier
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? FollowPageCellViewController else {
             return UITableViewCell()
         }

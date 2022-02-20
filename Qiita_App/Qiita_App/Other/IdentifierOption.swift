@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingCellidentifier {
+class IdentifierOption {
     
     enum cellType {
         case feedPage
