@@ -44,9 +44,19 @@
 		07EBA54F27741675009C6765 /* CommonApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EBA54327741675009C6765 /* CommonApi.swift */; };
 		07EBA55027741675009C6765 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EBA54427741675009C6765 /* SecretKey.swift */; };
 		07EBA55127741675009C6765 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EBA54527741675009C6765 /* SceneDelegate.swift */; };
+		07FD0AB727A24AF50032C7BE /* UserPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD0AB627A24AF50032C7BE /* UserPageCell.swift */; };
+		07FD0AB927A24AFD0032C7BE /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FD0AB827A24AFD0032C7BE /* UserPageViewController.swift */; };
 		372618CB28352E9673FAD014 /* Pods_Qiita_App_Qiita_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51BF7201AE226CA5FA6EA2A /* Pods_Qiita_App_Qiita_AppUITests.framework */; };
 		8951C901D3280165AAA67226 /* Pods_Qiita_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D267A09C6D8BB6602C0AC844 /* Pods_Qiita_App.framework */; };
 		D52A24D5AF241FD14F048CBD /* Pods_Qiita_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAF87A7378337E9C6265B64 /* Pods_Qiita_AppTests.framework */; };
+<<<<<<< HEAD
+		F195A01727BD00500092A684 /* SettingCellidentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F195A01627BD00500092A684 /* SettingCellidentifier.swift */; };
+		F195A01A27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
+		F195A01B27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
+		F195A01C27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */; };
+=======
+		F195A01727BD00500092A684 /* IdentifierOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = F195A01627BD00500092A684 /* IdentifierOption.swift */; };
+>>>>>>> feature/#15
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +121,8 @@
 		07EBA54327741675009C6765 /* CommonApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonApi.swift; sourceTree = "<group>"; };
 		07EBA54427741675009C6765 /* SecretKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		07EBA54527741675009C6765 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		07FD0AB627A24AF50032C7BE /* UserPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPageCell.swift; sourceTree = "<group>"; };
+		07FD0AB827A24AFD0032C7BE /* UserPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
 		2A79E37873E9F7AFFB68072B /* Pods-Qiita_App-Qiita_AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_App-Qiita_AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Qiita_App-Qiita_AppUITests/Pods-Qiita_App-Qiita_AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		721F4EE51BE3EF0090240ADA /* Pods-Qiita_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Qiita_AppTests/Pods-Qiita_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92AFE35B24F8B2212083D60B /* Pods-Qiita_App-Qiita_AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_App-Qiita_AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Qiita_App-Qiita_AppUITests/Pods-Qiita_App-Qiita_AppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +131,12 @@
 		D267A09C6D8BB6602C0AC844 /* Pods_Qiita_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qiita_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51BF7201AE226CA5FA6EA2A /* Pods_Qiita_App_Qiita_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qiita_App_Qiita_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB58EEE744CB75716F5B4C0B /* Pods-Qiita_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_App.release.xcconfig"; path = "Target Support Files/Pods-Qiita_App/Pods-Qiita_App.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		F195A01627BD00500092A684 /* SettingCellidentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCellidentifier.swift; sourceTree = "<group>"; };
+		F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pacifico-Regular.ttf"; path = "../../../../Downloads/Pacifico/Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+=======
+		F195A01627BD00500092A684 /* IdentifierOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierOption.swift; sourceTree = "<group>"; };
+>>>>>>> feature/#15
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +201,7 @@
 		0716D7CC261EED7B008038D1 /* Qiita_App */ = {
 			isa = PBXGroup;
 			children = (
+				F195A01827BDEF0A0092A684 /* fonts */,
 				0716D7CD261EED7B008038D1 /* AppDelegate.swift */,
 				07EBA54527741675009C6765 /* SceneDelegate.swift */,
 				0716D7D3261EED7B008038D1 /* Main.storyboard */,
@@ -302,6 +321,7 @@
 				07EBA54227741675009C6765 /* MainTabBarController.swift */,
 				07EBA54327741675009C6765 /* CommonApi.swift */,
 				07EBA54427741675009C6765 /* SecretKey.swift */,
+				F195A01627BD00500092A684 /* IdentifierOption.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -309,6 +329,8 @@
 		07EBA5522774191D009C6765 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				07FD0AB827A24AFD0032C7BE /* UserPageViewController.swift */,
+				07FD0AB627A24AF50032C7BE /* UserPageCell.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -335,6 +357,14 @@
 				AA49C36ECDB20149A8BB8348 /* Pods-Qiita_AppTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F195A01827BDEF0A0092A684 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F195A01927BDEF420092A684 /* Pacifico-Regular.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +479,7 @@
 				0716D7DA261EED7C008038D1 /* LaunchScreen.storyboard in Resources */,
 				07EBA5352774166E009C6765 /* NotLoginPageViewController.xib in Resources */,
 				0716D7D7261EED7C008038D1 /* Assets.xcassets in Resources */,
+				F195A01A27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 				0716D7D5261EED7B008038D1 /* Main.storyboard in Resources */,
 				07EBA5382774166E009C6765 /* NetworkErrorView.xib in Resources */,
 			);
@@ -458,6 +489,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F195A01B27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +497,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F195A01C27BDEF420092A684 /* Pacifico-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +618,7 @@
 				07EBA51B277415F0009C6765 /* TagListPageViewController.swift in Sources */,
 				07EBA52327741619009C6765 /* MyPageCellViewController.swift in Sources */,
 				07EBA54727741675009C6765 /* AccessTokenDelivery.swift in Sources */,
+				07FD0AB927A24AFD0032C7BE /* UserPageViewController.swift in Sources */,
 				07EBA50D277415C2009C6765 /* TopPageViewController.swift in Sources */,
 				07EBA5362774166E009C6765 /* ErrorPageViewController.swift in Sources */,
 				07EBA51E277415F0009C6765 /* TagDetailPageViewController.swift in Sources */,
@@ -599,6 +633,8 @@
 				07EBA5342774166E009C6765 /* NetworkErrorView.swift in Sources */,
 				07EBA51D277415F0009C6765 /* TagListCell.swift in Sources */,
 				07EBA51C277415F0009C6765 /* TagDetailCell.swift in Sources */,
+				07FD0AB727A24AF50032C7BE /* UserPageCell.swift in Sources */,
+				F195A01727BD00500092A684 /* IdentifierOption.swift in Sources */,
 				07EBA54827741675009C6765 /* ApiModel.swift in Sources */,
 				07EBA5372774166E009C6765 /* NotLoginPageViewController.swift in Sources */,
 				07EBA514277415CE009C6765 /* FeedPageCell.swift in Sources */,
