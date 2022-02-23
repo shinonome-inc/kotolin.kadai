@@ -13,6 +13,7 @@ class TagDetailPageViewController: UIViewController {
     
     @IBOutlet var tagDetailArticle: UITableView!
     var tagName = ""
+    var encodedTagName = ""
     var page = 1
     var articles: [DataItem] = []
     var commonApi = CommonApi()
@@ -27,7 +28,11 @@ class TagDetailPageViewController: UIViewController {
         commonApi.presentNetworkErrorViewDelegate = self
         checkNetwork()
         
+        encodedTagName = self.urlEncode(beforeText: self.tagName)
+        
         CommonApi.tagDetailPageRequest(completion: { data in
+            print(self.urlEncode(beforeText: self.tagName))
+            print(data)
             if data.isEmpty {
                 self.presentNetworkErrorView()
             }
@@ -35,7 +40,7 @@ class TagDetailPageViewController: UIViewController {
                 self.articles.append($0)
             }
             self.tagDetailArticle.reloadData()
-        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: encodedTagName)))
         configureRefreshControl()
     }
     
@@ -50,6 +55,14 @@ class TagDetailPageViewController: UIViewController {
         tagDetailArticle.refreshControl = UIRefreshControl()
         tagDetailArticle.refreshControl?.addTarget(self, action:#selector(handleRefreshControl), for: .valueChanged)
     }
+    
+    func urlEncode(beforeText: String) -> String {
+        let allowedCharacters = NSCharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
+        if let encodedText = beforeText.addingPercentEncoding(withAllowedCharacters: allowedCharacters) {
+            return encodedText
+        }
+        return ""
+    }
 
     @objc func handleRefreshControl() {
         page = 1
@@ -63,7 +76,7 @@ class TagDetailPageViewController: UIViewController {
                 self.articles.append($0)
             }
             self.tagDetailArticle.reloadData()
-        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+        }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: encodedTagName)))
         DispatchQueue.main.async {
             self.tagDetailArticle.refreshControl?.endRefreshing()
         }
@@ -99,7 +112,7 @@ extension TagDetailPageViewController: UITableViewDataSource {
                     self.articles.append($0)
                 }
                 self.tagDetailArticle.reloadData()
-            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: encodedTagName)))
         }
     }
 }
@@ -130,7 +143,7 @@ extension TagDetailPageViewController: ReloadActionDelegate {
                     }
                     self.tagDetailArticle.reloadData()
                 }
-            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: tagName)))
+            }, url: CommonApi.structUrl(option: .tagDetailPage(page: page, tagTitle: encodedTagName)))
         }
     }
 }
