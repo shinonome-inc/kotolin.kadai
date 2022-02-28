@@ -33,6 +33,7 @@ class FeedPageViewController: UIViewController {
         commonApi.presentNetworkErrorViewDelegate = self
         nonSearchResult.isHidden = true
         searchBar.enablesReturnKeyAutomatically = false
+        searchBar.backgroundImage = UIImage()
         checkNetwork()
         
         CommonApi().feedPageRequest(completion: { data in
